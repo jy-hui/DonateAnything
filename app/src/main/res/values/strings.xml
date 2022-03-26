@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">DonateAnything</string>
+
+    <!--Login / Sign up / Reset Password-->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot"><b>FORGOT PASSWORD?</b></string>
+    <string name="forgotPwd"><b>Forgot Password</b></string>
+    <string name="login"><b>LOGIN</b></string>
+    <string name="sign_up"><b>Sign Up</b></string>
+    <string name="sign_out">Logout</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signIn"><b>Sign In</b></string>
+    <string name="username">Username</string>
+    <string name="phone">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="agree">I agree with the </string>
+    <string name="tnc"><a href="">terms and conditions</a></string>
+    <string name="terms"><b>Terms and Conditions</b></string>
+    <string name="create_account"><b>Create Account</b></string>
+    <string name="reset">Reset Password</string>
+    <string name="todo">TODO</string>
+    <string name="dhacc">Don\'t have account?</string>
+    <string name="alrhave">Already have account?</string>
+    <string name="sendMail">Send Email</string>
+    <string name="donateanything">DonateAnything</string>
 </resources>
