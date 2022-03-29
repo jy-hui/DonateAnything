@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
         sharePref = getSharedPreferences("rememberMe", MODE_PRIVATE)
-        if ( sharePref.contains("pref_rmbMe")) {
+        if ( sharePref.contains("pref_rmbMe")&&sharePref.getString("pref_rmbMe","")=="Yes") {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
