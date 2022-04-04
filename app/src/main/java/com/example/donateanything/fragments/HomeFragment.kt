@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.navigation.Navigation
 import com.example.donateanything.R
 
 class HomeFragment : Fragment() {
@@ -18,8 +20,18 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view=inflater.inflate(R.layout.fragment_home, container, false)
+        val btnNews: ImageView =view.findViewById(R.id.imgNews)
+
+        btnNews.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_newsFragment)
+        }
+        val btnEvent: ImageView =view.findViewById(R.id.imgEvent)
+
+        btnEvent.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_eventFragment)
+        }
+        return view
     }
 
 }
