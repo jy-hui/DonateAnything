@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Yes", DialogInterface.OnClickListener(){ dialog, which ->
                 moveTaskToBack(true)
                 android.os.Process.killProcess(android.os.Process.myPid())
+                finish()
                 exitProcess(0)
             })
             .setNegativeButton("No",DialogInterface.OnClickListener(){dialog, which -> dialog.cancel() })

@@ -28,7 +28,6 @@
             app:layout_constraintVertical_bias="0.535" />
 
 
-
         <ImageView
             android:id="@+id/banner"
             android:layout_width="409dp"
@@ -61,6 +60,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner"
             app:srcCompat="@drawable/news" />
+
+        <ImageView
+            android:id="@+id/imgBg"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgEvent"
+            app:srcCompat="@drawable/bg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
