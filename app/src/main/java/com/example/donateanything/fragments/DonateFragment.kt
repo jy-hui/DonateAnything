@@ -12,6 +12,7 @@ import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_donate.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DonateFragment : Fragment(){
@@ -42,11 +43,13 @@ class DonateFragment : Fragment(){
     ): View? {
         val view=inflater.inflate(R.layout.fragment_donate, container, false)
         val btnBack: ImageView =view.findViewById(R.id.back2)
-
+        val args = this.arguments
+        val isFood = args?.getBoolean("isFoodItem")
+        val isSupply = args?.getBoolean("isSupplyItem")
+        val isMoney = args?.getBoolean("isMoneyItem")
         btnBack.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
         }
-
 
         icNo= view.findViewById(R.id.icNo);
         campusSpinner= view.findViewById(R.id.campus_spinner);
@@ -77,12 +80,27 @@ class DonateFragment : Fragment(){
             }
         }
 
-        val item = arrayOf(
-            "Choose type of item donate",
-            "Food",
-            "Daily Supply",
-            "Money"
-        )
+        val item = ArrayList<String>()
+        item.add( "Choose type of item donate");
+
+        if(isFood == true){
+            item.add( "Food");
+            Toast.makeText(requireActivity().applicationContext,"1",Toast.LENGTH_SHORT).show()
+        }else{
+            item.add( "");
+        }
+        if(isSupply == true){
+            item.add( "Daily Supply");
+            Toast.makeText(requireActivity().applicationContext,"2",Toast.LENGTH_SHORT).show()
+        }else{
+            item.add( "");
+        }
+        if(isMoney == true){
+            item.add( "Money");
+            Toast.makeText(requireActivity().applicationContext,"3",Toast.LENGTH_SHORT).show()
+        }else{
+            item.add( "");
+        }
 
         val item_arrayAdapter = ArrayAdapter(requireActivity().applicationContext,android.R.layout.simple_spinner_dropdown_item,item)
         itemDonate.adapter = item_arrayAdapter
