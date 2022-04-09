@@ -11,8 +11,7 @@ import androidx.navigation.Navigation
 import com.example.donateanything.R
 
 
-class NewsFragment : Fragment() {
-
+class DonateForm2Fragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,26 +21,27 @@ class NewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view=inflater.inflate(R.layout.fragment_news, container, false)
-        val btnBack: ImageView =view.findViewById(R.id.back)
+        val view=inflater.inflate(R.layout.fragment_donateform2, container, false)
+        val btnBack: ImageView =view.findViewById(R.id.back4)
 
         btnBack.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_homeFragment)
+            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
         }
 
-        val donate1: Button =view.findViewById(R.id.donate1)
+        val btnSubmit: Button =view.findViewById(R.id.submitBtn)
 
-        donate1.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_donateFragment)
+        btnSubmit.setOnClickListener(){
 
+
+            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
+
+
+            //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm2Fragment)
         }
 
-        val donate2: Button =view.findViewById(R.id.donate2)
-
-        donate2.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_donateFragment)
-        }
+        // Inflate the layout for this fragment
         return view
     }
+
 
 }

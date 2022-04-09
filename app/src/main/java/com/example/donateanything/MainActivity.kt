@@ -3,6 +3,7 @@ package com.example.donateanything
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView= findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         bottomNavigationView.setupWithNavController(navController)
 
-   }
+
+    }
 
 
     override fun onBackPressed() {

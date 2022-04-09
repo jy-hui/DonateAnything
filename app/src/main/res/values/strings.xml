@@ -45,5 +45,12 @@
     <string name="pacNo">Pac No</string>
     <string name="request">REQUEST</string>
     <string name="submit">SUBMIT</string>
+    <string name="item_spinner">Choose item</string>
+
+    <string-array name="itemDonate">
+        <item>Daily Supply</item>
+        <item>Food Supply</item>
+        <item>Money</item>
+    </string-array>
 
 </resources>
