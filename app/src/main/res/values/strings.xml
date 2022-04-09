@@ -31,5 +31,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donate">Donate</string>
+    <string name="form">Donate Form</string>
+    <string name="ic">IC number</string>
+    <string name="titleDonate">" "</string>
+    <string name="campus_spinner">Choose campus</string>
+    <string name="date">DD/MM/YYYY</string>
+    <string name="next">NEXT</string>
+    <string name="value">number of value</string>
+    <string name="unit">unit</string>
+    <string name="bank">bank</string>
+    <string name="accountNo">Account No</string>
+    <string name="payment">Payment</string>
+    <string name="pacNo">Pac No</string>
+    <string name="request">REQUEST</string>
+    <string name="submit">SUBMIT</string>
 
 </resources>

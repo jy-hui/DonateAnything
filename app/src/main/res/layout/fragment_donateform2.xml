@@ -13,48 +13,77 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/submitBtn"
-            android:layout_width="320dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="38dp"
+            android:id="@+id/requestBtn"
+            android:layout_width="137dp"
+            android:layout_height="58dp"
             android:background="@drawable/button_round"
             android:backgroundTint="#FFFFFF"
             android:fontFamily="@font/righteous"
-            android:text="@string/next"
+            android:text="@string/request"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemDonate_spinner"
+            app:layout_constraintStart_toEndOf="@+id/pacNo"
+            app:layout_constraintTop_toTopOf="@+id/pacNo"
             tools:ignore="TextContrastCheck" />
 
         <EditText
-            android:id="@+id/date"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/pacNo"
+            android:layout_width="182dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="48dp"
             android:background="@drawable/edit_round"
             android:ems="10"
             android:fontFamily="@font/righteous"
-            android:hint="@string/date"
+            android:hint="@string/pacNo"
             android:importantForAutofill="no"
             android:inputType="number"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/campus_spinner" />
+            app:layout_constraintTop_toBottomOf="@+id/payment" />
+
+        <EditText
+            android:id="@+id/payment"
+            android:layout_width="321dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="48dp"
+            android:background="@drawable/edit_round"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/payment"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accountNo" />
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:layout_width="320dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="104dp"
+            android:background="@drawable/button_round"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/righteous"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pacNo"
+            tools:ignore="TextContrastCheck" />
 
         <ImageButton
             android:id="@+id/backBtn1"
             android:layout_width="57dp"
-            android:layout_height="54dp"
+            android:layout_height="57dp"
             android:layout_marginStart="23dp"
             android:layout_marginTop="27dp"
-            android:contentDescription="back"
             android:src="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
         <TextView
@@ -71,20 +100,20 @@
 
         <EditText
             android:id="@+id/accountNo"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="34dp"
+            android:layout_width="321dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/edit_round"
             android:ems="10"
             android:fontFamily="@font/righteous"
-            android:hint="@string/ic"
+            android:hint="@string/accountNo"
             android:importantForAutofill="no"
             android:inputType="number"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/donateItem" />
+            app:layout_constraintTop_toBottomOf="@+id/bank_spinner" />
 
         <ImageView
             android:id="@+id/imgBg"
@@ -112,42 +141,25 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="51dp"
             android:layout_marginTop="19dp"
-            android:text="@string/titleDonate"
+            android:text="&quot; &quot;"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <Spinner
-            android:id="@+id/campus_spinner"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="22dp"
+            android:id="@+id/bank_spinner"
+            android:layout_width="319dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="37dp"
             android:background="@drawable/edit_round"
-            android:contentDescription="@string/campus_spinner"
+            android:contentDescription="@string/bank"
             android:ems="10"
             android:fontFamily="@font/righteous"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accountNo" />
-
-        <Spinner
-            android:id="@+id/itemDonate_spinner"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/edit_round"
-            android:contentDescription="@string/campus_spinner"
-            android:ems="10"
-            android:fontFamily="@font/righteous"
-            android:paddingStart="50dp"
-            android:paddingEnd="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintTop_toBottomOf="@+id/donateItem" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
-
