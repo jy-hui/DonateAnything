@@ -9,9 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.fragment.findNavController
+import com.example.donateanything.HistoryActivity
 import com.example.donateanything.LoginActivity
 import com.example.donateanything.R
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.*
 
 
 class ProfileFragment : Fragment() {
@@ -34,7 +37,8 @@ class ProfileFragment : Fragment() {
 
         firebaseAuth= FirebaseAuth.getInstance()
         val sharePref = requireActivity().applicationContext.getSharedPreferences("rememberMe", Context.MODE_PRIVATE)
-        val btnLogout: Button =view.findViewById(R.id.btnLogout)
+        val btnLogout: Button = view.findViewById(R.id.btnLogout)
+        val btnHist : Button = view.findViewById(R.id.btnHistory)
 
         btnLogout.setOnClickListener {
             with(sharePref.edit()){
@@ -48,6 +52,12 @@ class ProfileFragment : Fragment() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
+
+        btnHist.setOnClickListener {
+            val intentH = Intent (view.context, HistoryActivity::class.java)
+            startActivity(intentH)
+        }
+
         return view
     }
 
