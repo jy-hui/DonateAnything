@@ -41,6 +41,10 @@
             android:name=".HistoryActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".TrackActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="preloaded_fonts"

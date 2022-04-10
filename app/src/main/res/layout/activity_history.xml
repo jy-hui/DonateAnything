@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/titleHistory"
+        android:id="@+id/titleTrack"
         android:layout_width="139dp"
         android:layout_height="45dp"
         android:fontFamily="@font/righteous"
@@ -29,10 +29,10 @@
         android:layout_width="379dp"
         android:layout_height="504dp"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvExplain"
-        app:layout_constraintEnd_toEndOf="@+id/tvExplain"
+        app:layout_constraintBottom_toTopOf="@+id/tvTime"
+        app:layout_constraintEnd_toEndOf="@+id/tvTime"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvExplain"
+        app:layout_constraintStart_toStartOf="@+id/tvTime"
         app:srcCompat="@color/purple_200" />
 
     <ImageView
@@ -40,9 +40,9 @@
         android:layout_width="31dp"
         android:layout_height="35dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/titleHistory"
-        app:layout_constraintEnd_toStartOf="@+id/titleHistory"
-        app:layout_constraintTop_toTopOf="@+id/titleHistory"
+        app:layout_constraintBottom_toBottomOf="@+id/titleTrack"
+        app:layout_constraintEnd_toStartOf="@+id/titleTrack"
+        app:layout_constraintTop_toTopOf="@+id/titleTrack"
         app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
@@ -55,14 +55,14 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleHistory"
+        app:layout_constraintTop_toBottomOf="@+id/titleTrack"
         app:layout_constraintVertical_bias="0.264"
         tools:listitem="@layout/item_view">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/tvExplain"
+        android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
