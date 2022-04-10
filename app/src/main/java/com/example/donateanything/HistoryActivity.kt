@@ -68,7 +68,7 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
             val intentA = Intent(this, MainActivity::class.java)
             startActivity(intentA)
         } else if (selectedInfo.btnCheck.contentEquals("Track")) {
-            val intentB = Intent(this, HistoryActivity::class.java)
+            val intentB = Intent(this, TrackActivity::class.java)
             startActivity(intentB)
         }
     }

@@ -38,7 +38,7 @@
     <ImageView
         android:id="@+id/imgBgMap"
         android:layout_width="420dp"
-        android:layout_height="299dp"
+        android:layout_height="220dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/imgMap"
         app:layout_constraintHorizontal_bias="0.0"
@@ -49,13 +49,13 @@
     <ImageView
         android:id="@+id/imgBG"
         android:layout_width="376dp"
-        android:layout_height="190dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/tvTime"
         app:layout_constraintEnd_toEndOf="@+id/tvTime"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="@+id/tvTime"
-        app:srcCompat="#A8FFD9" />
+        app:srcCompat="@android:color/holo_orange_light" />
 
     <TextView
         android:id="@+id/tvTime"
@@ -69,14 +69,14 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvPickUpTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="204dp"
+        android:layout_marginBottom="224dp"
         android:paddingLeft="30dp"
         android:text="Pick Up From :"
         android:textColor="#000000"
@@ -85,7 +85,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -107,7 +107,7 @@
         android:id="@+id/tvDestTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="120dp"
         android:paddingLeft="30dp"
         android:text="Destination :"
         android:textColor="#000000"
@@ -120,7 +120,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvPickUpDetails2"
+        android:id="@+id/tvDestDetails"
         android:layout_width="377dp"
         android:layout_height="58dp"
         android:paddingLeft="30dp"
@@ -136,23 +136,23 @@
     <ImageView
         android:id="@+id/imgMap"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="220dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTrack"
-        app:srcCompat="@drawable/Map" />
+        app:srcCompat="@drawable/map" />
 
     <Button
         android:id="@+id/btnFind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
         android:text="View Destination"
-        app:layout_constraintBottom_toTopOf="@+id/imgBG"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBgMap" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
