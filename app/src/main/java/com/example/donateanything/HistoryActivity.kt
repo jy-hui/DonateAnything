@@ -1,26 +1,18 @@
 package com.example.donateanything
 
 import android.content.Intent
-import android.os.Build
-import android.os.Build.VERSION_CODES.KITKAT
 import android.os.Bundle
-import android.view.View
-import android.view.View.VISIBLE
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.donateanything.databinding.ActivityHistoryBinding
-import com.example.donateanything.fragments.AboutFragment
-import com.example.donateanything.fragments.ProfileFragment
 import kotlinx.android.synthetic.main.item_view.*
 
 class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
+
     private lateinit var binding: ActivityHistoryBinding
 
-    class HistoryActivity : AppCompatActivity() {
         private val infoList = listOf(
             Info(
                 "1 Jan 2022",
@@ -44,41 +36,40 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
             )
         )
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_history)
-            //setContentView(R.layout.activity_history)
-            binding = ActivityHistoryBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_history)
+        //setContentView(R.layout.activity_history)
+        var binding = ActivityHistoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            val myAdapter = MyAdapter(infoList, this, applicationContext)
+        val myAdapter = MyAdapter(infoList, this)
 
-            binding.infoRV.adapter = myAdapter
-            binding.infoRV.layoutManager = LinearLayoutManager(applicationContext)
-            binding.infoRV.setHasFixedSize(true)
+        binding.infoRV.adapter = myAdapter
+        binding.infoRV.layoutManager = LinearLayoutManager(applicationContext)
+        binding.infoRV.setHasFixedSize(true)
 
-            val imgBackPage: ImageView = findViewById(R.id.imgBack)
+        val imgBackPage: ImageView = findViewById(R.id.imgBack)
 
-            imgBackPage.setOnClickListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
+        imgBackPage.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
+    }
 
-        override fun itemClick(position: Int) {
-            val selectedInfo = infoList[position]
-            Toast.makeText(
-                applicationContext,
-                selectedInfo.btnCheck, Toast.LENGTH_SHORT
-            ).show()
+    override fun itemClick(position: Int) {
+        val selectedInfo = infoList[position]
+        Toast.makeText(
+            applicationContext,
+            selectedInfo.btnCheck, Toast.LENGTH_SHORT
+        ).show()
 
-            if (selectedInfo.btnCheck.contentEquals("View")) {
-                val intentA = Intent(this, MainActivity::class.java)
-                startActivity(intentA)
-            } else if (selectedInfo.btnCheck.contentEquals("Track")) {
-                val intentB = Intent(this, HistoryActivity::class.java)
-                startActivity(intentB)
-            }
+        if (selectedInfo.btnCheck.contentEquals("View")) {
+            val intentA = Intent(this, MainActivity::class.java)
+            startActivity(intentA)
+        } else if (selectedInfo.btnCheck.contentEquals("Track")) {
+            val intentB = Intent(this, HistoryActivity::class.java)
+            startActivity(intentB)
         }
     }
 }
