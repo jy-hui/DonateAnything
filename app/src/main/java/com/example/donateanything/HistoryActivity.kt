@@ -31,8 +31,14 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
                 "View"
             ),
             Info(
+                "31 Mar 2022",
+                "[Completed]",
+                "Daily Supply",
+                "50 x T-Shirt\n" + "50 x Pant\n" + "50 x Face Mask", "1500 points gain", "View"
+            ),
+            Info(
                 "1 April 2022", "[Process]", "Daily Supply", "50 x Tooth Brush\n" +
-                        "50 x T-Shirt\n" + "50 x Pant", "1500 points gain", "Track"
+                        "50 x Towel", "1000 points gain", "Track"
             )
         )
 
@@ -66,6 +72,8 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
 
         if (selectedInfo.btnCheck.contentEquals("View")) {
             val intentA = Intent(this, CertActivity::class.java)
+                intentA.putExtra("Details",selectedInfo.donateDetails)
+                intentA.putExtra("Date",selectedInfo.date)
             startActivity(intentA)
         } else if (selectedInfo.btnCheck.contentEquals("Track")) {
             val intentB = Intent(this, TrackActivity::class.java)

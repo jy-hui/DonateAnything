@@ -16,6 +16,12 @@ class CertActivity: AppCompatActivity() {
         val donate : TextView = findViewById(R.id.showDonation)
         val date : TextView = findViewById(R.id.showDate)
 
+        val details = intent.getStringExtra("Details")
+        donate.text = details
+
+        val dd = intent.getStringExtra("Date")
+        date.text = dd
+
         val imgBackPage: ImageView = findViewById(R.id.imgBack)
 
         imgBackPage.setOnClickListener {
