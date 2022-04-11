@@ -171,10 +171,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCeoName2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCeoSign" />
 
     <TextView
-        android:id="@+id/tvCeoName2"
+        android:id="@+id/tvCeoSign"
         android:layout_width="198dp"
         android:layout_height="47dp"
         android:layout_marginTop="484dp"
