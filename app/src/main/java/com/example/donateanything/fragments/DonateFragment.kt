@@ -1,6 +1,5 @@
 package com.example.donateanything.fragments
 import android.app.ProgressDialog
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_donate.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -47,6 +44,8 @@ class DonateFragment : Fragment(){
         val argsFrom = this.arguments
 
         title = argsFrom?.getString("newTitle")
+        val icNo: EditText = view.findViewById(R.id.icNo)
+        val date: EditText = view.findViewById(R.id.date_Tran)
 
         val isFood = argsFrom?.getBoolean("isFoodItem")
         val isSupply = argsFrom?.getBoolean("isSupplyItem")
@@ -55,7 +54,7 @@ class DonateFragment : Fragment(){
             Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
         }
         val titleNewsText= view.findViewById<TextView>(R.id.newsTitle);
-        itemDonate= view.findViewById(R.id.itemDonate_spinner);
+        val itemDonate:Spinner = view.findViewById(R.id.itemDonate_spinner);
 
         titleNewsText.setText(title);
         var itemType = ""
@@ -229,9 +228,9 @@ class DonateFragment : Fragment(){
                     Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
                     val bundle = Bundle()
                     bundle.putString("itemType",itemType)
-                    //bundle.putString("icNo",view.findViewById(R.id.icNo))
-                    //bundle.putString("date",view.findViewById(R.id.date_Tran))
-                    val fragment = DonateFragment()
+                    bundle.putString("icNo",icNo.text.toString())
+                    bundle.putString("date",date.text.toString())
+                    val fragment = DonateForm1Fragment()
                     fragment.arguments = bundle
                     fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
                 }

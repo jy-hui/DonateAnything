@@ -51,12 +51,18 @@
     <string name="request">REQUEST</string>
     <string name="submit">SUBMIT</string>
     <string name="item_spinner">Choose item</string>
+    <string name="address">Address</string>
+    <string name="item">Item Name</string>
 
 
-    <string-array name="itemDonate">
-        <item>Daily Supply</item>
-        <item>Food Supply</item>
-        <item>Money</item>
+    <string-array name="unit">
+        <item>unit</item>
+        <item>bottle</item>
+        <item>bag</item>
+        <item>kg</item>
+        <item>g</item>
+        <item>ml</item>
+        <item>l</item>
     </string-array>
 
 </resources>
