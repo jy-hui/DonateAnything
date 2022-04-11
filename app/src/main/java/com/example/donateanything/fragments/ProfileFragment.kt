@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.donateanything.HistoryActivity
 import com.example.donateanything.LoginActivity
@@ -41,10 +43,22 @@ class ProfileFragment : Fragment() {
         val sharePref = requireActivity().applicationContext.getSharedPreferences("rememberMe", Context.MODE_PRIVATE)
         val btnLogout: Button = view.findViewById(R.id.btnLogout)
         val btnHist : Button = view.findViewById(R.id.btnHistory)
-
         val btnBrowse: Button = view.findViewById(R.id.btnBrowse)
+        val showName: TextView = view.findViewById(R.id.tvName)
+        val showingEmail: TextView = view.findViewById(R.id.showingEmail)
+        val showingPhone: TextView = view.findViewById(R.id.showingPhone)
+
+        //Got error, only show email
+        val n = firebaseAuth.currentUser!!.displayName.toString()
+        showName.text = n
+        val email = firebaseAuth.currentUser!!.email.toString()
+        showingEmail.text = email
+        val phone = firebaseAuth.currentUser!!.phoneNumber.toString()
+        showingPhone.text = phone
+
         btnBrowse.setOnClickListener(){
-            startForResult.launch("image/*")}
+            startForResult.launch("image/*")
+        }
 
         btnLogout.setOnClickListener {
             with(sharePref.edit()){
