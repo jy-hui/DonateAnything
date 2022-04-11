@@ -53,12 +53,6 @@
             android:id="@+id/action_donateForm2Fragment_to_newsFragment"
             app:destination="@id/newsFragment" />
     </fragment>
-
-    <fragment
-        android:id="@+id/requestFragment"
-        android:name="com.example.donateanything.fragments.RequestFragment"
-        android:label="fragment_request"
-        tools:layout="@layout/fragment_request" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.donateanything.fragments.ProfileFragment"
@@ -93,4 +87,34 @@
         app:destination="@id/homeFragment"
         />
     </fragment>
+    <fragment
+        android:id="@+id/requestFragment"
+        android:name="com.example.donateanything.fragments.RequestFragment"
+        android:label="fragment_request"
+        tools:layout="@layout/fragment_request" >
+        <action
+            android:id="@+id/action_requestFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_requestFragment_to_requestTypeFragment"
+            app:destination="@id/requestTypeFragment" />
+        <action
+            android:id="@+id/action_requestFragment_to_requestListFragment"
+            app:destination="@id/requestListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestTypeFragment"
+        android:name="com.example.donateanything.fragments.RequestTypeFragment"
+        android:label="RequestTypeFragment" >
+        <action
+            android:id="@+id/action_requestTypeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_requestTypeFragment_to_requestFragment"
+            app:destination="@id/requestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestListFragment"
+        android:name="com.example.donateanything.fragments.RequestListFragment"
+        android:label="RequestListFragment" />
 </navigation>
