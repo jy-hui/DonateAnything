@@ -9,12 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.fragment.findNavController
+import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.donateanything.HistoryActivity
 import com.example.donateanything.LoginActivity
 import com.example.donateanything.R
+import com.example.donateanything.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 class ProfileFragment : Fragment() {
@@ -26,7 +29,6 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -39,6 +41,10 @@ class ProfileFragment : Fragment() {
         val sharePref = requireActivity().applicationContext.getSharedPreferences("rememberMe", Context.MODE_PRIVATE)
         val btnLogout: Button = view.findViewById(R.id.btnLogout)
         val btnHist : Button = view.findViewById(R.id.btnHistory)
+
+        val btnBrowse: Button = view.findViewById(R.id.btnBrowse)
+        btnBrowse.setOnClickListener(){
+            startForResult.launch("image/*")}
 
         btnLogout.setOnClickListener {
             with(sharePref.edit()){
@@ -61,5 +67,8 @@ class ProfileFragment : Fragment() {
         return view
     }
 
-
+    private val startForResult = registerForActivityResult(
+        ActivityResultContracts.GetContent()){ uri->
+            imgProfile.setImageURI(uri)
+    }
 }
