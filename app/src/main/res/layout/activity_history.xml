@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/titleCert"
+        android:id="@+id/titlePage"
         android:layout_width="139dp"
         android:layout_height="45dp"
         android:fontFamily="@font/righteous"
@@ -25,6 +25,17 @@
         app:layout_constraintVertical_bias="0.007" />
 
     <ImageView
+        android:id="@+id/imgBack"
+        android:layout_width="31dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/titlePage"
+        app:layout_constraintEnd_toStartOf="@+id/titlePage"
+        app:layout_constraintTop_toTopOf="@+id/titlePage"
+        app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+    <ImageView
         android:id="@+id/imgBG"
         android:layout_width="379dp"
         android:layout_height="504dp"
@@ -35,17 +46,6 @@
         app:layout_constraintStart_toStartOf="@+id/tvThanks"
         app:srcCompat="@color/purple_200" />
 
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_width="31dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/titleCert"
-        app:layout_constraintEnd_toStartOf="@+id/titleCert"
-        app:layout_constraintTop_toTopOf="@+id/titleCert"
-        app:layout_constraintVertical_bias="0.428"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/infoRV"
         android:layout_width="320dp"
@@ -55,7 +55,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleCert"
+        app:layout_constraintTop_toBottomOf="@+id/titlePage"
         app:layout_constraintVertical_bias="0.264"
         tools:listitem="@layout/item_view">
 

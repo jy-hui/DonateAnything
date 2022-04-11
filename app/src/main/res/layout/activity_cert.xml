@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/titleCert"
+        android:id="@+id/titlePage"
         android:layout_width="298dp"
         android:layout_height="43dp"
         android:fontFamily="@font/righteous"
@@ -29,9 +29,9 @@
         android:layout_width="31dp"
         android:layout_height="35dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/titleCert"
-        app:layout_constraintEnd_toStartOf="@+id/titleCert"
-        app:layout_constraintTop_toTopOf="@+id/titleCert"
+        app:layout_constraintBottom_toBottomOf="@+id/titlePage"
+        app:layout_constraintEnd_toStartOf="@+id/titlePage"
+        app:layout_constraintTop_toTopOf="@+id/titlePage"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
@@ -39,10 +39,10 @@
         android:id="@+id/imgLogo"
         android:layout_width="265dp"
         android:layout_height="179dp"
-        app:layout_constraintEnd_toEndOf="@+id/titleCert"
+        app:layout_constraintEnd_toEndOf="@+id/titlePage"
         app:layout_constraintHorizontal_bias="0.727"
-        app:layout_constraintStart_toStartOf="@+id/titleCert"
-        app:layout_constraintTop_toBottomOf="@+id/titleCert"
+        app:layout_constraintStart_toStartOf="@+id/titlePage"
+        app:layout_constraintTop_toBottomOf="@+id/titlePage"
         app:srcCompat="@drawable/charitylogo" />
 
     <TextView
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleCert" />
+        app:layout_constraintTop_toBottomOf="@+id/titlePage" />
 
     <TextView
         android:id="@+id/showName"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleCert" />
+        app:layout_constraintTop_toBottomOf="@+id/titlePage" />
 
     <TextView
         android:id="@+id/showDonation"
@@ -140,7 +140,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleCert" />
+        app:layout_constraintTop_toBottomOf="@+id/titlePage" />
 
     <TextView
         android:id="@+id/showDate"
@@ -188,7 +188,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleCert" />
+        app:layout_constraintTop_toBottomOf="@+id/titlePage" />
 
     <TextView
         android:id="@+id/showPositions"
