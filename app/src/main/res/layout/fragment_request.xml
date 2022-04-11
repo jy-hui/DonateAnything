@@ -1,14 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/themeColor">
     tools:context=".fragments.RequestFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backBtn1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/requestFormtxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/requestFormtxt"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/requestFormtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="64dp"
+            android:fontFamily="@font/righteous"
+            android:text="Request Form"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.095"
+            app:layout_constraintStart_toEndOf="@+id/backBtn1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/firstName"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="28dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requestFormtxt" />
+
+        <EditText
+            android:id="@+id/ICno"
+            android:layout_width="398dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="2dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="IC No"
+            android:inputType="textPersonName"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstName" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="398dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="2dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/houseAddress" />
+
+        <EditText
+            android:id="@+id/houseAddress"
+            android:layout_width="398dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="2dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="House Address"
+            android:inputType="textPersonName"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mobileNo" />
+
+        <EditText
+            android:id="@+id/reason"
+            android:layout_width="398dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="2dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="Reason for request help"
+            android:inputType="textPersonName"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/firstName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.981"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/firstName"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/mobileNo"
+            android:layout_width="398dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="2dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="Mobile Number"
+            android:inputType="phone"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ICno" />
+
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="134dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/righteous"
+            android:backgroundTint="@color/teal_200"
+            android:text="Next"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.942"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reason" />
+
+        <Button
+            android:id="@+id/adminBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.894"
+            app:layout_constraintStart_toEndOf="@+id/requestFormtxt"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
