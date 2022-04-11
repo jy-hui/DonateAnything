@@ -177,7 +177,7 @@
         android:id="@+id/tvCeoSign"
         android:layout_width="198dp"
         android:layout_height="47dp"
-        android:layout_marginTop="484dp"
+        android:layout_marginTop="460dp"
         android:fontFamily="@font/righteous"
         android:text="JY"
         android:textAlignment="center"
