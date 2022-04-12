@@ -128,16 +128,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvRType" />
 
-        <TextView
-            android:id="@+id/tvRTotal"
-            android:layout_width="286dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRDonateDetails" />
+        <ImageView
+           android:id="@+id/imgQRCode"
+            android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+          android:src="@mipmap/ic_launcher"
+           app:layout_constraintBottom_toBottomOf="@+id/detailReceipt"
+          app:layout_constraintEnd_toEndOf="@+id/detailReceipt"
+          app:layout_constraintStart_toStartOf="@+id/detailReceipt" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

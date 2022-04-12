@@ -1,18 +1,27 @@
 package com.example.donateanything.fragments
 
 import android.content.ContentValues
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
 
 class ReceiptFragment : Fragment(){
     private lateinit var db : FirebaseFirestore
+
+    private lateinit var ivQRcode : ImageView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,10 +36,10 @@ class ReceiptFragment : Fragment(){
         val tvEmail : TextView = view.findViewById(R.id.tvREmail)
         val tvPhone : TextView = view.findViewById(R.id.tvRPhone)
         val tvDate : TextView = view.findViewById(R.id.tvRDate)
-        val tvAddress : TextView = view.findViewById(R.id.tvRAddress)
         val tvType : TextView = view.findViewById(R.id.tvRType)
         val tvDetails : TextView = view.findViewById(R.id.tvRDonateDetails)
-        val tvTotal : TextView = view.findViewById(R.id.tvRTotal)
+        //val tvTotal : TextView = view.findViewById(R.id.tvRTotal)
+        ivQRcode = view.findViewById(R.id.imgQRCode)
 
         db = FirebaseFirestore.getInstance()
 
@@ -82,7 +91,23 @@ class ReceiptFragment : Fragment(){
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "get failed with ", exception)
             }
+        val data = donateID.toString().trim()
+        if(!data.isEmpty()){
+            val writer = QRCodeWriter()
+            try{
 
+            }catch(e:WriterException){
+                val bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE,512,512)
+                val width = bitMatrix.width
+                val height = bitMatrix.height
+                val bmp = Bitmap.createBitmap(width,height,Bitmap.Config.RGB_565)
+                for (x in 0 until width){
+                    for(y in 0 until height){
+                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLACK else Color.WHITE)
+                    }
+                }
+            }
+        }
         return view
     }
 }
