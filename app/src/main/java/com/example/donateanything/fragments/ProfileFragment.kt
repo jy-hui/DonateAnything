@@ -54,25 +54,21 @@ class ProfileFragment : Fragment() {
         showingEmail.text = email
 
         db= FirebaseFirestore.getInstance()
+
         db.collection("USERS")
             .whereEqualTo("Email",email)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result){
-                //if (document != null) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.getString("Username")}")
                     showName.text = document.getString("Username")
+                    showingPhone.text = document.getString("Phone")
                 }
-                //else { Log.d(TAG, "No such document")}
 
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "get failed with ", exception)
             }
-
-
-        val phone = firebaseAuth.currentUser?.phoneNumber.toString()
-        showingPhone.text = phone
 
         btnBrowse.setOnClickListener {
             startForResult.launch("image/*")
