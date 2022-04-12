@@ -1,6 +1,9 @@
 package com.example.donateanything.fragments
 
+import android.content.ContentValues
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,36 +12,22 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.Navigation
 import com.example.donateanything.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlinx.android.synthetic.main.fragment_request.*
 
 
 class RequestFragment : Fragment() {
-//    private lateinit var firstName: EditText
-//   private lateinit var lastName: EditText
-//    private lateinit var icNo: EditText
-//    private lateinit var phoneNo: EditText
-//    private lateinit var houseAddress: EditText
-//    private lateinit var email: EditText
-//    private lateinit var reason: EditText
-    //  private lateinit var db: FirebaseFirestore
 
     private val PHONE_REGEX = "^(01)[0-9]-[0-9]{7,8}\$"
 
-
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var db : FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-//        firstName = findViewById(R.id.firstName)
-//        lastName= findViewById(R.id.lastName)
-//        icNo= findViewById(R.id.ICno)
-//        phoneNo=findViewById(R.id.mobileNo)
-//        houseAddress=findViewById(R.id.houseAddress)
-//        email=findViewById(R.id.email)
-//        reason=findViewById(R.id.reason)
     }
 
     private fun detailAllFill():Boolean{
@@ -49,8 +38,8 @@ class RequestFragment : Fragment() {
         ){
             firstName.error="Please enter your first name"
             lastName.error="Please enter your last name"
-            //icNo.error="Please enter your IC No"
-           // phoneNo.error="Please enter your phone number"
+            ICno.error="Please enter your IC No"
+            mobileNo.error="Please enter your phone number"
             houseAddress.error="Please enter your house address"
             email.error="Please enter your email"
             reason.error="Please enter your reason"
@@ -113,7 +102,9 @@ class RequestFragment : Fragment() {
         val backBtn: ImageView = view.findViewById(R.id.backBtn1)
         val nextBtn: Button =view.findViewById(R.id.nextBtn)
         val adminBtn: Button =view.findViewById(R.id.adminBtn)
-        //db= FirebaseFirestore.getInstance()
+
+        firebaseAuth= FirebaseAuth.getInstance()
+        db= FirebaseFirestore.getInstance()
 
         val firstName=view.findViewById<TextView>(R.id.firstName)
         val lastName=view.findViewById<TextView>(R.id.lastName)
@@ -122,6 +113,31 @@ class RequestFragment : Fragment() {
         val houseAddress=view.findViewById<TextView>(R.id.houseAddress)
         val email=view.findViewById<TextView>(R.id.email)
         val reason=view.findViewById<TextView>(R.id.reason)
+
+        val emailAdmin = firebaseAuth.currentUser!!.email.toString()
+
+        var isAdmin: String? = null
+
+        adminBtn.visibility = View.GONE
+
+        db.collection("USERS")
+            .whereEqualTo("Email",emailAdmin)
+            .get()
+            .addOnSuccessListener { result ->
+
+                for (document in result){
+                    isAdmin = document.getString("token")
+                }
+                if(isAdmin.equals("Admin")) {
+                    adminBtn.visibility = View.VISIBLE
+                }else{
+                    adminBtn.visibility = View.GONE
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "get failed with ", exception)
+            }
+
 
         nextBtn.setOnClickListener{
 
@@ -142,10 +158,6 @@ class RequestFragment : Fragment() {
                 fragment.setArguments(bundle)
 
                 fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
-
-                //Navigation.findNavController(it).navigate(R.id.action_requestFragment_to_requestTypeFragment)
-
-                //val Users=db.collection("RequestForm")
 
             }
         }

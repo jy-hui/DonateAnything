@@ -177,10 +177,10 @@
             android:id="@+id/adminBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Button"
+            android:layout_marginTop="16dp"
+            android:text="View List"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.894"
+            app:layout_constraintHorizontal_bias="0.826"
             app:layout_constraintStart_toEndOf="@+id/requestFormtxt"
             app:layout_constraintTop_toTopOf="parent" />
 

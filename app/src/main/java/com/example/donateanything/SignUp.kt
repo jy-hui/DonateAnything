@@ -136,6 +136,9 @@ class SignUp : AppCompatActivity() {
             password.error="Please enter your password!"
             password.requestFocus()
             isValid=false
+        }else if (password.length() <= 5) {
+            password.error="Password must be >5 characters"
+            password.requestFocus()
         }
         if (password1.text.toString().isEmpty()){
             password1.error="Please confirm your password!"
