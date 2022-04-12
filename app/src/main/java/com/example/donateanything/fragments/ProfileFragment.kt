@@ -31,7 +31,7 @@ class ProfileFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     //SharedPreferences
     private lateinit var sharePref : SharedPreferences
-    private var db : FirebaseFirestore? =  null
+    private lateinit var db : FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,23 +48,26 @@ class ProfileFragment : Fragment() {
         val btnLogout: Button = view.findViewById(R.id.btnLogout)
         val btnHist : Button = view.findViewById(R.id.btnHistory)
         val btnBrowse: Button = view.findViewById(R.id.btnBrowse)
+
         val showName: TextView = view.findViewById(R.id.tvName)
         val showingEmail: TextView = view.findViewById(R.id.showingEmail)
         val showingPhone: TextView = view.findViewById(R.id.showingPhone)
 
-        //Not sure
-        db?.collection("USERS")?.get()
+        val email = firebaseAuth.currentUser!!.email.toString()
+        showingEmail.text = email
 
-        val userN = db?.collection("USERS")?.document("email")
-        userN?.get()
-            ?.addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                } else {
-                    Log.d(TAG, "No such document")
+        val userN = db.collection("USERS")
+            .whereEqualTo("Email",email)
+            userN.get()
+            .addOnSuccessListener { result ->
+                for (document in result){
+                //if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.getString("Username")}")
                 }
+                //else { Log.d(TAG, "No such document")}
+
             }
-            ?.addOnFailureListener { exception ->
+            .addOnFailureListener { exception ->
                 Log.d(TAG, "get failed with ", exception)
             }
 
@@ -72,8 +75,6 @@ class ProfileFragment : Fragment() {
         //Got error, only show email
         val n = firebaseAuth.currentUser?.displayName.toString()
         showName.text = n
-        val email = firebaseAuth.currentUser!!.email.toString()
-        showingEmail.text = email
         val phone = firebaseAuth.currentUser?.phoneNumber.toString()
         showingPhone.text = phone
 
