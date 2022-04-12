@@ -53,11 +53,11 @@
             app:layout_constraintTop_toTopOf="@+id/backBtn1" />
 
         <EditText
-            android:id="@+id/accountNo"
+            android:id="@+id/valueNo"
             android:layout_width="229dp"
             android:layout_height="61dp"
             android:layout_marginStart="44dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/edit_round"
             android:ems="10"
             android:fontFamily="@font/righteous"
@@ -67,7 +67,24 @@
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/donateItem" />
+            app:layout_constraintTop_toBottomOf="@+id/itemName" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="312dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="37dp"
+            android:background="@drawable/edit_round"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/address"
+            android:importantForAutofill="yes"
+            android:inputType="textPostalAddress"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transportion_s" />
 
         <ImageView
             android:id="@+id/imgBg"
@@ -100,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <Spinner
-            android:id="@+id/bank_spinner"
+            android:id="@+id/unit_spinner"
             android:layout_width="87dp"
             android:layout_height="60dp"
             android:layout_marginStart="4dp"
@@ -108,10 +125,10 @@
             android:contentDescription="@string/unit"
             android:ems="10"
             android:fontFamily="@font/righteous"
-            android:paddingStart="50dp"
+            android:paddingStart="20dp"
             android:paddingEnd="10dp"
-            app:layout_constraintStart_toEndOf="@+id/accountNo"
-            app:layout_constraintTop_toTopOf="@+id/accountNo" />
+            app:layout_constraintStart_toEndOf="@+id/valueNo"
+            app:layout_constraintTop_toTopOf="@+id/valueNo" />
 
         <Switch
             android:id="@+id/transportion_s"
@@ -124,7 +141,23 @@
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accountNo" />
+            app:layout_constraintTop_toBottomOf="@+id/valueNo" />
+
+        <EditText
+            android:id="@+id/itemName"
+            android:layout_width="312dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/edit_round"
+            android:ems="10"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/item"
+            android:importantForAutofill="yes"
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/donateItem" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

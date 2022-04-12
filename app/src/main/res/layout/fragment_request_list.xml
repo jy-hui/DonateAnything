@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/themeColor">
+    tools:context=".fragments.RequestListFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backBtnRequest"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/requestListTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/requestListTxt"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/requestListTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="120dp"
+            android:fontFamily="@font/righteous"
+            android:text="Request List"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.095"
+            app:layout_constraintStart_toEndOf="@+id/backBtnRequest"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/requestListRecycler"
+            android:layout_width="413dp"
+            android:layout_height="643dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requestListTxt"
+            tools:listitem="@layout/request_list" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -28,6 +28,11 @@
     <string name="news">News</string>
     <string name="event">Event</string>
 
+    <string name="newsTitle1">West Afica: Extreme poverty rises nearly poverty rises nearly 3 per cent to COVID-19</string>
+    <string name="newsTitle2">Lebanon: Almost three-quarters of the population living in poverty</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donate">Donate</string>
@@ -45,5 +50,19 @@
     <string name="pacNo">Pac No</string>
     <string name="request">REQUEST</string>
     <string name="submit">SUBMIT</string>
+    <string name="item_spinner">Choose item</string>
+    <string name="address">Address</string>
+    <string name="item">Item Name</string>
+
+
+    <string-array name="unit">
+        <item>unit</item>
+        <item>bottle</item>
+        <item>bag</item>
+        <item>kg</item>
+        <item>g</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
 
 </resources>
