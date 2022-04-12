@@ -1,14 +1,16 @@
 package com.example.donateanything
 
 import android.view.LayoutInflater
+import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter (private val request_list: ArrayList<RequestList>): RecyclerView.Adapter<Adapter.viewHolder>() {
+class Adapter (private val request_list: ArrayList<RequestList>, private val listener: OnItemClickListener):
+    RecyclerView.Adapter<Adapter.viewHolder>() {
 
-    class viewHolder(view: View): RecyclerView.ViewHolder(view){
+    inner class viewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
         var FirstName: TextView = view.findViewById(R.id.firstNameInput)
         var LastName: TextView = view.findViewById(R.id.lastNameInput)
         var Specific: TextView = view.findViewById(R.id.requestSpecific)
@@ -17,6 +19,21 @@ class Adapter (private val request_list: ArrayList<RequestList>): RecyclerView.A
         var FoodDrink: TextView = view.findViewById(R.id.foodInput)
         var Money: TextView = view.findViewById(R.id.moneyInput)
         var Other: TextView = view.findViewById(R.id.otherInput)
+
+        init{
+            view.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if(position != RecyclerView.NO_POSITION){
+                listener.itemClick(position)
+            }
+        }
+    }
+
+    interface OnItemClickListener{
+        fun itemClick(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
