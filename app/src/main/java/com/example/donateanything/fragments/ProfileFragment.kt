@@ -1,9 +1,11 @@
 package com.example.donateanything.fragments
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +20,7 @@ import com.example.donateanything.LoginActivity
 import com.example.donateanything.R
 import com.example.donateanything.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -28,6 +31,7 @@ class ProfileFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     //SharedPreferences
     private lateinit var sharePref : SharedPreferences
+    private var db : FirebaseFirestore? =  null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +52,29 @@ class ProfileFragment : Fragment() {
         val showingEmail: TextView = view.findViewById(R.id.showingEmail)
         val showingPhone: TextView = view.findViewById(R.id.showingPhone)
 
+        //Not sure
+        db?.collection("USERS")?.get()
+
+        val userN = db?.collection("USERS")?.document("email")
+        userN?.get()
+            ?.addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            ?.addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
+            }
+
+
         //Got error, only show email
-        val n = firebaseAuth.currentUser!!.displayName.toString()
+        val n = firebaseAuth.currentUser?.displayName.toString()
         showName.text = n
         val email = firebaseAuth.currentUser!!.email.toString()
         showingEmail.text = email
-        val phone = firebaseAuth.currentUser!!.phoneNumber.toString()
+        val phone = firebaseAuth.currentUser?.phoneNumber.toString()
         showingPhone.text = phone
 
         btnBrowse.setOnClickListener(){
