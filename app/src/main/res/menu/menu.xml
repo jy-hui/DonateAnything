@@ -5,10 +5,6 @@
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_round_home_24"
     />
-    <item android:title="Donate"
-        android:id="@+id/donateFragment"
-        android:icon="@drawable/ic_round_donate_24"
-        />
     <item android:title="Request"
         android:id="@+id/requestFragment"
         android:icon="@drawable/ic_round_request_24"
