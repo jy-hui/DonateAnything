@@ -64,7 +64,7 @@ class SignUp : AppCompatActivity() {
 
 
                 val Users=db.collection("USERS")
-                val query =Users.whereEqualTo("email",email.text.toString()).get()
+                val query =Users.get()
                     .addOnSuccessListener {
                             tasks->
                         if(tasks.isEmpty)

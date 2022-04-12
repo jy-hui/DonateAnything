@@ -2,6 +2,7 @@ package com.example.donateanything.fragments
 
 import android.app.ProgressDialog
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,7 @@ class DonateForm1Fragment : Fragment() {
         firebaseAuth= FirebaseAuth.getInstance()
         val email = firebaseAuth.currentUser!!.email.toString()
 
+
         val titleText= view.findViewById<TextView>(R.id.donateItem)
         titleText.text = title
         val itemName : EditText = view.findViewById(R.id.itemName)
@@ -46,7 +48,8 @@ class DonateForm1Fragment : Fragment() {
         val addressText: EditText = view.findViewById(R.id.address)
         addressText.visibility = View.INVISIBLE
         var donateID : String = ""
-        var d_ID : Int = 0
+        var d_ID_F : String = ""
+        var d_ID : Int = 2
         var unitR = ""
         val btnSubmit: Button =view.findViewById(R.id.submitBtn)
 
@@ -88,18 +91,21 @@ class DonateForm1Fragment : Fragment() {
         }
 
         btnSubmit.setOnClickListener {
-            db.collection("DONATION")
-                .whereEqualTo("Email",email).get()
+
+            db.collection("DONATION").whereEqualTo("ID",donateID).get()
                 .addOnSuccessListener { result ->
                     for (document in result){
-                        donateID = "" + document.getString("ID")
-                        d_ID = donateID.toInt() + 1
+                        donateID = document.getString("ID").toString()
+
                     }
                 }
                 .addOnFailureListener { exception ->
                     Log.d(ContentValues.TAG, "get failed with ", exception)
                 }
+            d_ID = donateID.toInt()
+            d_ID++
 
+            Log.d(TAG, "donation : " + d_ID)
             val donation = hashMapOf(
                 "ID" to d_ID,
                 "Email" to email,
@@ -112,10 +118,12 @@ class DonateForm1Fragment : Fragment() {
                 "Transportation" to onTrans.toString(),
                 "Address" to addressText.toString()
             )
-            db.collection("DONATION")
-                .add(donation)
+            d_ID_F = d_ID.toString()
+            val Donation = db.collection("DONATION")
+            val query = Donation.get()
                 .addOnSuccessListener { documentReference ->
                     // Toast.makeText(this, "Sign Up successfully!", Toast.LENGTH_SHORT).show()
+                    Donation.document(d_ID_F).set(donation)
                     Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_receiptFragment)
                     //Toast.makeText(getActivity(),)
                 }
