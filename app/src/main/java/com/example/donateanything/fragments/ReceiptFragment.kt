@@ -13,14 +13,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.WriterException
-import com.google.zxing.qrcode.QRCodeWriter
+
 
 class ReceiptFragment : Fragment(){
     private lateinit var db : FirebaseFirestore
 
-    private lateinit var ivQRcode : ImageView
+    //private lateinit var ivQRcode : ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +37,7 @@ class ReceiptFragment : Fragment(){
         val tvType : TextView = view.findViewById(R.id.tvRType)
         val tvDetails : TextView = view.findViewById(R.id.tvRDonateDetails)
         //val tvTotal : TextView = view.findViewById(R.id.tvRTotal)
-        ivQRcode = view.findViewById(R.id.imgQRCode)
+        //ivQRcode = view.findViewById(R.id.imgQRCode)
 
         db = FirebaseFirestore.getInstance()
 
@@ -47,7 +45,6 @@ class ReceiptFragment : Fragment(){
         db.collection("DONATION").document(donateID.toString()).get()
             .addOnSuccessListener { result ->
                 //for (document in result) {
-                    Log.d(ContentValues.TAG, "ID : "+ donateID)
                     tvIC.setText("No IC : "+result.getString("NoIC"))
                     tvEmail.setText("Email : "+result.getString("Email"))
                     tvDate.setText("Date : "+result.getString("Date"))
@@ -71,7 +68,7 @@ class ReceiptFragment : Fragment(){
                 }else if(result.getString("Item Type")=="Money"){
                     tvDetails.setText("Bank : "+
                             result.getString("Bank")+"\nAccount No : "+
-                            result.getString("AccountNo")+"\nPayment No : "+
+                            result.getString("AccountNo")+"\nPayment : RM"+
                             result.getString("Payment"))
                 }
 
@@ -80,8 +77,8 @@ class ReceiptFragment : Fragment(){
                 db.collection("USERS").document(emailR.toString()).get()
                     .addOnSuccessListener { result ->
                         //for (document in result) {
-                        tvName.setText(result.getString("Username"))
-                        tvPhone.setText(result.getString("Phone"))
+                        tvName.setText("ID : "+donateID.toString()+"\nName :"+result.getString("Username"))
+                        tvPhone.setText("Phone :"+ result.getString("Phone"))
                         //}
                     }
                     .addOnFailureListener { exception ->
@@ -91,23 +88,23 @@ class ReceiptFragment : Fragment(){
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "get failed with ", exception)
             }
-        val data = donateID.toString().trim()
-        if(!data.isEmpty()){
-            val writer = QRCodeWriter()
-            try{
-
-            }catch(e:WriterException){
-                val bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE,512,512)
-                val width = bitMatrix.width
-                val height = bitMatrix.height
-                val bmp = Bitmap.createBitmap(width,height,Bitmap.Config.RGB_565)
-                for (x in 0 until width){
-                    for(y in 0 until height){
-                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLACK else Color.WHITE)
-                    }
-                }
-            }
-        }
+//        val data = donateID.toString().trim()
+//        if(!data.isEmpty()){
+//            val writer = QRCodeWriter()
+//            try{
+//
+//            }catch(e:WriterException){
+//                val bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE,512,512)
+//                val width = bitMatrix.width
+//                val height = bitMatrix.height
+//                val bmp = Bitmap.createBitmap(width,height,Bitmap.Config.RGB_565)
+//                for (x in 0 until width){
+//                    for(y in 0 until height){
+//                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLACK else Color.WHITE)
+//                    }
+//                }
+//            }
+//        }
         return view
     }
 }

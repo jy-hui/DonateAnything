@@ -97,8 +97,12 @@ class DonateForm2Fragment : Fragment() {
 //                Log.d(ContentValues.TAG, "get failed with ", exception)
 //            }
         btnSubmit.setOnClickListener(){
-            var pacPassword : Int = 12345
-            pacPassword = pacNo.text.toString().toInt()
+            var pacPassword : Int
+            if(pacNo.text.isEmpty()){
+                pacPassword =0
+            }else {
+                pacPassword = pacNo.text.toString().toInt()
+            }
             if(pacPassword == 12345){
                 //Log.w(ContentValues.TAG, "Donation :"+ donateID )
                 //d_ID = donateID.toInt()
