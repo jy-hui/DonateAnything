@@ -84,13 +84,20 @@ class ProfileFragment : Fragment() {
             btnConfirm.visibility = VISIBLE
         }
 
-        btnChange.setOnClickListener{
+        btnConfirm.setOnClickListener{
             showingEmail.visibility = VISIBLE
             showingPhone.visibility = VISIBLE
             showEmail.visibility = GONE
             showPhone.visibility = GONE
             btnChange.visibility = VISIBLE
             btnConfirm.visibility = GONE
+
+            val email = showEmail.text
+            showingEmail.text = email
+
+            val phone = showPhone.text
+            showingPhone.text = phone
+
         }
 
         btnBrowse.setOnClickListener {
