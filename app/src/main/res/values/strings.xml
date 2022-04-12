@@ -53,6 +53,7 @@
     <string name="item_spinner">Choose item</string>
     <string name="address">Address</string>
     <string name="item">Item Name</string>
+    <string name="receipt">Receipt</string>
 
 
     <string-array name="unit">

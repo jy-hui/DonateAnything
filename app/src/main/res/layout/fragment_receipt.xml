@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/themeColor"
+    tools:context=".fragments.ReceiptFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="320dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="44dp"
+            android:background="@drawable/button_round"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/righteous"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextContrastCheck"
+            tools:layout_editor_absoluteY="446dp" />
+
+        <ImageView
+            android:id="@+id/back2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="27dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/receipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:fontFamily="@font/righteous"
+            android:text="@string/receipt"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@+id/back2"
+            app:layout_constraintTop_toTopOf="@+id/back2" />
+
+        <ImageView
+            android:id="@+id/imgBg"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/bg" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="409dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="30dp"
+            android:background="#939393"
+            android:backgroundTint="#939393"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back2" />
+
+        <TextView
+            android:id="@+id/detailReceipt"
+            android:layout_width="311dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/titleDonate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
+
