@@ -73,9 +73,11 @@
         app:destination="@id/homeFragment"
         />
         <action
-            android:id="@+id/action_newsFragment_to_donateFragment"
-            app:destination="@id/donateFragment"
-            />
+            android:id="@+id/action_newsFragment_to_news1Fragment"
+            app:destination="@id/news1Fragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_news2Fragment"
+            app:destination="@id/news2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/eventFragment"
@@ -117,4 +119,29 @@
         android:id="@+id/requestListFragment"
         android:name="com.example.donateanything.fragments.RequestListFragment"
         android:label="RequestListFragment" />
+    <fragment
+        android:id="@+id/news1Fragment"
+        android:name="com.example.donateanything.fragments.News1Fragment"
+        android:label="News1Fragment" >
+        <action
+            android:id="@+id/action_news1Fragment_to_newsFragment"
+            app:destination="@id/newsFragment"
+            />
+    <action
+        android:id="@+id/action_news1Fragment_to_donateFragment"
+        app:destination="@id/donateFragment"
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/news2Fragment"
+        android:name="com.example.donateanything.fragments.News2Fragment"
+        android:label="News2Fragment" >
+        <action
+            android:id="@+id/action_news2Fragment_to_newsFragment"
+            app:destination="@id/newsFragment"
+            />
+        <action
+            android:id="@+id/action_news2Fragment_to_donateFragment"
+            app:destination="@id/donateFragment" />
+    </fragment>
 </navigation>
