@@ -10,5 +10,11 @@ data class RequestList(
     var DailySupply:String ?= null,
     var Money:String ?= null,
     var Other:String ?= null,
-    var FoodDrink:String ?= null
+    var FoodDrink:String ?= null,
+    var ICNo:String?=null,
+    var HouseAddress:String?=null,
+    var Email:String?=null,
+    var Phone:String?=null,
+    var ID:String?=null
+
 )

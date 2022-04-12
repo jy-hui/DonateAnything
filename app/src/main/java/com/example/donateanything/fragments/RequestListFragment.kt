@@ -1,21 +1,25 @@
 package com.example.donateanything.fragments
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.donateanything.Adapter
+import com.example.donateanything.MyAdapter
 import com.example.donateanything.R
 import com.example.donateanything.RequestList
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.fragment_request_list.*
 
-class RequestListFragment : Fragment() {
+class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
     //private lateinit var binding: ActivityMainBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var db: FirebaseFirestore
@@ -43,7 +47,7 @@ class RequestListFragment : Fragment() {
 
         request_list = arrayListOf()
 
-        adapter = Adapter(request_list)
+        adapter = Adapter(request_list, this)
 
         recyclerView.adapter = adapter
 
@@ -63,10 +67,6 @@ class RequestListFragment : Fragment() {
         db.collection("RequestForm")
             .addSnapshotListener(object : EventListener<QuerySnapshot>{
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if(error != null){
-                        //Log.e("Error")
-                        return
-                    }
                     for(dc : DocumentChange in value?.documentChanges!!){
                         if(dc.type == DocumentChange.Type.ADDED){
                             request_list.add(dc.document.toObject(RequestList::class.java))
@@ -84,5 +84,29 @@ class RequestListFragment : Fragment() {
         requestListRecycler.apply {
 
         }
+    }
+
+    override fun itemClick(position: Int) {
+        val selectedRequest = request_list[position]
+
+        val bundle = Bundle()
+
+        bundle.putString("firstName", selectedRequest.FirstName)
+        bundle.putString("lastName", selectedRequest.LastName)
+        bundle.putString("icNo", selectedRequest.ICNo)
+        bundle.putString("phoneNo", selectedRequest.Phone)
+        bundle.putString("houseAddress", selectedRequest.HouseAddress)
+        bundle.putString("email", selectedRequest.Email)
+        bundle.putString("reason", selectedRequest.Reason)
+        bundle.putString("specific", selectedRequest.Specific)
+        bundle.putString("document", selectedRequest.ID)
+
+        //Log.d(ContentValues.TAG, "id = " + selectedRequest.ID.toString())
+
+        val fragment = RequestListDetailFragment()
+        fragment.setArguments(bundle)
+
+        fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
     }
 }

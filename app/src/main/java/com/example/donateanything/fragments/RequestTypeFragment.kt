@@ -23,6 +23,11 @@ class RequestTypeFragment : Fragment() {
     private fun detailAllFill(): Boolean {
         var isFill = true
 
+        if (!dailySupply.isChecked && !money.isChecked && !foodDrink.isChecked && !other.isChecked) {
+            Toast.makeText(requireActivity().applicationContext,"Checkbox cannot be empty, please tick one", Toast.LENGTH_SHORT).show()
+            isFill = false
+        }
+
         if(reason2.text.toString().isEmpty()){
             reason2.error="Please enter your specific reason"
             reason2.requestFocus()
@@ -124,33 +129,27 @@ class RequestTypeFragment : Fragment() {
                     "Specific" to reason2.text.toString()
                 )
 
-                db.collection("RequestForm")
+                val requestFormDb = db.collection("RequestForm")
+
+                requestFormDb
                     .add(requestForm)
                     .addOnSuccessListener { documentReference ->
-                        Toast.makeText(
-                            requireActivity().applicationContext,
-                            "Successful Fill Up",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val fragmentHome = HomeFragment()
-                        fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentHome)?.commit()
-                        //Navigation.findNavController(it).navigate(R.id.action_requestTypeFragment_to_homeFragment)
 
+                        val id = documentReference.id
+
+                        requestFormDb.document(id).update("ID", id).addOnSuccessListener {
+                            Toast.makeText(requireActivity().applicationContext, "Request successful send", Toast.LENGTH_SHORT).show()
+                            val fragmentHome = HomeFragment()
+                            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentHome)?.commit()
+                        }
                     }
                     .addOnFailureListener { e ->
-                        //Log.w(TAG, "Error adding document", e)
-                        Toast.makeText(
-                            requireActivity().applicationContext,
-                            e.toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
-
+                        Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
                     }
             }
         }
 
         backBtn2.setOnClickListener(){
-            //Navigation.findNavController(it).navigate(R.id.action_requestTypeFragment_to_requestFragment)
             val fragmentBack = RequestFragment()
             fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
         }
