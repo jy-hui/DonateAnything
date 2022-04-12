@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/themeColor"
-    tools:context=".fragments.NewsFragment">
+    tools:context=".fragments.News2Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -50,28 +50,56 @@
             app:srcCompat="@drawable/bg" />
 
         <ImageView
-            android:id="@+id/news1"
-            android:layout_width="362dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/news1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.53"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNews" />
-
-        <ImageView
             android:id="@+id/news2"
             android:layout_width="365dp"
             android:layout_height="120dp"
+            android:layout_marginTop="40dp"
             android:src="@drawable/news2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.652"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNews" />
+
+        <Button
+            android:id="@+id/donate2"
+            android:layout_width="102dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/button_round"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/righteous"
+            android:text="@string/donate"
             app:layout_constraintBottom_toTopOf="@+id/imgBg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/news1"
-            app:layout_constraintVertical_bias="0.116" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/newsTitle"
+            android:layout_width="311dp"
+            android:layout_height="48dp"
+            android:text="@string/newsTitle2"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvNeed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/news2"
+            app:layout_constraintVertical_bias="0.832"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tvNeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:fontFamily="@font/righteous"
+            android:text="@string/needs2"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/donate2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.265"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

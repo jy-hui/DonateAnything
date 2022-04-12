@@ -55,6 +55,8 @@
     <string name="item">Item Name</string>
     <string name="receipt">Receipt</string>
 
+    <string name="needs1">Types of donation needed: \n Money: RM50000 \n Food : 20 bag of rice</string>
+    <string name="needs2">Types of donation needed: \n Money: RM10000 \n Food : 10 bag of rice</string>
 
     <string-array name="unit">
         <item>unit</item>

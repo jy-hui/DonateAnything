@@ -1,14 +1,11 @@
 package com.example.donateanything.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,8 +22,15 @@ class RequestTypeFragment : Fragment() {
     }
 
     private fun detailAllFill(): Boolean {
-        //var isFill = true
-        return true
+        var isFill = true
+
+        if(reason2.text.toString().isEmpty()){
+            reason2.error="Please enter your specific reason"
+            reason2.requestFocus()
+            isFill=false
+        }
+
+        return isFill
     }
 
     override fun onCreateView(
@@ -36,11 +40,11 @@ class RequestTypeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_request_type, container, false)
 
-        val supply=view.findViewById<CheckBox>(R.id.dailySupply)
+        val dailySupply=view.findViewById<CheckBox>(R.id.dailySupply)
         val foodDrink=view.findViewById<CheckBox>(R.id.foodDrink)
         val money=view.findViewById<CheckBox>(R.id.money)
         val other=view.findViewById<CheckBox>(R.id.other)
-        val specific=view.findViewById<TextView>(R.id.reason2)
+        val reason2=view.findViewById<TextView>(R.id.reason2)
 
         var isSupply = ""
         var isFoodDrink = ""
@@ -61,21 +65,51 @@ class RequestTypeFragment : Fragment() {
 
         db= FirebaseFirestore.getInstance()
 
-        submitBtn.setOnClickListener{
-            if(supply.isChecked){
-                isSupply = "Daily Supply"
+        dailySupply.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                foodDrink.setChecked(false)
+                money.setChecked(false)
+                other.setChecked(false)
             }
-            if(foodDrink.isChecked){
-                isFoodDrink = "Food, Drink"
+        })
+        foodDrink.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                dailySupply.setChecked(false)
+                money.setChecked(false)
+                other.setChecked(false)
             }
-            if(money.isChecked){
-                isMoney = "Money"
+        })
+        money.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                foodDrink.setChecked(false)
+                dailySupply.setChecked(false)
+                other.setChecked(false)
             }
-            if(other.isChecked){
-                isOther = "Other"
+        })
+        other.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                foodDrink.setChecked(false)
+                dailySupply.setChecked(false)
+                money.setChecked(false)
             }
+        })
 
-            if(detailAllFill()){
+        submitBtn.setOnClickListener {
+            if (detailAllFill()) {
+
+                if (dailySupply.isChecked) {
+                    isSupply = "Daily Supply"
+                }
+                if (foodDrink.isChecked) {
+                    isFoodDrink = "Food, Drink"
+                }
+                if (money.isChecked) {
+                    isMoney = "Money"
+                }
+                if (other.isChecked) {
+                    isOther = "Other"
+                }
+
                 val requestForm = hashMapOf(
                     "FirstName" to firstName,//.text.toString(),
                     "LastName" to lastName,//.text.toString(),
@@ -88,18 +122,27 @@ class RequestTypeFragment : Fragment() {
                     "FoodDrink" to isFoodDrink,
                     "Money" to isMoney,
                     "Other" to isOther,
-                    "Specific" to specific.text.toString()
+                    "Specific" to reason2.text.toString()
                 )
 
                 db.collection("RequestForm")
                     .add(requestForm)
                     .addOnSuccessListener { documentReference ->
-                       // Toast.makeText(this, "Sign Up successfully!", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(it).navigate(R.id.action_requestTypeFragment_to_homeFragment)
-                            //Toast.makeText(getActivity(),)
+                        Toast.makeText(
+                            requireActivity().applicationContext,
+                            "Successful Fill Up",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        //Navigation.findNavController(it).navigate(R.id.action_requestTypeFragment_to_homeFragment)
+                        //Toast.makeText(getActivity(),)
                     }
                     .addOnFailureListener { e ->
                         //Log.w(TAG, "Error adding document", e)
+                        Toast.makeText(
+                            requireActivity().applicationContext,
+                            e.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
                     }
             }
