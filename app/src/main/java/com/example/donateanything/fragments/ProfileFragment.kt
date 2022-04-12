@@ -9,6 +9,8 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
@@ -45,10 +47,13 @@ class ProfileFragment : Fragment() {
         val btnLogout: Button = view.findViewById(R.id.btnLogout)
         val btnHist : Button = view.findViewById(R.id.btnHistory)
         val btnBrowse: Button = view.findViewById(R.id.btnBrowse)
-
+        val btnChange: Button = view.findViewById(R.id.btnChange)
+        val btnConfirm: Button = view.findViewById(R.id.btnConfirm)
         val showName: TextView = view.findViewById(R.id.tvName)
         val showingEmail: TextView = view.findViewById(R.id.showingEmail)
         val showingPhone: TextView = view.findViewById(R.id.showingPhone)
+        val showEmail: EditText = view.findViewById(R.id.showEmail)
+        val showPhone: EditText = view.findViewById(R.id.showPhone)
 
         val email = firebaseAuth.currentUser!!.email.toString()
         showingEmail.text = email
@@ -69,6 +74,24 @@ class ProfileFragment : Fragment() {
             .addOnFailureListener { exception ->
                 Log.d(TAG, "get failed with ", exception)
             }
+
+        btnChange.setOnClickListener{
+            showingEmail.visibility = GONE
+            showingPhone.visibility = GONE
+            showEmail.visibility = VISIBLE
+            showPhone.visibility = VISIBLE
+            btnChange.visibility = GONE
+            btnConfirm.visibility = VISIBLE
+        }
+
+        btnChange.setOnClickListener{
+            showingEmail.visibility = VISIBLE
+            showingPhone.visibility = VISIBLE
+            showEmail.visibility = GONE
+            showPhone.visibility = GONE
+            btnChange.visibility = VISIBLE
+            btnConfirm.visibility = GONE
+        }
 
         btnBrowse.setOnClickListener {
             startForResult.launch("image/*")
