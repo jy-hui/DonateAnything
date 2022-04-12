@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_request.*
@@ -111,13 +110,13 @@ class RequestTypeFragment : Fragment() {
                 }
 
                 val requestForm = hashMapOf(
-                    "FirstName" to firstName,//.text.toString(),
-                    "LastName" to lastName,//.text.toString(),
-                    "ICNo" to icNo,//.text.toString(),
-                    "Phone" to phoneNo,//.text.toString(),
-                    "HouseAddress" to houseAddress,//.text.toString(),
-                    "Email" to email,//.text.toString(),
-                    "Reason" to reason,//.text.toString()
+                    "FirstName" to firstName,
+                    "LastName" to lastName,
+                    "ICNo" to icNo,
+                    "Phone" to phoneNo,
+                    "HouseAddress" to houseAddress,
+                    "Email" to email,
+                    "Reason" to reason,
                     "DailySupply" to isSupply,
                     "FoodDrink" to isFoodDrink,
                     "Money" to isMoney,
@@ -133,8 +132,10 @@ class RequestTypeFragment : Fragment() {
                             "Successful Fill Up",
                             Toast.LENGTH_SHORT
                         ).show()
+                        val fragmentHome = HomeFragment()
+                        fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentHome)?.commit()
                         //Navigation.findNavController(it).navigate(R.id.action_requestTypeFragment_to_homeFragment)
-                        //Toast.makeText(getActivity(),)
+
                     }
                     .addOnFailureListener { e ->
                         //Log.w(TAG, "Error adding document", e)
@@ -143,16 +144,16 @@ class RequestTypeFragment : Fragment() {
                             e.toString(),
                             Toast.LENGTH_SHORT
                         ).show()
-                        //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
+
                     }
             }
         }
 
         backBtn2.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_requestTypeFragment_to_requestFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_requestTypeFragment_to_requestFragment)
+            val fragmentBack = RequestFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
         }
         return view
     }
-
-
 }
