@@ -35,11 +35,10 @@ class DonateForm2Fragment : Fragment() {
         val pacNo : EditText = view.findViewById(R.id.pacNo)
         val requestBtn : Button = view.findViewById(R.id.requestBtn)
         btnBack.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
+            Navigation.findNavController(it).navigate(R.id.action_donateForm2Fragment_to_newsFragment)
         }
 
         val bank = arrayListOf("Bank", "May Bank", "HSBC Bank","Public Bank")
-
         val bank_arrayAdapter = ArrayAdapter(requireActivity().applicationContext,android.R.layout.simple_spinner_dropdown_item,bank)
         bankSpinner.adapter = bank_arrayAdapter
         bankSpinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener {
