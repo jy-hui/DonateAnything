@@ -43,7 +43,7 @@
         android:layout_marginEnd="88dp"
         android:fontFamily="@font/righteous"
         android:text="User name"
-        android:textColor="#000000"
+        android:textColor="#00FF0D"
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/imgProfile"
@@ -198,6 +198,23 @@
         tools:ignore="TextContrastCheck" />
 
     <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="208dp"
+        android:background="@drawable/button_round"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/righteous"
+        android:text="confirm"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfile"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
         android:id="@+id/btnChange"
         android:layout_width="320dp"
         android:layout_height="60dp"
@@ -205,7 +222,7 @@
         android:background="@drawable/button_round"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="@font/righteous"
-        android:text="Setup"
+        android:text="reset"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
