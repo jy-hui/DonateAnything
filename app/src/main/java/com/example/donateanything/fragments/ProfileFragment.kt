@@ -54,20 +54,21 @@ class ProfileFragment : Fragment() {
         val showingPhone: TextView = view.findViewById(R.id.showingPhone)
         val showEmail: EditText = view.findViewById(R.id.showEmail)
         val showPhone: EditText = view.findViewById(R.id.showPhone)
+        val tvPoint: TextView = view.findViewById(R.id.tvCPoints)
 
         val email = firebaseAuth.currentUser!!.email.toString()
-        showingEmail.text = email
 
         db= FirebaseFirestore.getInstance()
-
-        db.collection("USERS")
+        db.collection("UserInfo")
             .whereEqualTo("Email",email)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result){
-                    Log.d(TAG, "DocumentSnapshot data: ${document.getString("Username")}")
-                    showName.text = document.getString("Username")
+                    Log.d(TAG, "DocumentSnapshot data: ${document.getString("Point")}")
+                    showName.text = document.getString("Name")
                     showingPhone.text = document.getString("Phone")
+                    tvPoint.text = document.getString("Point")
+                    showingEmail.text = document.getString("Email")
                 }
 
             }
