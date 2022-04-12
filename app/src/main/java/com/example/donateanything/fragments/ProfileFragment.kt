@@ -31,11 +31,8 @@ class ProfileFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     //SharedPreferences
     private lateinit var sharePref : SharedPreferences
-    private lateinit var db : FirebaseFirestore
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var db : FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,13 +53,15 @@ class ProfileFragment : Fragment() {
         val email = firebaseAuth.currentUser!!.email.toString()
         showingEmail.text = email
 
-        val userN = db.collection("USERS")
+        db= FirebaseFirestore.getInstance()
+        db.collection("USERS")
             .whereEqualTo("Email",email)
-            userN.get()
+            .get()
             .addOnSuccessListener { result ->
                 for (document in result){
                 //if (document != null) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.getString("Username")}")
+                    showName.text = document.getString("Username")
                 }
                 //else { Log.d(TAG, "No such document")}
 
@@ -72,13 +71,10 @@ class ProfileFragment : Fragment() {
             }
 
 
-        //Got error, only show email
-        val n = firebaseAuth.currentUser?.displayName.toString()
-        showName.text = n
         val phone = firebaseAuth.currentUser?.phoneNumber.toString()
         showingPhone.text = phone
 
-        btnBrowse.setOnClickListener(){
+        btnBrowse.setOnClickListener {
             startForResult.launch("image/*")
         }
 
