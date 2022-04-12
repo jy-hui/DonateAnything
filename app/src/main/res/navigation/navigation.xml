@@ -107,7 +107,8 @@
     <fragment
         android:id="@+id/requestTypeFragment"
         android:name="com.example.donateanything.fragments.RequestTypeFragment"
-        android:label="RequestTypeFragment" >
+        android:label="RequestTypeFragment"
+        tools:layout="@layout/fragment_request_type">
         <action
             android:id="@+id/action_requestTypeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -118,7 +119,8 @@
     <fragment
         android:id="@+id/requestListFragment"
         android:name="com.example.donateanything.fragments.RequestListFragment"
-        android:label="RequestListFragment" />
+        android:label="RequestListFragment"
+        tools:layout="@layout/fragment_request_list"/>
     <fragment
         android:id="@+id/news1Fragment"
         android:name="com.example.donateanything.fragments.News1Fragment"
