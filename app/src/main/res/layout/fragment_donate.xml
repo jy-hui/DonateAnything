@@ -29,7 +29,7 @@
             tools:ignore="TextContrastCheck" />
 
         <EditText
-            android:id="@+id/date"
+            android:id="@+id/date_Tran"
             android:layout_width="320dp"
             android:layout_height="60dp"
             android:layout_marginStart="44dp"
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/campus_spinner" />
 
         <ImageButton
-            android:id="@+id/backBtn1"
+            android:id="@+id/back2"
             android:layout_width="57dp"
             android:layout_height="54dp"
             android:layout_marginStart="23dp"
@@ -66,11 +66,11 @@
             android:text="@string/form"
             android:textColor="#000000"
             android:textSize="32sp"
-            app:layout_constraintStart_toEndOf="@+id/backBtn1"
-            app:layout_constraintTop_toTopOf="@+id/backBtn1" />
+            app:layout_constraintStart_toEndOf="@+id/back2"
+            app:layout_constraintTop_toTopOf="@+id/back2" />
 
         <EditText
-            android:id="@+id/accountNo"
+            android:id="@+id/icNo"
             android:layout_width="320dp"
             android:layout_height="60dp"
             android:layout_marginStart="44dp"
@@ -104,10 +104,10 @@
             android:background="#939393"
             android:backgroundTint="#939393"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backBtn1" />
+            app:layout_constraintTop_toBottomOf="@+id/back2" />
 
         <TextView
-            android:id="@+id/donateItem"
+            android:id="@+id/newsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="51dp"
@@ -130,7 +130,7 @@
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accountNo" />
+            app:layout_constraintTop_toBottomOf="@+id/icNo" />
 
         <Spinner
             android:id="@+id/itemDonate_spinner"
@@ -145,7 +145,7 @@
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintTop_toBottomOf="@+id/date_Tran" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
