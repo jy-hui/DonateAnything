@@ -71,7 +71,7 @@ class DonateForm1Fragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                unitR = unit_arrayAdapter.getItem(position) + ""
+                unitR = unit_arrayAdapter.getItem(position).toString()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.Navigation
 import com.example.donateanything.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class DonateForm2Fragment : Fragment() {
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,6 +35,7 @@ class DonateForm2Fragment : Fragment() {
         val titleText= view.findViewById<TextView>(R.id.donateItem);
         titleText.setText(title)
         val bankSpinner : Spinner = view.findViewById(R.id.bank_spinner)
+        var bankR = ""
         val accountNo : EditText = view.findViewById(R.id.accountNo)
         val payment : EditText = view.findViewById(R.id.payment)
         val pacNo : EditText = view.findViewById(R.id.pacNo)
@@ -48,7 +54,7 @@ class DonateForm2Fragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-
+                bankR = bank_arrayAdapter.getItem(position).toString()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -57,6 +63,7 @@ class DonateForm2Fragment : Fragment() {
         }
 
         val btnSubmit: Button =view.findViewById(R.id.submitBtn)
+        db= FirebaseFirestore.getInstance()
 
         btnSubmit.setOnClickListener(){
 
