@@ -15,6 +15,7 @@ import androidx.navigation.Navigation
 import com.example.donateanything.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import kotlinx.android.synthetic.main.fragment_request.*
 
 
@@ -92,18 +93,38 @@ class DonateForm1Fragment : Fragment() {
 
         btnSubmit.setOnClickListener {
 
-            db.collection("DONATION").whereEqualTo("ID",donateID).get()
-                .addOnSuccessListener { result ->
-                    for (document in result){
-                        donateID = document.getString("ID").toString()
+//            db.collection("DONATION").whereEqualTo("ID",donateID).get()
+//                .addOnSuccessListener { result ->
+//                    for (document in result){
+//                        donateID = document.getString("ID").toString()
+//
+//                    }
+//                }
+//                .addOnFailureListener { exception ->
+//                    Log.d(ContentValues.TAG, "get failed with ", exception)
+//                }
+//            d_ID = donateID.toInt()
+//            d_ID++
 
-                    }
+            db.collection("DONATION").get().addOnSuccessListener {
+                if(it.isEmpty){
+                    d_ID = 1
                 }
+            }
+                .addOnFailureListener { exception ->
+                    Log.d(ContentValues.TAG, "get failed with ", exception)
+               }
+            db.collection("DONATION").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    //donateID = document.getString("ID").toString()
+                    //d_ID = donateID.toInt()
+                    //d_ID++
+
+                }
+            }
                 .addOnFailureListener { exception ->
                     Log.d(ContentValues.TAG, "get failed with ", exception)
                 }
-            d_ID = donateID.toInt()
-            d_ID++
 
             Log.d(TAG, "donation : " + d_ID)
             val donation = hashMapOf(
