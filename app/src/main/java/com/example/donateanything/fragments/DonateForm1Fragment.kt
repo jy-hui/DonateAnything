@@ -50,7 +50,7 @@ class DonateForm1Fragment : Fragment() {
         addressText.visibility = View.INVISIBLE
         var donateID : String = ""
         var d_ID_F : String = ""
-        var d_ID : Int = 2
+        var d_ID : Int = 0
         var unitR = ""
         val btnSubmit: Button =view.findViewById(R.id.submitBtn)
 
@@ -90,43 +90,30 @@ class DonateForm1Fragment : Fragment() {
                 addressText.setText("-")
             }
         }
+        db.collection("DONATION").get().addOnSuccessListener {
+            if(it.isEmpty){
+                d_ID = 0
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "get failed with ", exception)
+            }
+        db.collection("DONATION").get().addOnSuccessListener { result ->
+            for (document in result) {
+                donateID = document.id
 
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "get failed with ", exception)
+            }
         btnSubmit.setOnClickListener {
 
-//            db.collection("DONATION").whereEqualTo("ID",donateID).get()
-//                .addOnSuccessListener { result ->
-//                    for (document in result){
-//                        donateID = document.getString("ID").toString()
-//
-//                    }
-//                }
-//                .addOnFailureListener { exception ->
-//                    Log.d(ContentValues.TAG, "get failed with ", exception)
-//                }
-//            d_ID = donateID.toInt()
-//            d_ID++
 
-            db.collection("DONATION").get().addOnSuccessListener {
-                if(it.isEmpty){
-                    d_ID = 1
-                }
-            }
-                .addOnFailureListener { exception ->
-                    Log.d(ContentValues.TAG, "get failed with ", exception)
-               }
-            db.collection("DONATION").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    //donateID = document.getString("ID").toString()
-                    //d_ID = donateID.toInt()
-                    //d_ID++
-
-                }
-            }
-                .addOnFailureListener { exception ->
-                    Log.d(ContentValues.TAG, "get failed with ", exception)
-                }
-
-            Log.d(TAG, "donation : " + d_ID)
+            Log.w(TAG, "Donation :"+ donateID )
+            d_ID = donateID.toInt()
+            d_ID++
+            d_ID_F = d_ID.toString()
             val donation = hashMapOf(
                 "ID" to d_ID,
                 "Email" to email,
@@ -139,7 +126,7 @@ class DonateForm1Fragment : Fragment() {
                 "Transportation" to onTrans.toString(),
                 "Address" to addressText.toString()
             )
-            d_ID_F = d_ID.toString()
+
             val Donation = db.collection("DONATION")
             val query = Donation.get()
                 .addOnSuccessListener { documentReference ->
@@ -154,8 +141,8 @@ class DonateForm1Fragment : Fragment() {
                 }
 
 
-
         }
+
 
         // Inflate the layout for this fragment
         return view
