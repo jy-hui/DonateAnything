@@ -22,19 +22,18 @@ class CertActivity: AppCompatActivity() {
         firebaseAuth= FirebaseAuth.getInstance()
         val email = firebaseAuth.currentUser!!.email.toString()
 
-        db= FirebaseFirestore.getInstance()
-
         val name : TextView = findViewById(R.id.showName)
         val donate : TextView = findViewById(R.id.showDonation)
         val date : TextView = findViewById(R.id.showDate)
 
-        db.collection("USERS")
+        db= FirebaseFirestore.getInstance()
+        db.collection("UserInfo")
             .whereEqualTo("Email",email)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result){
-                    Log.d(ContentValues.TAG, "DocumentSnapshot data: ${document.getString("Username")}")
-                    name.text = document.getString("Username")
+                    Log.d(ContentValues.TAG, "DocumentSnapshot data: ${document.getString("Name")}")
+                    name.text = document.getString("Name")
                 }
 
             }
