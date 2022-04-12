@@ -21,13 +21,9 @@ import com.example.donateanything.HistoryActivity
 import com.example.donateanything.LoginActivity
 import com.example.donateanything.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
 class ProfileFragment : Fragment() {

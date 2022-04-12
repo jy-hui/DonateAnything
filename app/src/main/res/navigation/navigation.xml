@@ -129,7 +129,11 @@
         android:id="@+id/requestListFragment"
         android:name="com.example.donateanything.fragments.RequestListFragment"
         android:label="RequestListFragment"
-        tools:layout="@layout/fragment_request_list"/>
+        tools:layout="@layout/fragment_request_list">
+        <action
+            android:id="@+id/action_requestListFragment_to_requestFragment"
+            app:destination="@id/requestFragment" />
+    </fragment>
     <fragment
         android:id="@+id/news1Fragment"
         android:name="com.example.donateanything.fragments.News1Fragment"

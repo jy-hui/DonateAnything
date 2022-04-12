@@ -45,7 +45,6 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
-        //setContentView(R.layout.activity_history)
         var binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
