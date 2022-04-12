@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_donateForm2Fragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_donateForm2Fragment_to_receiptFragment"
+            app:destination="@id/receiptFragment" />
     </fragment>
     <fragment
         android:id="@+id/receiptFragment"
