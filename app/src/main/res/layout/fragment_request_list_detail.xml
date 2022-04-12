@@ -16,10 +16,10 @@
             android:id="@+id/imageView2"
             android:layout_width="404dp"
             android:layout_height="465dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/detail_card"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/requestListTxt2" />
 
@@ -147,8 +147,8 @@
 
         <TextView
             android:id="@+id/houseAddressDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="64dp"
             android:layout_marginStart="28dp"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -160,23 +160,23 @@
 
         <TextView
             android:id="@+id/emailDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="173dp"
+            android:layout_height="58dp"
             android:layout_marginStart="36dp"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView6"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="xxx" />
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="52dp"
             android:text="Reason of request : "
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -184,10 +184,10 @@
 
         <TextView
             android:id="@+id/reasonDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="336dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -199,8 +199,8 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="4dp"
             android:text="Specific of request :"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -208,10 +208,10 @@
 
         <TextView
             android:id="@+id/specificDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="335dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             android:textSize="18sp"
             android:textStyle="bold"
