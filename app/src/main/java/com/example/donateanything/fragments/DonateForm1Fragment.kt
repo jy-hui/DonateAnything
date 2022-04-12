@@ -83,7 +83,7 @@ class DonateForm1Fragment : Fragment() {
             if(onSwitch){
                 addressText.visibility = View.VISIBLE
                 onTrans = true
-                //addressText.setText("")
+                addressText.setText("")
             }else{
                 addressText.visibility = View.INVISIBLE
                 onTrans = false
@@ -92,7 +92,7 @@ class DonateForm1Fragment : Fragment() {
         }
         db.collection("DONATION").get().addOnSuccessListener {
             if(it.isEmpty){
-                d_ID = 0
+                donateID = "0"
             }
         }
             .addOnFailureListener { exception ->
@@ -124,7 +124,7 @@ class DonateForm1Fragment : Fragment() {
                 "Value" to valueNo.text.toString(),
                 "Unit" to unitR,
                 "Transportation" to onTrans.toString(),
-                "Address" to addressText.toString()
+                "Address" to addressText.text.toString()
             )
 
             val Donation = db.collection("DONATION")
