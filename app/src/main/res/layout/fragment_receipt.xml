@@ -12,43 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/nextBtn"
-            android:layout_width="320dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/button_round"
-            android:backgroundTint="#FFFFFF"
-            android:fontFamily="@font/righteous"
-            android:text="@string/next"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailReceipt"
-            tools:ignore="TextContrastCheck" />
-
-        <ImageView
-            android:id="@+id/back2"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="27dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
-
         <TextView
             android:id="@+id/receipt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/righteous"
             android:text="@string/receipt"
             android:textColor="#000000"
             android:textSize="32sp"
-            app:layout_constraintStart_toEndOf="@+id/back2"
-            app:layout_constraintTop_toTopOf="@+id/back2" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imgBg"
@@ -64,11 +39,11 @@
             android:id="@+id/divider"
             android:layout_width="409dp"
             android:layout_height="2dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:background="#939393"
             android:backgroundTint="#939393"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/back2" />
+            app:layout_constraintTop_toBottomOf="@+id/receipt" />
 
         <TextView
             android:id="@+id/detailReceipt"
@@ -123,16 +98,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tvREmail" />
 
         <TextView
-            android:id="@+id/tvRAddress"
-            android:layout_width="283dp"
-            android:layout_height="70dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRPhone" />
-
-        <TextView
             android:id="@+id/tvRDate"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
@@ -140,7 +105,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/tvRPhone" />
 
         <TextView
             android:id="@+id/tvRType"
@@ -153,46 +118,26 @@
             app:layout_constraintTop_toBottomOf="@+id/tvRDate" />
 
         <TextView
-            android:id="@+id/tvRDest"
-            android:layout_width="286dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRType" />
-
-        <TextView
-            android:id="@+id/tvRBankName"
-            android:layout_width="286dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRType" />
-
-        <TextView
             android:id="@+id/tvRDonateDetails"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRDest" />
+            app:layout_constraintTop_toBottomOf="@+id/tvRType" />
 
         <TextView
             android:id="@+id/tvRTotal"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRDest" />
+            app:layout_constraintTop_toBottomOf="@+id/tvRDonateDetails" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,7 +57,7 @@ class DonateForm1Fragment : Fragment() {
         db= FirebaseFirestore.getInstance()
 
         btnBack.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
+            Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_newsFragment)
         }
 
         val unit = arrayListOf("unit","bottle","bag", "kg","g", "ml","l")
@@ -90,32 +90,32 @@ class DonateForm1Fragment : Fragment() {
                 addressText.setText("-")
             }
         }
-        db.collection("DONATION").get().addOnSuccessListener {
-            if(it.isEmpty){
-                donateID = "0"
-            }
-        }
-            .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "get failed with ", exception)
-            }
-        db.collection("DONATION").get().addOnSuccessListener { result ->
-            for (document in result) {
-                donateID = document.id
-
-            }
-        }
-            .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "get failed with ", exception)
-            }
+//        db.collection("DONATION").get().addOnSuccessListener {
+//            if(it.isEmpty){
+//                donateID = "0"
+//            }
+//        }
+//            .addOnFailureListener { exception ->
+//                Log.d(ContentValues.TAG, "get failed with ", exception)
+//            }
+//        db.collection("DONATION").get().addOnSuccessListener { result ->
+//            for (document in result) {
+//                donateID = document.id
+//
+//            }
+//        }
+//            .addOnFailureListener { exception ->
+//                Log.d(ContentValues.TAG, "get failed with ", exception)
+//            }
         btnSubmit.setOnClickListener {
 
 
-            Log.w(TAG, "Donation :"+ donateID )
-            d_ID = donateID.toInt()
-            d_ID++
-            d_ID_F = d_ID.toString()
+            //Log.w(TAG, "Donation :"+ donateID )
+            //d_ID = donateID.toInt()
+            //d_ID++
+            //d_ID_F = d_ID.toString()
             val donation = hashMapOf(
-                "ID" to d_ID,
+                //"ID" to d_ID,
                 "Email" to email,
                 "NoIC" to icNo,
                 "Date" to date,
@@ -128,12 +128,18 @@ class DonateForm1Fragment : Fragment() {
             )
 
             val Donation = db.collection("DONATION")
-            val query = Donation.get()
+            val query = Donation.add(donation)
                 .addOnSuccessListener { documentReference ->
-                    // Toast.makeText(this, "Sign Up successfully!", Toast.LENGTH_SHORT).show()
-                    Donation.document(d_ID_F).set(donation)
-                    Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_receiptFragment)
-                    //Toast.makeText(getActivity(),)
+                    //Donation.document(d_ID_F).set(donation)
+                    val id = documentReference.id
+                    Donation.document(id).update("ID", id).addOnSuccessListener {
+                        //Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_receiptFragment)
+                        val bundle = Bundle()
+                        bundle.putString("ID", id)
+                        val fragment = ReceiptFragment()
+                        fragment.arguments = bundle
+                        fragmentManager?.beginTransaction() ?.replace(R.id.container_fragment, fragment)?.commit()
+                    }
                 }
                 .addOnFailureListener { e ->
                     //Log.w(TAG, "Error adding document", e)

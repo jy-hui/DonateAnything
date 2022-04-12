@@ -76,124 +76,20 @@ class DonateFragment : Fragment(){
         itemDonate.adapter = item_arrayAdapter
        itemDonate.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                /*if(isFood == true){
-                    if(isSupply == true){
-                        if(isMoney == true){
-                            when(position){//F=true,S=true,M=true
-                                0 ->{ i = 0;}
-                                1 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                2 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                3 ->{ i = 2;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }else{
-                            when(position){//F=true,S=true,M=false
-                                0 ->{ i = 0;}
-                                1 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                2 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }
-                    }else{
-                        if(isMoney == true){
-                            when(position){//F=true,S=false,M=true
-                                0 ->{ i = 0;}
-                                1 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                2 ->{ i = 2;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }else{
-                            when(position){//F=true,S=false,M=false
-                                0 ->{ i = 0;}
-                                1 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }
-                    }
-                }else{
-                    if(isSupply == true){
-                        if(isMoney == true){
-                            when(position){//F=false,S=true,M=true
-                                0 ->{ i = 0;}
-                                1 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                2 ->{ i = 2;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }else{
-                            when(position){//F=false,S=true,M=false
-                                0 ->{ i = 0;}
-                                1 ->{ i = 1;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }
-                    }else{
-                        if(isMoney == true){
-                            when(position){//F=false,S=false,M=true
-                                0 ->{ i = 0;}
-                                1 ->{ i = 2;
-                                    Toast.makeText(requireActivity().applicationContext,"You selected "+ item_arrayAdapter.getItem(position),Toast.LENGTH_SHORT).show()
-                                }
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }else{
-                            when(position){//F=false,S=false,M=false
-                                0 ->{ i = 0;}
-                                else ->{
-                                    i = 0;
-                                }
-                            }
-                        }
-                    }
-                }*/
+
                 itemType = item_arrayAdapter.getItem(position) + ""
                 if(itemType.equals("Food",true)){
                     i = 1;
-                    Toast.makeText(requireActivity().applicationContext, "1",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireActivity().applicationContext, "1",Toast.LENGTH_SHORT).show()
                 }else if(itemType.equals("Daily Supply",true)){
                     i = 1;
-                    Toast.makeText(requireActivity().applicationContext, "1",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireActivity().applicationContext, "1",Toast.LENGTH_SHORT).show()
                 }else if(itemType.equals("Money",true)){
                     i = 2;
-                    Toast.makeText(requireActivity().applicationContext, "2",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireActivity().applicationContext, "2",Toast.LENGTH_SHORT).show()
                 }else{
                     i =0;
-                    Toast.makeText(requireActivity().applicationContext, "0",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireActivity().applicationContext, "0",Toast.LENGTH_SHORT).show()
                 }
 
 
@@ -214,7 +110,7 @@ class DonateFragment : Fragment(){
             when(i){
                 0 -> {Toast.makeText(requireActivity().applicationContext,"Please type of item donate",Toast.LENGTH_SHORT).show()}
                 1 -> {
-                    Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
+                    //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
                     val bundle = Bundle()
                     bundle.putString("itemType",itemType)
                     bundle.putString("icNo",icNo.text.toString())
@@ -224,7 +120,7 @@ class DonateFragment : Fragment(){
                     fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment1)?.commit()
                 }
                 2 -> {
-                    Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm2Fragment)
+                    //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm2Fragment)
                     val bundle = Bundle()
                     bundle.putString("itemType",itemType)
                     bundle.putString("icNo",icNo.text.toString())

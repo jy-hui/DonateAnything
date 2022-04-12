@@ -36,6 +36,8 @@ class DonateForm2Fragment : Fragment() {
         val title = argsFrom?.getString("itemType")
         val icNo = argsFrom?.getString("icNo")
         val date = argsFrom?.getString("date")
+        firebaseAuth= FirebaseAuth.getInstance()
+        val email = firebaseAuth.currentUser!!.email.toString()
 
         var donateID : String = ""
         var d_ID_F : String = ""
@@ -71,55 +73,67 @@ class DonateForm2Fragment : Fragment() {
         }
 
         requestBtn.setOnClickListener() {
-            //com.example.donateanything.fragments.init(System.getenv("Acount"),System.getenv("Acount_Token"))
+            Toast.makeText(requireActivity().applicationContext, "PAC No : 12345",Toast.LENGTH_SHORT).show()
         }
 
 
         val btnSubmit: Button =view.findViewById(R.id.submitBtn)
         db= FirebaseFirestore.getInstance()
-        db.collection("DONATION").get().addOnSuccessListener {
-            if(it.isEmpty){
-                donateID = "0"
-            }
-        }
-            .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "get failed with ", exception)
-            }
-        db.collection("DONATION").get().addOnSuccessListener { result ->
-            for (document in result) {
-                donateID = document.id
-
-            }
-        }
-            .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "get failed with ", exception)
-            }
+//        db.collection("DONATION").get().addOnSuccessListener {
+//            if(it.isEmpty){
+//                donateID = "0"
+//            }
+//        }
+//            .addOnFailureListener { exception ->
+//                Log.d(ContentValues.TAG, "get failed with ", exception)
+//            }
+//        db.collection("DONATION").get().addOnSuccessListener { result ->
+//            for (document in result) {
+//                donateID = document.id
+//
+//            }
+//        }
+//            .addOnFailureListener { exception ->
+//                Log.d(ContentValues.TAG, "get failed with ", exception)
+//            }
         btnSubmit.setOnClickListener(){
             var pacPassword : Int = 12345
             pacPassword = pacNo.text.toString().toInt()
             if(pacPassword == 12345){
-                Log.w(ContentValues.TAG, "Donation :"+ donateID )
-                d_ID = donateID.toInt()
-                d_ID++
-                d_ID_F = d_ID.toString()
+                //Log.w(ContentValues.TAG, "Donation :"+ donateID )
+                //d_ID = donateID.toInt()
+                //d_ID++
+                //d_ID_F = d_ID.toString()
                 val donation = hashMapOf(
-                    "ID" to d_ID,
-                    "Email" to bankR,
+                    //"ID" to d_ID,
+                    "Email" to email,
                     "NoIC" to icNo,
                     "Date" to date,
+                    "Item Type" to title,
                     "AccountNo" to accountNo.text.toString(),
+                    "Bank" to bankR,
                     "Payment" to payment.text.toString()
                 )
 
                 val Donation = db.collection("DONATION")
-                val query = Donation.get()
+                val query = Donation.add(donation)
                     .addOnSuccessListener { documentReference ->
-                        Donation.document(d_ID_F).set(donation)
-                        Navigation.findNavController(it).navigate(R.id.action_donateForm2Fragment_to_receiptFragment)
+                        //Donation.document(d_ID_F).set(donation)
+                        val id = documentReference.id
+                        Donation.document(id).update("ID", id).addOnSuccessListener {
+                            //Navigation.findNavController(it).navigate(R.id.action_donateForm2Fragment_to_receiptFragment)
+                            val bundle = Bundle()
+                            bundle.putString("ID", id)
+                            val fragment = ReceiptFragment()
+                            fragment.arguments = bundle
+                            fragmentManager?.beginTransaction() ?.replace(R.id.container_fragment, fragment)?.commit()
+                        }
                     }
                     .addOnFailureListener { e ->
-
+                        //Log.w(TAG, "Error adding document", e)
+                        //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
                     }
+
             }else{
                 Toast.makeText(requireActivity().applicationContext,"Pac No Invalid",Toast.LENGTH_SHORT).show()
             }

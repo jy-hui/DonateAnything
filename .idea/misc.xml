@@ -6,7 +6,7 @@
         <entry key="..\:/Android/Android Studio Project/DonateAnything/app/src/main/res/drawable/button_round.xml" value="0.1395" />
         <entry key="..\:/Android/Android Studio Project/DonateAnything/app/src/main/res/layout/activity_history.xml" value="0.18342391304347827" />
         <entry key="..\:/Android/Android Studio Project/DonateAnything/app/src/main/res/layout/fragment_about.xml" value="0.18342391304347827" />
-        <entry key="..\:/Android/Android Studio Project/DonateAnything/app/src/main/res/layout/fragment_profile.xml" value="0.21" />
+        <entry key="..\:/Android/Android Studio Project/DonateAnything/app/src/main/res/layout/fragment_profile.xml" value="0.13703703703703704" />
         <entry key="..\:/Android/Android Studio Project/DonateAnything/app/src/main/res/layout/fragment_profile1.xml" value="0.13703703703703704" />
         <entry key="..\:/Desktop/DonateAnything/app/src/main/res/drawable/button_round.xml" value="0.1325" />
         <entry key="..\:/Desktop/DonateAnything/app/src/main/res/drawable/edit_round.xml" value="0.1325" />
@@ -30,14 +30,18 @@
         <entry key="..\:/Desktop/DonateAnything/app/src/main/res/layout/fragment_request.xml" value="0.11803444782168186" />
         <entry key="..\:/Desktop/DonateAnything/app/src/main/res/menu/menu.xml" value="0.2111111111111111" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/activity_donate.xml" value="0.23822463768115942" />
+        <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_about.xml" value="0.4" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_donate.xml" value="0.264" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_donate_form_a.xml" value="0.1" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_donateform1.xml" value="0.2" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_donateform2.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_donateformA.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_home.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_news.xml" value="0.4742468415937804" />
+        <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_news1.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_news2.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_receipt.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_receipt.xml" value="0.264" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_request.xml" value="0.22826086956521738" />
       </map>
     </option>
