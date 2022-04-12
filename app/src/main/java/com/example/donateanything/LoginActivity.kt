@@ -1,14 +1,17 @@
 package com.example.donateanything
 
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity() {
    //ProgressDialog
@@ -102,6 +105,24 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+    }
+    override fun onBackPressed() {
+        val builder : AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Quit the Application")
+        builder.setMessage("Are you sure to close the application?")
+            .setCancelable(false)
+            .setPositiveButton("Yes", DialogInterface.OnClickListener(){ dialog, which ->
+                moveTaskToBack(true)
+                android.os.Process.killProcess(android.os.Process.myPid())
+                finish()
+                exitProcess(0)
+            })
+            .setNegativeButton("No", DialogInterface.OnClickListener(){ dialog, which -> dialog.cancel() })
+
+        val alert : AlertDialog = builder.create()
+        alert.show()
+        alert.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.black))
+        alert.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(resources.getColor(R.color.black))
     }
 
 }
