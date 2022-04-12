@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_donateForm1Fragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_donateForm1Fragment_to_receiptFragment"
+            app:destination="@id/receiptFragment" />
     </fragment>
     <fragment
         android:id="@+id/donateForm2Fragment"
@@ -52,6 +55,12 @@
         <action
             android:id="@+id/action_donateForm2Fragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receiptFragment"
+        android:name="com.example.donateanything.fragments.ReceiptFragment"
+        android:label="fragment_receipt"
+        tools:layout="@layout/fragment_receipt" >
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

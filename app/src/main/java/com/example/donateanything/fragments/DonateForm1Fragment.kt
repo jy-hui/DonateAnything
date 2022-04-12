@@ -1,16 +1,27 @@
 package com.example.donateanything.fragments
 
+import android.app.ProgressDialog
+import android.content.ContentValues
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.donateanything.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_request.*
 
 
 class DonateForm1Fragment : Fragment() {
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    //ProgressDialog
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +33,8 @@ class DonateForm1Fragment : Fragment() {
         val title = argsFrom?.getString("itemType")
         val icNo = argsFrom?.getString("icNo")
         val date = argsFrom?.getString("date")
+        firebaseAuth= FirebaseAuth.getInstance()
+        val email = firebaseAuth.currentUser!!.email.toString()
 
         val titleText= view.findViewById<TextView>(R.id.donateItem)
         titleText.text = title
@@ -29,10 +42,15 @@ class DonateForm1Fragment : Fragment() {
         val valueNo: EditText = view.findViewById(R.id.valueNo)
         val unitSpinner: Spinner = view.findViewById(R.id.unit_spinner)
         val transSwitch: Switch = view.findViewById(R.id.transportion_s)
+        var onTrans : Boolean = false
         val addressText: EditText = view.findViewById(R.id.address)
         addressText.visibility = View.INVISIBLE
+        var donateID : String = ""
+        var d_ID : Int = 0
+        var unitR = ""
         val btnSubmit: Button =view.findViewById(R.id.submitBtn)
 
+        db= FirebaseFirestore.getInstance()
 
         btnBack.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
@@ -49,7 +67,7 @@ class DonateForm1Fragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-
+                unitR = unit_arrayAdapter.getItem(position) + ""
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -60,19 +78,52 @@ class DonateForm1Fragment : Fragment() {
         transSwitch.setOnCheckedChangeListener { compoundButton, onSwitch ->
             if(onSwitch){
                 addressText.visibility = View.VISIBLE
+                onTrans = true
+                //addressText.setText("")
             }else{
                 addressText.visibility = View.INVISIBLE
+                onTrans = false
+                addressText.setText("-")
             }
         }
 
-
-
-
-
         btnSubmit.setOnClickListener {
+            db.collection("DONATION")
+                .whereEqualTo("Email",email).get()
+                .addOnSuccessListener { result ->
+                    for (document in result){
+                        donateID = "" + document.getString("ID")
+                        d_ID = donateID.toInt() + 1
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(ContentValues.TAG, "get failed with ", exception)
+                }
 
+            val donation = hashMapOf(
+                "ID" to d_ID,
+                "Email" to email,
+                "NoIC" to icNo,
+                "Date" to date,
+                "Item Type" to title,
+                "Item" to itemName.text.toString(),
+                "Value" to valueNo.text.toString(),
+                "Unit" to unitR,
+                "Transportation" to onTrans.toString(),
+                "Address" to addressText.toString()
+            )
+            db.collection("DONATION")
+                .add(donation)
+                .addOnSuccessListener { documentReference ->
+                    // Toast.makeText(this, "Sign Up successfully!", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_receiptFragment)
+                    //Toast.makeText(getActivity(),)
+                }
+                .addOnFailureListener { e ->
+                    //Log.w(TAG, "Error adding document", e)
+                    //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
+                }
 
-            //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
 
 
         }

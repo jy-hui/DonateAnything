@@ -1,5 +1,4 @@
 package com.example.donateanything.fragments
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,22 +7,10 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.donateanything.R
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.collections.ArrayList
 
 
 class DonateFragment : Fragment(){
-    private lateinit var db: FirebaseFirestore
-
-    //ProgressDialog
-    private lateinit var progressDialog: ProgressDialog
-
-    private lateinit var titleNews:EditText
-
-    private lateinit var icNo:EditText
-    private lateinit var date:EditText
-    private lateinit var itemDonate:Spinner
-
     private val IC_NUMBER = "^[0-9]{12}\$"
 
     var i = 0;
