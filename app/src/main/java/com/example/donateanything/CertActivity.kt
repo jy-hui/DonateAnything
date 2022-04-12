@@ -20,7 +20,6 @@ class CertActivity: AppCompatActivity() {
         setContentView(R.layout.activity_cert)
 
         firebaseAuth= FirebaseAuth.getInstance()
-        val email = firebaseAuth.currentUser!!.email.toString()
 
         val name : TextView = findViewById(R.id.showName)
         val donate : TextView = findViewById(R.id.showDonation)
@@ -28,7 +27,6 @@ class CertActivity: AppCompatActivity() {
 
         db= FirebaseFirestore.getInstance()
         db.collection("UserInfo")
-            .whereEqualTo("Email",email)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result){

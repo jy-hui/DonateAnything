@@ -14,17 +14,20 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.donateanything.HistoryActivity
 import com.example.donateanything.LoginActivity
 import com.example.donateanything.R
-import com.example.donateanything.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
 class ProfileFragment : Fragment() {
@@ -33,19 +36,21 @@ class ProfileFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     //SharedPreferences
     private lateinit var sharePref : SharedPreferences
-
     private lateinit var db : FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view= inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        firebaseAuth= FirebaseAuth.getInstance()
-        val sharePref = requireActivity().applicationContext.getSharedPreferences("rememberMe", Context.MODE_PRIVATE)
+        firebaseAuth = FirebaseAuth.getInstance()
+        val sharePref = requireActivity().applicationContext.getSharedPreferences(
+            "rememberMe",
+            Context.MODE_PRIVATE
+        )
         val btnLogout: Button = view.findViewById(R.id.btnLogout)
-        val btnHist : Button = view.findViewById(R.id.btnHistory)
+        val btnHist: Button = view.findViewById(R.id.btnHistory)
         val btnBrowse: Button = view.findViewById(R.id.btnBrowse)
         val btnChange: Button = view.findViewById(R.id.btnChange)
         val btnConfirm: Button = view.findViewById(R.id.btnConfirm)
@@ -58,19 +63,17 @@ class ProfileFragment : Fragment() {
 
         val email = firebaseAuth.currentUser!!.email.toString()
 
-        db= FirebaseFirestore.getInstance()
+        db = FirebaseFirestore.getInstance()
         db.collection("UserInfo")
-            .whereEqualTo("Email",email)
             .get()
             .addOnSuccessListener { result ->
-                for (document in result){
+                for (document in result) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.getString("Point")}")
                     showName.text = document.getString("Name")
                     showingPhone.text = document.getString("Phone")
                     tvPoint.text = document.getString("Point")
                     showingEmail.text = document.getString("Email")
                 }
-
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "get failed with ", exception)
@@ -93,12 +96,13 @@ class ProfileFragment : Fragment() {
             btnChange.visibility = VISIBLE
             btnConfirm.visibility = GONE
 
-            val email = showEmail.text
-            showingEmail.text = email
+            val newEmail = showEmail.text.toString()
+            showingEmail.text = newEmail
 
-            val phone = showPhone.text
+            val phone = showPhone.text.toString()
             showingPhone.text = phone
 
+            updateInfo(email, newEmail, phone)
         }
 
         btnBrowse.setOnClickListener {
@@ -122,7 +126,6 @@ class ProfileFragment : Fragment() {
             val intentH = Intent (view.context, HistoryActivity::class.java)
             startActivity(intentH)
         }
-
         return view
     }
 
@@ -130,4 +133,14 @@ class ProfileFragment : Fragment() {
         ActivityResultContracts.GetContent()){ uri->
             imgProfile.setImageURI(uri)
     }
+
+    private fun updateInfo (email:String, newEmail:String, phone:String){
+        val refresh = db.collection("UserInfo").document(email)
+        refresh.update("Email",newEmail)
+        refresh.update("Phone",phone)
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
+    }
+
 }
+
