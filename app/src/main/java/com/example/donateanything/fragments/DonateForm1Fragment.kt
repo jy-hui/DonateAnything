@@ -17,7 +17,7 @@ class DonateForm1Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view=inflater.inflate(R.layout.fragment_donateform1, container, false)
-        //val btnBack: ImageView =view.findViewById(R.id.back3)
+        val btnBack: ImageView =view.findViewById(R.id.back3)
         val argsFrom = this.arguments
         val title = argsFrom?.getString("itemType")
         val icNo = argsFrom?.getString("icNo")
@@ -34,9 +34,9 @@ class DonateForm1Fragment : Fragment() {
         val btnSubmit: Button =view.findViewById(R.id.submitBtn)
 
 
-        //btnBack.setOnClickListener {
-            //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
-        //}
+        btnBack.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
+        }
 
         val unit = arrayListOf("unit","bottle","bag", "kg","g", "ml","l")
 
