@@ -18,10 +18,6 @@ class NewsFragment : Fragment() {
 
     }
 
-    val isFood:Boolean = true;
-    val isMoney:Boolean = true;
-    val isSupply:Boolean = true;
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,20 +29,19 @@ class NewsFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_homeFragment)
 
         }
-
         val donate1: Button =view.findViewById(R.id.donate1)
 
         donate1.setOnClickListener(){
 
             Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_donateFragment)
             val bundle = Bundle()
-            bundle.putBoolean("isFoodItem",isFood)
-            bundle.putBoolean("isSupplyItem",isSupply)
-            bundle.putBoolean("isMoneyItem",isMoney)
+            bundle.putString("newTitle",getString(R.string.newsTitle1))
+            bundle.putBoolean("isFoodItem",false)
+            bundle.putBoolean("isSupplyItem",true)
+            bundle.putBoolean("isMoneyItem",true)
             val fragmentItem = DonateFragment()
             fragmentItem.arguments = bundle
             fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentItem)?.commit()
-            //val intent = Intent(requireActivity(),DonateActivity.class)
 
 
         }
@@ -55,6 +50,15 @@ class NewsFragment : Fragment() {
 
         donate2.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_donateFragment)
+            val bundle = Bundle()
+            bundle.putString("newTitle",getString(R.string.newsTitle2))
+            bundle.putBoolean("isFoodItem",true)
+            bundle.putBoolean("isSupplyItem",true)
+            bundle.putBoolean("isMoneyItem",false)
+            val fragmentItem = DonateFragment()
+            fragmentItem.arguments = bundle
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentItem)?.commit()
+
         }
         return view
     }

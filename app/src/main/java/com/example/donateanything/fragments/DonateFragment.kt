@@ -33,7 +33,6 @@ class DonateFragment : Fragment(){
 
     }
 
-    var title:String? = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +41,15 @@ class DonateFragment : Fragment(){
         val view=inflater.inflate(R.layout.fragment_donate, container, false)
         val btnBack: ImageView =view.findViewById(R.id.back2)
         val argsFrom = this.arguments
-
-        title = argsFrom?.getString("newTitle")
-        val icNo: EditText = view.findViewById(R.id.icNo)
-        val date: EditText = view.findViewById(R.id.date_Tran)
-
+        val title = argsFrom?.getString("newTitle")
         val isFood = argsFrom?.getBoolean("isFoodItem")
         val isSupply = argsFrom?.getBoolean("isSupplyItem")
         val isMoney = argsFrom?.getBoolean("isMoneyItem")
+
+
+        val icNo: EditText = view.findViewById(R.id.icNo)
+        val date: EditText = view.findViewById(R.id.date_Tran)
+
         btnBack.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
         }
@@ -87,7 +87,7 @@ class DonateFragment : Fragment(){
 
         val item_arrayAdapter = ArrayAdapter(requireActivity().applicationContext,android.R.layout.simple_spinner_dropdown_item,item)
         itemDonate.adapter = item_arrayAdapter
-        itemDonate.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+       itemDonate.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 /*if(isFood == true){
                     if(isSupply == true){
@@ -220,6 +220,8 @@ class DonateFragment : Fragment(){
 
 
         val btnNext: Button =view.findViewById(R.id.nextBtn)
+
+
         btnNext.setOnClickListener(){
 
             when(i){
@@ -230,11 +232,21 @@ class DonateFragment : Fragment(){
                     bundle.putString("itemType",itemType)
                     bundle.putString("icNo",icNo.text.toString())
                     bundle.putString("date",date.text.toString())
-                    val fragment = DonateForm1Fragment()
-                    fragment.arguments = bundle
-                    fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+                    val fragment1 = DonateForm1Fragment()
+                    fragment1.arguments = bundle
+                    fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment1)?.commit()
                 }
-                2 -> {Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm2Fragment)}
+                2 -> {
+                    Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm2Fragment)
+                    val bundle = Bundle()
+                    bundle.putString("itemType",itemType)
+                    bundle.putString("icNo",icNo.text.toString())
+                    bundle.putString("date",date.text.toString())
+                    val fragment2 = DonateForm2Fragment()
+                    fragment2.arguments = bundle
+                    fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment2)?.commit()
+                }
+
                 else ->{
 
                 }

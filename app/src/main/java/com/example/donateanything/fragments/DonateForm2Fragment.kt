@@ -21,7 +21,7 @@ class DonateForm2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view=inflater.inflate(R.layout.fragment_donateform2, container, false)
-        //val btnBack: ImageView =view.findViewById(R.id.back4)
+        val btnBack: ImageView =view.findViewById(R.id.back4)
         val argsFrom = this.arguments
         val title = argsFrom?.getString("itemType")
         val icNo = argsFrom?.getString("icNo")
@@ -34,9 +34,9 @@ class DonateForm2Fragment : Fragment() {
         val payment : EditText = view.findViewById(R.id.payment)
         val pacNo : EditText = view.findViewById(R.id.pacNo)
         val requestBtn : Button = view.findViewById(R.id.requestBtn)
-        //btnBack.setOnClickListener(){
-           // Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
-        //}
+        btnBack.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
+        }
 
         val bank = arrayListOf("Bank", "May Bank", "HSBC Bank","Public Bank")
 
@@ -62,10 +62,9 @@ class DonateForm2Fragment : Fragment() {
         btnSubmit.setOnClickListener(){
 
 
-            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
+            //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
 
 
-            //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm2Fragment)
         }
 
         // Inflate the layout for this fragment
