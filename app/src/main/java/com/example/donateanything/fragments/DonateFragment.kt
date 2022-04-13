@@ -15,7 +15,8 @@ class DonateFragment : Fragment(){
     private lateinit var icNo: EditText
     private lateinit var date: EditText
 
-    private val IC_NUMBER = "^[0-9]{12}\$"
+    private val IC_NUMBER_REGEX = "^[0-9]{12}\$"
+    private val DATE_REGEX = "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}\$"
 
     var i = 0;
 
@@ -161,9 +162,15 @@ class DonateFragment : Fragment(){
         if(icNo.text.toString().isEmpty()){
             icNo.error = "Please enter your IC number"
             isFill = false
+        }else if(!IC_NUMBER_REGEX.toRegex().matches(icNo.text.toString())){
+            icNo.error = "Invalid phone number! \nformat: 000000000000"
+            isFill = false
         }
         if(date.text.toString().isEmpty()){
             date.error = "Please enter the date"
+            isFill = false
+        }else if(!DATE_REGEX.toRegex().matches(date.text.toString())){
+            date.error = "Invalid phone number! \nformat: DD/MM/YYYY"
             isFill = false
         }
         return isFill
