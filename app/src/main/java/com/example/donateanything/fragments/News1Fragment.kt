@@ -32,7 +32,7 @@ class News1Fragment : Fragment() {
             val bundle = Bundle()
             bundle.putString("newTitle",getString(R.string.newsTitle1))
             bundle.putBoolean("isFoodItem",true)
-            bundle.putBoolean("isSupplyItem",false)
+            bundle.putBoolean("isSupplyItem",true)
             bundle.putBoolean("isMoneyItem",true)
             val fragmentItem = DonateFragment()
             fragmentItem.arguments = bundle

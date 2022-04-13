@@ -21,6 +21,10 @@ class DonateForm2Fragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
+    private lateinit var bankR : String
+    private lateinit var accountNo : EditText
+    private lateinit var payment : EditText
+    private lateinit var pacNo : EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,16 +43,16 @@ class DonateForm2Fragment : Fragment() {
         firebaseAuth= FirebaseAuth.getInstance()
         val email = firebaseAuth.currentUser!!.email.toString()
 
-        var donateID : String = ""
-        var d_ID_F : String = ""
-        var d_ID : Int = 0
+        //var donateID : String = ""
+        //var d_ID_F : String = ""
+        //var d_ID : Int = 0
         val titleText= view.findViewById<TextView>(R.id.donateItem);
         titleText.setText(title)
         val bankSpinner : Spinner = view.findViewById(R.id.bank_spinner)
-        var bankR = ""
-        val accountNo : EditText = view.findViewById(R.id.accountNo)
-        val payment : EditText = view.findViewById(R.id.payment)
-        val pacNo : EditText = view.findViewById(R.id.pacNo)
+        bankR = ""
+        accountNo = view.findViewById(R.id.accountNo)
+        payment = view.findViewById(R.id.payment)
+        pacNo = view.findViewById(R.id.pacNo)
         val requestBtn : Button = view.findViewById(R.id.requestBtn)
         btnBack.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_donateForm2Fragment_to_newsFragment)
@@ -97,13 +101,8 @@ class DonateForm2Fragment : Fragment() {
 //                Log.d(ContentValues.TAG, "get failed with ", exception)
 //            }
         btnSubmit.setOnClickListener(){
-            var pacPassword : Int
-            if(pacNo.text.isEmpty()){
-                pacPassword =0
-            }else {
-                pacPassword = pacNo.text.toString().toInt()
-            }
-            if(pacPassword == 12345){
+
+            if(isCheck()){
                 //Log.w(ContentValues.TAG, "Donation :"+ donateID )
                 //d_ID = donateID.toInt()
                 //d_ID++
@@ -138,8 +137,6 @@ class DonateForm2Fragment : Fragment() {
                         //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
                     }
 
-            }else{
-                Toast.makeText(requireActivity().applicationContext,"Pac No Invalid",Toast.LENGTH_SHORT).show()
             }
 
 
@@ -150,11 +147,45 @@ class DonateForm2Fragment : Fragment() {
 
         return view
     }
-    private fun getShareIntent() : Intent {
-        val shareIntent = Intent(Intent.ACTION_SENDTO)
-        shareIntent.setType("text/plain")
-            .putExtra(Intent.EXTRA_TEXT, "Pac No: 12345")
-        return shareIntent
+//    private fun getShareIntent() : Intent {
+//        val shareIntent = Intent(Intent.ACTION_SENDTO)
+//        shareIntent.setType("text/plain")
+//            .putExtra(Intent.EXTRA_TEXT, "Pac No: 12345")
+//        return shareIntent
+//    }
+    private fun isCheck(): Boolean {
+        var isFill = true
+        if(bankR.equals("Bank")&&accountNo.text.toString().isEmpty()&&payment.text.toString().isEmpty()&&pacNo.text.toString().isEmpty()){
+            Toast.makeText(requireActivity().applicationContext,"Please choose one of Bank",Toast.LENGTH_SHORT).show()
+            accountNo.error = "Please enter your account number "
+            payment.error = "Please enter your payment"
+            pacNo.error = "Please enter pac number from the request button"
+            isFill = false
+        }
+        if(bankR.equals("Bank")){
+            Toast.makeText(requireActivity().applicationContext,"Please choose one of Bank",Toast.LENGTH_SHORT).show()
+            isFill = false
+        }
+        if(accountNo.equals("Bank")){
+            accountNo.error = "Please enter your account number "
+            isFill = false
+        }
+
+
+        if(payment.text.toString().isEmpty()){
+            payment.error = "Please enter your payment"
+            isFill = false
+        }
+
+        if(pacNo.text.toString().isEmpty()){
+            pacNo.error = "Please enter pac number from the request button"
+            isFill = false
+        }else if(!pacNo.text.toString().toInt().equals(12345)){
+            pacNo.error = "Pac No Invalid"
+            isFill = false
+        }
+
+        return isFill
     }
 
 }
