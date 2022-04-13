@@ -39,7 +39,7 @@
             android:fontFamily="@font/righteous"
             android:hint="@string/date"
             android:importantForAutofill="no"
-            android:inputType="number"
+            android:inputType="date"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"

@@ -7,10 +7,14 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.donateanything.R
+import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlin.collections.ArrayList
 
 
 class DonateFragment : Fragment(){
+    private lateinit var icNo: EditText
+    private lateinit var date: EditText
+
     private val IC_NUMBER = "^[0-9]{12}\$"
 
     var i = 0;
@@ -34,8 +38,8 @@ class DonateFragment : Fragment(){
         val isMoney = argsFrom?.getBoolean("isMoneyItem")
 
 
-        val icNo: EditText = view.findViewById(R.id.icNo)
-        val date: EditText = view.findViewById(R.id.date_Tran)
+        icNo = view.findViewById(R.id.icNo)
+        date = view.findViewById(R.id.date_Tran)
 
         btnBack.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
@@ -106,9 +110,13 @@ class DonateFragment : Fragment(){
 
 
         btnNext.setOnClickListener(){
+            if(isCheck()){
 
-            when(i){
-                0 -> {Toast.makeText(requireActivity().applicationContext,"Please type of item donate",Toast.LENGTH_SHORT).show()}
+                when(i){
+                0 -> {
+                    Toast.makeText(requireActivity().applicationContext,"Please type of item donate",Toast.LENGTH_SHORT).show()
+
+                }
                 1 -> {
                     //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
                     val bundle = Bundle()
@@ -133,6 +141,7 @@ class DonateFragment : Fragment(){
                 else ->{
 
                 }
+                }
             }
 
         }
@@ -142,7 +151,23 @@ class DonateFragment : Fragment(){
         return view
     }
 
-
+    private fun isCheck(): Boolean {
+        var isFill = true
+        if(icNo.text.toString().isEmpty()&&date.text.toString().isEmpty()){
+            icNo.error = "Please enter your IC number"
+            date.error = "Please enter the date"
+            isFill = false
+        }
+        if(icNo.text.toString().isEmpty()){
+            icNo.error = "Please enter your IC number"
+            isFill = false
+        }
+        if(date.text.toString().isEmpty()){
+            date.error = "Please enter the date"
+            isFill = false
+        }
+        return isFill
+    }
 
 
 }
