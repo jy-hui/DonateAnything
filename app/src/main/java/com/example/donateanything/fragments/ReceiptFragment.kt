@@ -57,7 +57,7 @@ class ReceiptFragment : Fragment(){
                             result.getString("Transportation")+ "\nAddress : "+
                             result.getString("Address")
                     )
-                }else if(result.getString("Item Type")=="Supply"){
+                }else if(result.getString("Item Type")=="Daily Supply"){
                     tvDetails.setText("Item : "+
                             result.getString("Item")+" = "+
                             result.getString("Value")+ " "+
