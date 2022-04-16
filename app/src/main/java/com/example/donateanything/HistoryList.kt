@@ -9,5 +9,5 @@ data class HistoryList(
     var pointsGain:String ?= null,
     var status:String = "[Completed]",
     var Bank:String ?= null,
-    var Payment:String ?= null,
+    var Payment:String ?= null
 )
