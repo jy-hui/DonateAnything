@@ -27,6 +27,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.535" />
 
+        <Button
+            android:id="@+id/adminBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="175dp"
+            android:text="@string/admin"
+            app:layout_constraintStart_toEndOf="@+id/home"
+            app:layout_constraintTop_toTopOf="@+id/home" />
 
         <ImageView
             android:id="@+id/banner"
