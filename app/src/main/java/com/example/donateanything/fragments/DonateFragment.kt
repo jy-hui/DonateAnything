@@ -121,6 +121,7 @@ class DonateFragment : Fragment(){
                 1 -> {
                     //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm1Fragment)
                     val bundle = Bundle()
+                    bundle.putString("title",title)
                     bundle.putString("itemType",itemType)
                     bundle.putString("icNo",icNo.text.toString())
                     bundle.putString("date",date.text.toString())
@@ -131,6 +132,7 @@ class DonateFragment : Fragment(){
                 2 -> {
                     //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_donateForm2Fragment)
                     val bundle = Bundle()
+                    bundle.putString("title",title)
                     bundle.putString("itemType",itemType)
                     bundle.putString("icNo",icNo.text.toString())
                     bundle.putString("date",date.text.toString())

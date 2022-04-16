@@ -37,7 +37,8 @@ class DonateForm2Fragment : Fragment() {
         val view=inflater.inflate(R.layout.fragment_donateform2, container, false)
         val btnBack: ImageView =view.findViewById(R.id.back4)
         val argsFrom = this.arguments
-        val title = argsFrom?.getString("itemType")
+        val title = argsFrom?.getString("title")
+        val itemType = argsFrom?.getString("itemType")
         val icNo = argsFrom?.getString("icNo")
         val date = argsFrom?.getString("date")
         firebaseAuth= FirebaseAuth.getInstance()
@@ -47,7 +48,7 @@ class DonateForm2Fragment : Fragment() {
         //var d_ID_F : String = ""
         //var d_ID : Int = 0
         val titleText= view.findViewById<TextView>(R.id.donateItem);
-        titleText.setText(title)
+        titleText.setText(itemType)
         val bankSpinner : Spinner = view.findViewById(R.id.bank_spinner)
         bankR = ""
         accountNo = view.findViewById(R.id.accountNo)
@@ -112,7 +113,8 @@ class DonateForm2Fragment : Fragment() {
                     "Email" to email,
                     "NoIC" to icNo,
                     "Date" to date,
-                    "Item Type" to title,
+                    "Title" to title,
+                    "ItemType" to itemType,
                     "AccountNo" to accountNo.text.toString(),
                     "Bank" to bankR,
                     "Payment" to payment.text.toString()

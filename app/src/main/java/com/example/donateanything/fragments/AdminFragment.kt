@@ -27,6 +27,18 @@ class AdminFragment : Fragment() {
         homeBtn.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_homeFragment)
         }
+
+        val btnRes: ImageView =view.findViewById(R.id.imgRes)
+
+        btnRes.setOnClickListener(){
+            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_newsFragment)
+        }
+        val btnDonate: ImageView =view.findViewById(R.id.imgDonate)
+
+        btnDonate.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_admin_donate_list_Fragment)
+        }
+
         return view
     }
 
