@@ -1,7 +1,8 @@
 package com.example.donateanything.fragments
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -75,26 +77,58 @@ class RequestListDetailFragment : Fragment() {
         }
 
         approveButton.setOnClickListener(){
-            requestFormDb.document(document.toString()).update("Approve", true)
-                .addOnSuccessListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setCancelable(true)
+            builder.setTitle("Approve")
+            builder.setMessage("Confirm approve ?")
+            builder.setPositiveButton("Confirm",
+                DialogInterface.OnClickListener { dialog, which ->
+                    requestFormDb.document(document.toString()).update("Status", "approve")
+                        .addOnSuccessListener {
+                            Toast.makeText(requireActivity().applicationContext, "This request is Approved", Toast.LENGTH_SHORT).show()
+                            val fragmentBack = RequestListFragment()
+                            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
+                        }.addOnFailureListener { e ->
+                            Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                })
+            builder.setNegativeButton(android.R.string.cancel,
+                DialogInterface.OnClickListener { dialog, which -> })
 
-                    Toast.makeText(requireActivity().applicationContext, "This request is Approved", Toast.LENGTH_SHORT).show()
-                    val fragmentBack = RequestListFragment()
-                    fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
-                }.addOnFailureListener { e ->
-                    Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
-                }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
 
         cancelButton.setOnClickListener(){
-            requestFormDb.document(document.toString()).delete()
-                .addOnSuccessListener {
-                    Toast.makeText(requireActivity().applicationContext, "This request is canceled", Toast.LENGTH_SHORT).show()
-                    val fragmentBack = RequestListFragment()
-                fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
-            }.addOnFailureListener { e ->
-                    Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
-                }
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setCancelable(true)
+            builder.setTitle("Reject")
+            builder.setMessage("Are you sure want to reject ?")
+            builder.setPositiveButton("Confirm",
+                DialogInterface.OnClickListener { dialog, which ->
+                    requestFormDb.document(document.toString()).update("Status", "reject")
+                        .addOnSuccessListener {
+                            Toast.makeText(requireActivity().applicationContext, "This request is Rejected", Toast.LENGTH_SHORT).show()
+                            val fragmentBack = RequestListFragment()
+                            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
+                        }.addOnFailureListener { e ->
+                            Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                })
+            builder.setNegativeButton(android.R.string.cancel,
+                DialogInterface.OnClickListener { dialog, which -> })
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+
+//            requestFormDb.document(document.toString()).delete()
+//                .addOnSuccessListener {
+//                    Toast.makeText(requireActivity().applicationContext, "This request is canceled", Toast.LENGTH_SHORT).show()
+//                    val fragmentBack = RequestListFragment()
+//                fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
+//            }.addOnFailureListener { e ->
+//                    Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
+//                }
         }
         return view
     }

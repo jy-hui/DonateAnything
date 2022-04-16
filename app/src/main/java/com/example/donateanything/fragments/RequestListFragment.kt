@@ -64,7 +64,7 @@ class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
     private fun EventChangeListener() {
         db= FirebaseFirestore.getInstance()
 
-        db.collection("RequestForm")
+        db.collection("RequestForm").whereEqualTo("Status", "pending")
             .addSnapshotListener(object : EventListener<QuerySnapshot>{
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     for(dc : DocumentChange in value?.documentChanges!!){

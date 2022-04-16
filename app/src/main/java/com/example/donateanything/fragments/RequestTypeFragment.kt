@@ -126,7 +126,8 @@ class RequestTypeFragment : Fragment() {
                     "FoodDrink" to isFoodDrink,
                     "Money" to isMoney,
                     "Other" to isOther,
-                    "Specific" to reason2.text.toString()
+                    "Specific" to reason2.text.toString(),
+                    "Status" to "pending"
                 )
 
                 val requestFormDb = db.collection("RequestForm")

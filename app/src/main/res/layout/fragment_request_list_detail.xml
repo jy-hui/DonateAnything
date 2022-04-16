@@ -255,7 +255,7 @@
             android:layout_marginTop="4dp"
             android:backgroundTint="@color/teal_200"
             android:fontFamily="@font/righteous"
-            android:text="Cancel"
+            android:text="Reject"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />

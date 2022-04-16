@@ -118,6 +118,8 @@ class RequestFragment : Fragment() {
 
         var isAdmin: String? = null
 
+        email.text = emailAdmin.toString()
+
         adminBtn.visibility = View.GONE
 
         db.collection("USERS")
