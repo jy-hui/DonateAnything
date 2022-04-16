@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.donateanything.databinding.ActivityHistoryBinding
 import kotlinx.android.synthetic.main.item_view.*
 import com.example.donateanything.MyAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 
 class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var db : FirebaseFirestore
+    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var adapter: MyAdapter
     private lateinit var hList: ArrayList<HistoryList>
     private lateinit var binding: ActivityHistoryBinding
@@ -77,8 +79,10 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
     }
 
     private fun EventChangeListener() {
+        firebaseAuth= FirebaseAuth.getInstance()
         db= FirebaseFirestore.getInstance()
-        db.collection("DONATION")
+        val email = firebaseAuth.currentUser!!.email.toString()
+        db.collection("DONATION").whereEqualTo("Email", email)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     for(dc : DocumentChange in value?.documentChanges!!){

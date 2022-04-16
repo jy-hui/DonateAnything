@@ -117,7 +117,8 @@ class DonateForm2Fragment : Fragment() {
                     "ItemType" to itemType,
                     "AccountNo" to accountNo.text.toString(),
                     "Bank" to bankR,
-                    "Payment" to payment.text.toString()
+                    "Payment" to payment.text.toString(),
+                    "Point" to payment.text.toString()
                 )
 
                 val Donation = db.collection("DONATION")
