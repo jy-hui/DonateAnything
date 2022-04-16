@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.navigation.Navigation
 import com.example.donateanything.R
@@ -22,6 +23,10 @@ class AdminFragment : Fragment() {
     ): View? {
         val view=inflater.inflate(R.layout.fragment_admin, container, false)
 
+        val homeBtn: Button = view.findViewById(R.id.homeBtn)
+        homeBtn.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_homeFragment)
+        }
         return view
     }
 

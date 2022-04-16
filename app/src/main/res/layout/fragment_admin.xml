@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8BCBC"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.AdminFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,12 +26,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/adminBtn"
+            android:id="@+id/homeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="175dp"
-            android:text="@string/admin"
+            android:text="@string/home"
             app:layout_constraintStart_toEndOf="@+id/admin"
             app:layout_constraintTop_toTopOf="@+id/admin" />
 
