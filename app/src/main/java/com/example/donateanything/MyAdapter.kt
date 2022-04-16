@@ -52,6 +52,7 @@ class MyAdapter(private val infoList: ArrayList<HistoryList>,
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentRec = infoList[position]
         var details =""
+        var gainPoints =""
 
         holder.tvDate.text = currentRec.Date
         holder.tvStatus.text = currentRec.status
@@ -63,7 +64,8 @@ class MyAdapter(private val infoList: ArrayList<HistoryList>,
             details = currentRec.Bank + " : RM " + currentRec.Payment
         }
         holder.tvDDetails.text = details
-        holder.tvPGain.text = currentRec.pointsGain
+        gainPoints = currentRec.Point + " points gain"
+        holder.tvPGain.text = gainPoints
         holder.btnCheck.text = currentRec.btnCheck
 
         if(currentRec.btnCheck == "View"){

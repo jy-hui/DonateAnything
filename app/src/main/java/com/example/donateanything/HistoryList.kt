@@ -6,7 +6,7 @@ data class HistoryList(
     var ItemType:String ?= null,
     var Value:String ?= null,
     var btnCheck:String = "View",
-    var pointsGain:String ?= null,
+    var Point:String ?= null,
     var status:String = "[Completed]",
     var Bank:String ?= null,
     var Payment:String ?= null
