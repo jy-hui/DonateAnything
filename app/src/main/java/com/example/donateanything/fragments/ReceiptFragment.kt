@@ -34,9 +34,9 @@ class ReceiptFragment : Fragment(){
         val tvEmail : TextView = view.findViewById(R.id.tvREmail)
         val tvPhone : TextView = view.findViewById(R.id.tvRPhone)
         val tvDate : TextView = view.findViewById(R.id.tvRDate)
+        val tvTitle : TextView = view.findViewById(R.id.tvRTitle)
         val tvType : TextView = view.findViewById(R.id.tvRType)
         val tvDetails : TextView = view.findViewById(R.id.tvRDonateDetails)
-        //val tvTotal : TextView = view.findViewById(R.id.tvRTotal)
         //ivQRcode = view.findViewById(R.id.imgQRCode)
 
         db = FirebaseFirestore.getInstance()
@@ -48,6 +48,7 @@ class ReceiptFragment : Fragment(){
                     tvIC.setText("No IC : "+result.getString("NoIC"))
                     tvEmail.setText("Email : "+result.getString("Email"))
                     tvDate.setText("Date : "+result.getString("Date"))
+                    tvTitle.setText("Title : "+result.getString("Title"))
                     tvType.setText("Donate Type : "+result.getString("Item Type"))
                 if(result.getString("Item Type")=="Food"){
                     tvDetails.setText("Item : "+

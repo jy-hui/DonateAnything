@@ -12,19 +12,17 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.donateanything.Adapter
-import com.example.donateanything.MyAdapter
+import com.example.donateanything.*
 import com.example.donateanything.R
-import com.example.donateanything.RequestList
 import com.google.firebase.firestore.*
-import kotlinx.android.synthetic.main.fragment_request_list.*
+import kotlinx.android.synthetic.main.fragment_admin_donate_list.*
 
-class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
+class DonateListFragment : Fragment(), DonateListAdapter.OnItemClickListener {
     //private lateinit var binding: ActivityMainBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var db: FirebaseFirestore
-    private lateinit var adapter: Adapter
-    private lateinit var request_list: ArrayList<RequestList>
+    private lateinit var adapter: DonateListAdapter
+    private lateinit var donate_list: ArrayList<DonateList>
     var layoutManager: RecyclerView.LayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,16 +36,16 @@ class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =inflater.inflate(R.layout.fragment_request_list, container, false)
-        val backBtn: ImageView = view.findViewById(R.id.backBtnRequest)
+        val view =inflater.inflate(R.layout.fragment_admin_donate_list, container, false)
+        val backBtn: ImageView = view.findViewById(R.id.backBtn)
 
-        recyclerView = view.findViewById(R.id.requestListRecycler)
+        recyclerView = view.findViewById(R.id.donateListRecycler)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         //recyclerView.setHasFixedSize(true)
 
-        request_list = arrayListOf()
+        donate_list = arrayListOf()
 
-        adapter = Adapter(request_list, this)
+        adapter = DonateListAdapter(donate_list, this)
 
         recyclerView.adapter = adapter
 
@@ -55,7 +53,7 @@ class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
         EventChangeListener()
 
         backBtn.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_requestListFragment_to_requestFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_requestListFragment_to_requestFragment)
         }
 
         return view
@@ -64,41 +62,36 @@ class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
     private fun EventChangeListener() {
         db= FirebaseFirestore.getInstance()
 
-        db.collection("RequestForm").whereEqualTo("Status", "pending")
+
+        db.collection("DONATION")
             .addSnapshotListener(object : EventListener<QuerySnapshot>{
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     for(dc : DocumentChange in value?.documentChanges!!){
                         if(dc.type == DocumentChange.Type.ADDED){
-                            request_list.add(dc.document.toObject(RequestList::class.java))
+                            donate_list.add(dc.document.toObject(DonateList::class.java))
                         }
                     }
                     adapter.notifyDataSetChanged()
                 }
 
             })
+
+
     }
 
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        requestListRecycler.apply {
+        donateListRecycler.apply {
 
         }
     }
 
     override fun itemClick(position: Int) {
-        val selectedRequest = request_list[position]
+        val selectedRequest = donate_list[position]
 
         val bundle = Bundle()
 
-        bundle.putString("firstName", selectedRequest.FirstName)
-        bundle.putString("lastName", selectedRequest.LastName)
-        bundle.putString("icNo", selectedRequest.ICNo)
-        bundle.putString("phoneNo", selectedRequest.Phone)
-        bundle.putString("houseAddress", selectedRequest.HouseAddress)
-        bundle.putString("email", selectedRequest.Email)
-        bundle.putString("reason", selectedRequest.Reason)
-        bundle.putString("specific", selectedRequest.Specific)
         bundle.putString("document", selectedRequest.ID)
 
         //Log.d(ContentValues.TAG, "id = " + selectedRequest.ID.toString())
