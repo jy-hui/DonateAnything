@@ -165,7 +165,7 @@ class DonateFragment : Fragment(){
             icNo.error = "Please enter your IC number"
             isFill = false
         }else if(!IC_NUMBER_REGEX.toRegex().matches(icNo.text.toString())){
-            icNo.error = "Invalid phone number! \nformat: 000000000000"
+            icNo.error = "Invalid IC number! \nformat: 000000000000"
             isFill = false
         }
         if(date.text.toString().isEmpty()){

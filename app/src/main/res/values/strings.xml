@@ -58,6 +58,7 @@
     <string name="needs2">Types of donation needed: \n Money: RM10000 \n Food : 10 bag of rice</string>
     <string name="admin">Admin</string>
     <string name="admin_donate_list">Donate Form List</string>
+    <string name="admin_donate_detail">Donate Form Detail</string>
 
     <string-array name="unit">
         <item>unit</item>

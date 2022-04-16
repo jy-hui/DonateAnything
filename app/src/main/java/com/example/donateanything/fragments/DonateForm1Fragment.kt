@@ -96,23 +96,7 @@ class DonateForm1Fragment : Fragment() {
                 addressText.setText("-")
             }
         }
-//        db.collection("DONATION").get().addOnSuccessListener {
-//            if(it.isEmpty){
-//                donateID = "0"
-//            }
-//        }
-//            .addOnFailureListener { exception ->
-//                Log.d(ContentValues.TAG, "get failed with ", exception)
-//            }
-//        db.collection("DONATION").get().addOnSuccessListener { result ->
-//            for (document in result) {
-//                donateID = document.id
-//
-//            }
-//        }
-//            .addOnFailureListener { exception ->
-//                Log.d(ContentValues.TAG, "get failed with ", exception)
-//            }
+
         btnSubmit.setOnClickListener {
             if(isCheck()) {
 

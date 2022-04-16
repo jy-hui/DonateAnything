@@ -53,7 +53,7 @@ class DonateListFragment : Fragment(), DonateListAdapter.OnItemClickListener {
         EventChangeListener()
 
         backBtn.setOnClickListener(){
-            //Navigation.findNavController(it).navigate(R.id.action_requestListFragment_to_requestFragment)
+            Navigation.findNavController(it).navigate(R.id.action_admin_donate_list_Fragment_to_adminFragment)
         }
 
         return view
@@ -88,15 +88,14 @@ class DonateListFragment : Fragment(), DonateListAdapter.OnItemClickListener {
     }
 
     override fun itemClick(position: Int) {
-        val selectedRequest = donate_list[position]
+        val selectedDonate = donate_list[position]
 
         val bundle = Bundle()
 
-        bundle.putString("document", selectedRequest.ID)
+        bundle.putString("ID", selectedDonate.ID)
 
-        //Log.d(ContentValues.TAG, "id = " + selectedRequest.ID.toString())
 
-        val fragment = RequestListDetailFragment()
+        val fragment = DonateDetailFragment()
         fragment.setArguments(bundle)
 
         fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
