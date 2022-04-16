@@ -16,6 +16,7 @@ class DonateListAdapter (private val donate_list: ArrayList<DonateList>, private
     inner class viewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
         private lateinit var db: FirebaseFirestore
 
+        var Date: TextView = view.findViewById(R.id.date)
         var Name: TextView = view.findViewById(R.id.name)
         var Title: TextView = view.findViewById(R.id.title)
         var ItemType: TextView = view.findViewById(R.id.itemType)
@@ -48,7 +49,7 @@ class DonateListAdapter (private val donate_list: ArrayList<DonateList>, private
     private lateinit var db : FirebaseFirestore
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val currentRec = donate_list[position]
-
+        holder.Date.text = currentRec.Date
         db = FirebaseFirestore.getInstance()
         db.collection("USERS").document(currentRec.Email.toString()).get()
             .addOnSuccessListener { result ->
