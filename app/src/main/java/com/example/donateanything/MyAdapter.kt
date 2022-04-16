@@ -16,6 +16,7 @@ class MyAdapter(private val infoList: ArrayList<HistoryList>,
                 private val listener: OnItemClickListener
 ):
 
+
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener{
