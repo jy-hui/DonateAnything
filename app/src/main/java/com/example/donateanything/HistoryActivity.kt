@@ -1,58 +1,48 @@
 package com.example.donateanything
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.donateanything.databinding.ActivityHistoryBinding
 import kotlinx.android.synthetic.main.item_view.*
+import com.example.donateanything.MyAdapter
+import com.google.firebase.firestore.*
 
 class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var db : FirebaseFirestore
+    private lateinit var adapter: MyAdapter
+    private lateinit var hList: ArrayList<HistoryList>
     private lateinit var binding: ActivityHistoryBinding
-
-        private val infoList = listOf(
-            Info(
-                "1 Jan 2022",
-                "[Completed]",
-                "Daily Supply",
-                "10 x Beds",
-                "100 points gain",
-                "View"
-            ),
-            Info(
-                "14 Feb 2022",
-                "[Completed]",
-                "Money",
-                "Total: RM 100.00",
-                "10 points gain",
-                "View"
-            ),
-            Info(
-                "31 Mar 2022",
-                "[Completed]",
-                "Daily Supply",
-                "50 x T-Shirt\n" + "50 x Pant\n" + "50 x Face Mask", "1500 points gain", "View"
-            ),
-            Info(
-                "1 April 2022", "[Process]", "Daily Supply", "50 x Tooth Brush\n" +
-                        "50 x Towel", "1000 points gain", "Track"
-            )
-        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
-        var binding = ActivityHistoryBinding.inflate(layoutInflater)
+        val binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val myAdapter = MyAdapter(infoList, this)
+        recyclerView = findViewById(R.id.infoRV)
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView.setHasFixedSize(true)
 
-        binding.infoRV.adapter = myAdapter
-        binding.infoRV.layoutManager = LinearLayoutManager(applicationContext)
-        binding.infoRV.setHasFixedSize(true)
+        //val myAdapter = MyAdapter(infoList, this)
+        hList = arrayListOf()
+
+        adapter = MyAdapter(hList, this)
+        recyclerView.adapter = adapter
+
+        //binding.infoRV.adapter = MyAdapter(hList, this)
+        //binding.infoRV.layoutManager = LinearLayoutManager(applicationContext)
+        //binding.infoRV.setHasFixedSize(true)
+
+        EventChangeListener()
 
         val imgBackPage: ImageView = findViewById(R.id.imgBack)
 
@@ -63,7 +53,7 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
     }
 
     override fun itemClick(position: Int) {
-        val selectedInfo = infoList[position]
+        val selectedInfo = hList[position]
         Toast.makeText(
             applicationContext,
             selectedInfo.btnCheck, Toast.LENGTH_SHORT
@@ -71,12 +61,34 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
 
         if (selectedInfo.btnCheck.contentEquals("View")) {
             val intentA = Intent(this, CertActivity::class.java)
-                intentA.putExtra("Details",selectedInfo.donateDetails)
-                intentA.putExtra("Date",selectedInfo.date)
+                if(selectedInfo.Value != null || selectedInfo.Item != null) {
+                    intentA.putExtra("Details",selectedInfo.Value + " x "+ selectedInfo.Item)
+                }
+                else if (selectedInfo.Bank != null || selectedInfo.Payment != null){
+                    intentA.putExtra("Details",selectedInfo.Bank + " : RM "+ selectedInfo.Payment)
+                }
+                intentA.putExtra("Date",selectedInfo.Date)
             startActivity(intentA)
         } else if (selectedInfo.btnCheck.contentEquals("Track")) {
             val intentB = Intent(this, TrackActivity::class.java)
             startActivity(intentB)
         }
     }
+
+    private fun EventChangeListener() {
+        db= FirebaseFirestore.getInstance()
+        db.collection("DONATION")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    for(dc : DocumentChange in value?.documentChanges!!){
+                        if(dc.type == DocumentChange.Type.ADDED){
+                            hList.add(dc.document.toObject(HistoryList::class.java))
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+
+            })
+    }
+
 }

@@ -10,9 +10,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_view.*
+import kotlinx.coroutines.processNextEventInCurrentThread
 
-class MyAdapter(private val infoList: List<Info>,
-                private val listener: HistoryActivity):
+class MyAdapter(private val infoList: ArrayList<HistoryList>,
+                private val listener: OnItemClickListener
+):
 
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
@@ -49,11 +51,18 @@ class MyAdapter(private val infoList: List<Info>,
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentRec = infoList[position]
+        var details =""
 
-        holder.tvDate.text = currentRec.date
+        holder.tvDate.text = currentRec.Date
         holder.tvStatus.text = currentRec.status
-        holder.tvDType.text = currentRec.donateType
-        holder.tvDDetails.text = currentRec.donateDetails
+        holder.tvDType.text = currentRec.ItemType
+        if(currentRec.Item != null || currentRec.Value != null){
+            details = currentRec.Value + " x " + currentRec.Item
+        }
+        if(currentRec.Bank != null || currentRec.Payment != null){
+            details = currentRec.Bank + " : RM " + currentRec.Payment
+        }
+        holder.tvDDetails.text = details
         holder.tvPGain.text = currentRec.pointsGain
         holder.btnCheck.text = currentRec.btnCheck
 
