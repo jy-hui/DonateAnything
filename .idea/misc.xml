@@ -31,8 +31,12 @@
         <entry key="..\:/Desktop/DonateAnything/app/src/main/res/menu/menu.xml" value="0.2111111111111111" />
         <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/activity_history.xml" value="0.264" />
         <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/fragment_admin.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/fragment_admin_donate_list.xml" value="0.13994565217391305" />
+        <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/fragment_request.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/fragment_request_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/fragment_request_list_detail.xml" value="0.2" />
         <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/item_view.xml" value="0.264" />
+        <entry key="..\:/Users/User/Desktop/DonateAnything/app/src/main/res/layout/request_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/activity_cert.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/activity_donate.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/hjyhj/Desktop/DonateAnything/app/src/main/res/layout/fragment_about.xml" value="0.4" />
