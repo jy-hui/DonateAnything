@@ -37,7 +37,6 @@ class ReceiptFragment : Fragment(){
         val tvTitle : TextView = view.findViewById(R.id.tvRTitle)
         val tvType : TextView = view.findViewById(R.id.tvRType)
         val tvDetails : TextView = view.findViewById(R.id.tvRDonateDetails)
-        //ivQRcode = view.findViewById(R.id.imgQRCode)
 
         db = FirebaseFirestore.getInstance()
 
@@ -47,17 +46,17 @@ class ReceiptFragment : Fragment(){
                 //for (document in result) {
                     tvIC.setText("No IC : "+result.getString("NoIC"))
                     tvEmail.setText("Email : "+result.getString("Email"))
-                    tvDate.setText("Date : "+result.getString("Date"))
-                    tvTitle.setText("Title : "+result.getString("Title"))
-                    tvType.setText("Donate Type : "+result.getString("ItemType"))
+                    tvDate.setText("Date : "+result.getString("Date")+"\n")
+                    tvTitle.setText("Title : "+result.getString("Title")+"\n")
+                    tvType.setText("Donate Type: "+result.getString("ItemType"))
                 if(result.getString("ItemType")=="Food"){
                     tvDetails.setText("Item : "+
                             result.getString("Item")+" = "+
                             result.getString("Value")+ " "+
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
-                            result.getString("Address")+"\nStatus : "+
-                            result.getString("Status")+"\nPoint Gain: "+
+                            result.getString("Address")+"\n\nStatus : "+
+                            result.getString("Status")+"\nPoint Gain : "+
                             result.getString("Point")
                     )
                 }else if(result.getString("ItemType")=="Daily Supply"){
@@ -66,7 +65,7 @@ class ReceiptFragment : Fragment(){
                             result.getString("Value")+ " "+
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
-                            result.getString("Address")+"\nStatus : "+
+                            result.getString("Address")+"\n\nStatus : "+
                             result.getString("Status")+"\nPoint Gain: "+
                             result.getString("Point")
                     )
@@ -74,8 +73,8 @@ class ReceiptFragment : Fragment(){
                     tvDetails.setText("Bank : "+
                             result.getString("Bank")+"\nAccount No : "+
                             result.getString("AccountNo")+"\nPayment : RM"+
-                            result.getString("Payment")+"\nStatus : "+
-                            result.getString("Status")+"\nPoint Gain: "+
+                            result.getString("Payment")+"\n\nStatus : "+
+                            result.getString("Status")+"\nPoint Gain : "+
                             result.getString("Point")
                     )
                 }
@@ -85,7 +84,7 @@ class ReceiptFragment : Fragment(){
                 db.collection("USERS").document(emailR.toString()).get()
                     .addOnSuccessListener { result ->
                         //for (document in result) {
-                        tvName.setText("ID : "+donateID.toString()+"\nName :"+result.getString("Username"))
+                        tvName.setText("ID : "+donateID.toString()+"\n\nName :"+result.getString("Username"))
                         tvPhone.setText("Phone :"+ result.getString("Phone"))
                         //}
                     }
@@ -96,23 +95,7 @@ class ReceiptFragment : Fragment(){
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "get failed with ", exception)
             }
-//        val data = donateID.toString().trim()
-//        if(!data.isEmpty()){
-//            val writer = QRCodeWriter()
-//            try{
-//
-//            }catch(e:WriterException){
-//                val bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE,512,512)
-//                val width = bitMatrix.width
-//                val height = bitMatrix.height
-//                val bmp = Bitmap.createBitmap(width,height,Bitmap.Config.RGB_565)
-//                for (x in 0 until width){
-//                    for(y in 0 until height){
-//                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLACK else Color.WHITE)
-//                    }
-//                }
-//            }
-//        }
+
         return view
     }
 }

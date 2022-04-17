@@ -61,7 +61,7 @@ class SignUp : AppCompatActivity() {
                     "Phone" to phone.text.toString(),
                     "Email" to email.text.toString(),
                     "Point" to "0",
-                    "token" to "users"
+                    "token" to "User"
                 )
 
 
