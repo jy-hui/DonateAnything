@@ -1,5 +1,7 @@
 package com.example.donateanything
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -83,6 +85,7 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
 
     override fun itemClick(position: Int) {
         val selectedInfo = hList[position]
+
         Toast.makeText(
             applicationContext,
             selectedInfo.btnCheck, Toast.LENGTH_SHORT
@@ -103,6 +106,31 @@ class HistoryActivity : AppCompatActivity() , MyAdapter.OnItemClickListener {
             startActivity(intentB)
         }
     }
+
+//    fun itemClickRequest(position: Int){
+//        val selectedRequest = rList[position]
+//
+//        if(selectedRequest.Status.contentEquals("pending")){
+//            val builder: AlertDialog.Builder = AlertDialog.Builder(applicationContext)
+//            builder.setCancelable(true)
+//            builder.setTitle("Delete")
+//            builder.setMessage("Are you sure want to delete ?")
+//            builder.setPositiveButton("Confirm",
+//                DialogInterface.OnClickListener { dialog, which ->
+//                    db.collection("RequestForm").document(selectedRequest.ID.toString()).delete()
+//                        .addOnSuccessListener {
+//                            Toast.makeText(applicationContext.applicationContext, "Deleted", Toast.LENGTH_SHORT).show()
+//                        }.addOnFailureListener { e ->
+//                            Toast.makeText(applicationContext.applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
+//                        }
+//                })
+//            builder.setNegativeButton(android.R.string.cancel,
+//                DialogInterface.OnClickListener { dialog, which -> })
+//
+//            val dialog: AlertDialog = builder.create()
+//            dialog.show()
+//        }
+//    }
 
     private fun EventChangeListener() {
         firebaseAuth= FirebaseAuth.getInstance()
