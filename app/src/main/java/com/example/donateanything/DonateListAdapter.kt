@@ -1,9 +1,12 @@
 package com.example.donateanything
 
+import android.content.ContentValues
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
@@ -16,12 +19,12 @@ class DonateListAdapter (private val donate_list: ArrayList<DonateList>, private
     inner class viewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
         private lateinit var db: FirebaseFirestore
 
-        var Date: TextView = view.findViewById(R.id.date)
+        //var Pic: ImageView = view.findViewById(R.id.imgAccept)
         var Name: TextView = view.findViewById(R.id.name)
-        var Title: TextView = view.findViewById(R.id.title)
         var ItemType: TextView = view.findViewById(R.id.itemType)
         var Detail: TextView = view.findViewById(R.id.donateDetail)
-
+        var Title: TextView = view.findViewById(R.id.title)
+        var Date: TextView = view.findViewById(R.id.date)
 
 
         init{
@@ -67,6 +70,11 @@ class DonateListAdapter (private val donate_list: ArrayList<DonateList>, private
             holder.Detail.text = ""
         }
 
+//        if(currentRec.Status.equals("approve")) {
+//            holder.Pic.visibility = View.VISIBLE
+//        }else{
+//            holder.Pic.visibility = View.GONE
+//        }
 
     }
 

@@ -1,28 +1,28 @@
 package com.example.donateanything.fragments
 
+
+import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.donateanything.*
+
 import com.example.donateanything.R
 import com.google.firebase.firestore.*
-import kotlinx.android.synthetic.main.fragment_admin_donate_list.*
+
 
 class DonateDetailFragment : Fragment() {
 
 
     private lateinit var db: FirebaseFirestore
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +53,8 @@ class DonateDetailFragment : Fragment() {
         val tvTitle : TextView = view.findViewById(R.id.tvRTitle3)
         val tvType : TextView = view.findViewById(R.id.tvRType3)
         val tvDetails : TextView = view.findViewById(R.id.tvRDonateDetails3)
+        val btnApprove : Button = view.findViewById(R.id.approveBtn)
+
         db = FirebaseFirestore.getInstance()
         db.collection("DONATION").document(donateID.toString()).get()
             .addOnSuccessListener { result ->
@@ -68,7 +70,8 @@ class DonateDetailFragment : Fragment() {
                             result.getString("Value")+ " "+
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
-                            result.getString("Address")
+                            result.getString("Address")+"\nStatus : "+
+                            result.getString("Status")
                     )
                 }else if(result.getString("ItemType")=="Daily Supply"){
                     tvDetails.setText("Item : "+
@@ -76,13 +79,15 @@ class DonateDetailFragment : Fragment() {
                             result.getString("Value")+ " "+
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
-                            result.getString("Address")
+                            result.getString("Address")+"\nStatus : "+
+                            result.getString("Status")
                     )
                 }else if(result.getString("ItemType")=="Money"){
                     tvDetails.setText("Bank : "+
                             result.getString("Bank")+"\nAccount No : "+
                             result.getString("AccountNo")+"\nPayment : RM"+
-                            result.getString("Payment"))
+                            result.getString("Payment")+"\nStatus : "+
+                            result.getString("Status"))
                 }
 
                 //}
@@ -97,10 +102,39 @@ class DonateDetailFragment : Fragment() {
                     .addOnFailureListener { exception ->
                         Log.d(ContentValues.TAG, "get failed with ", exception)
                     }
+
+                if(result.getString("Status").equals("approve")) {
+                    btnApprove.visibility = View.GONE
+                }else{
+                    btnApprove.visibility = View.VISIBLE
+                }
             }
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "get failed with ", exception)
             }
+        val donateFormDb = db.collection("DONATION")
+        btnApprove.setOnClickListener{
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setCancelable(true)
+            builder.setTitle("Approve")
+            builder.setMessage("Confirm approve ?")
+            builder.setPositiveButton("Confirm",
+                DialogInterface.OnClickListener { dialog, which ->
+                    donateFormDb.document(donateID.toString()).update("Status", "approve")
+                        .addOnSuccessListener {
+                            Toast.makeText(requireActivity().applicationContext, "This request is Approved", Toast.LENGTH_SHORT).show()
+                            val fragmentBack = DonateListFragment()
+                            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
+                        }.addOnFailureListener { e ->
+                            Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                })
+            builder.setNegativeButton(android.R.string.cancel,
+                DialogInterface.OnClickListener { dialog, which -> })
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
 
         return view
     }

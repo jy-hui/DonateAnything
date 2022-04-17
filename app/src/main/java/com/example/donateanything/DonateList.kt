@@ -17,6 +17,7 @@ data class DonateList(
     var Value:String?=null,
     var Unit:String?=null,
     var Transportation:String?=null,
-    var Address:String?=null
+    var Address:String?=null,
+    var Status:String?=null
 
 )

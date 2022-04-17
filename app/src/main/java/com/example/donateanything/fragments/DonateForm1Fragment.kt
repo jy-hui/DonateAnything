@@ -116,7 +116,8 @@ class DonateForm1Fragment : Fragment() {
                     "Point" to valueNo.text.toString(),
                     "Unit" to unitR,
                     "Transportation" to onTrans.toString(),
-                    "Address" to addressText.text.toString()
+                    "Address" to addressText.text.toString(),
+                    "Status" to "pending"
                 )
 
                 val Donation = db.collection("DONATION")

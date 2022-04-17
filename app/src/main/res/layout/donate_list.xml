@@ -11,8 +11,20 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="xxx" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -20,38 +32,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="xxx" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date"
-        tools:text="xxx" />
-
-    <TextView
-        android:id="@+id/detailtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Donate Details"
-        android:textSize="16sp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="has donated "
+        android:text="donated "
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/name"
         app:layout_constraintStart_toEndOf="@+id/name"
@@ -59,14 +46,14 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="347dp"
+        android:layout_width="285dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
         android:text="xxx"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/itemType"
@@ -74,43 +61,53 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/donateDetail"
+        app:layout_constraintStart_toEndOf="@+id/donateDetail"
+        app:layout_constraintTop_toTopOf="@+id/donateDetail"
         tools:text="" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_width="15dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="8dp"
         android:text="to"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemType"
-        app:layout_constraintStart_toEndOf="@+id/itemType"
-        app:layout_constraintTop_toTopOf="@+id/itemType" />
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <TextView
         android:id="@+id/donateDetail"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailtxt"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
         tools:text="xxx" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="409dp"
         android:layout_height="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="#F8BCBC"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donateDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <ImageView
+        android:id="@+id/imgAccept"
+        android:layout_width="56dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@android:drawable/checkbox_on_background" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
