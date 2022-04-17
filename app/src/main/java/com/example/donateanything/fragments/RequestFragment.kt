@@ -135,6 +135,7 @@ class RequestFragment : Fragment() {
                 fragment.setArguments(bundle)
 
                 fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+                Navigation.findNavController(it).navigate(R.id.action_requestFragment_to_requestTypeFragment)
 
             }
         }

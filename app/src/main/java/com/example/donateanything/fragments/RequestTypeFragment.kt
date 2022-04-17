@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import com.example.donateanything.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_request.*
@@ -143,7 +142,6 @@ class RequestTypeFragment : Fragment() {
                             Toast.makeText(requireActivity().applicationContext, "Request successful send", Toast.LENGTH_SHORT).show()
                             val fragmentHome = HomeFragment()
                             fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentHome)?.commit()
-                            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_adminFragment)
                         }
                     }
                     .addOnFailureListener { e ->
