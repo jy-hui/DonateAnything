@@ -51,7 +51,7 @@ class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
         EventChangeListener()
 
         backBtn.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_requestListFragment_to_requestFragment)
+            Navigation.findNavController(it).navigate(R.id.action_requestListFragment_to_adminFragment)
         }
 
         return view

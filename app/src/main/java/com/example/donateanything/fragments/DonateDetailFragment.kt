@@ -10,13 +10,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 
 import com.example.donateanything.R
 import com.google.firebase.firestore.*
+import org.w3c.dom.Text
 
 
 class DonateDetailFragment : Fragment() {
@@ -54,13 +52,16 @@ class DonateDetailFragment : Fragment() {
         val tvType : TextView = view.findViewById(R.id.tvRType3)
         val tvDetails : TextView = view.findViewById(R.id.tvRDonateDetails3)
         val btnApprove : Button = view.findViewById(R.id.approveBtn)
-
+        val pointGain : EditText = view.findViewById(R.id.pointGainTxt)
+        var email = ""
+        var point = 0
         db = FirebaseFirestore.getInstance()
         db.collection("DONATION").document(donateID.toString()).get()
             .addOnSuccessListener { result ->
                 //for (document in result) {
                 tvIC.setText("No IC : "+result.getString("NoIC"))
                 tvEmail.setText("Email : "+result.getString("Email"))
+                email = result.getString("Email").toString()
                 tvDate.setText("Date : "+result.getString("Date"))
                 tvTitle.setText("Title : "+result.getString("Title"))
                 tvType.setText("Donate Type : "+result.getString("ItemType"))
@@ -71,7 +72,8 @@ class DonateDetailFragment : Fragment() {
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
                             result.getString("Address")+"\nStatus : "+
-                            result.getString("Status")
+                            result.getString("Status")+"\nPoint Gain: "+
+                            result.getString("Point")
                     )
                 }else if(result.getString("ItemType")=="Daily Supply"){
                     tvDetails.setText("Item : "+
@@ -80,23 +82,28 @@ class DonateDetailFragment : Fragment() {
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
                             result.getString("Address")+"\nStatus : "+
-                            result.getString("Status")
+                            result.getString("Status")+"\nPoint Gain: "+
+                            result.getString("Point")
                     )
                 }else if(result.getString("ItemType")=="Money"){
                     tvDetails.setText("Bank : "+
                             result.getString("Bank")+"\nAccount No : "+
                             result.getString("AccountNo")+"\nPayment : RM"+
                             result.getString("Payment")+"\nStatus : "+
-                            result.getString("Status"))
+                            result.getString("Status")+"\nPoint Gain: "+
+                            result.getString("Point"))
                 }
 
                 //}
                 val emailR =result.getString("Email")
+
                 db.collection("USERS").document(emailR.toString()).get()
                     .addOnSuccessListener { result ->
                         //for (document in result) {
                         tvName.setText("ID : "+donateID.toString()+"\nName :"+result.getString("Username"))
                         tvPhone.setText("Phone :"+ result.getString("Phone"))
+                        point = result.getString("Point").toString().toInt()
+                        Log.d(ContentValues.TAG, "Points: "+point)
                         //}
                     }
                     .addOnFailureListener { exception ->
@@ -105,14 +112,17 @@ class DonateDetailFragment : Fragment() {
 
                 if(result.getString("Status").equals("approve")) {
                     btnApprove.visibility = View.GONE
+                    pointGain.visibility = View.GONE
                 }else{
                     btnApprove.visibility = View.VISIBLE
+                    pointGain.visibility = View.VISIBLE
                 }
             }
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "get failed with ", exception)
             }
         val donateFormDb = db.collection("DONATION")
+        val usersDb = db.collection("USERS")
         btnApprove.setOnClickListener{
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
             builder.setCancelable(true)
@@ -123,11 +133,23 @@ class DonateDetailFragment : Fragment() {
                     donateFormDb.document(donateID.toString()).update("Status", "approve")
                         .addOnSuccessListener {
                             Toast.makeText(requireActivity().applicationContext, "This request is Approved", Toast.LENGTH_SHORT).show()
-                            val fragmentBack = DonateListFragment()
-                            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentBack)?.commit()
+                            point += pointGain.text.toString().toInt()
+                            donateFormDb.document(donateID.toString()).update("Point", pointGain.text.toString())
+                                .addOnSuccessListener {
+                                    usersDb.document(email).update("Point", point.toString())
+                                        .addOnSuccessListener {
+                                            val fragmentBack = DonateListFragment()
+                                            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment, fragmentBack)?.commit()
+                                        }.addOnFailureListener { e ->
+                                            Toast.makeText(requireActivity().applicationContext, e.toString(), Toast.LENGTH_SHORT).show()
+                                        }
+                                }.addOnFailureListener { e ->
+                                    Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
+                                }
                         }.addOnFailureListener { e ->
                             Toast.makeText(requireActivity().applicationContext,e.toString(), Toast.LENGTH_SHORT).show()
                         }
+
                 })
             builder.setNegativeButton(android.R.string.cancel,
                 DialogInterface.OnClickListener { dialog, which -> })

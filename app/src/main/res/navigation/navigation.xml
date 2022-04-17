@@ -29,11 +29,15 @@
         tools:layout="@layout/fragment_admin" >
 
         <action
+            android:id="@+id/action_adminFragment_to_request_list_Fragment"
+            app:destination="@id/requestListFragment" />
+        <action
             android:id="@+id/action_adminFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_adminFragment_to_admin_donate_list_Fragment"
             app:destination="@id/adminDonateListFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/adminDonateListFragment"
@@ -151,9 +155,7 @@
         <action
             android:id="@+id/action_requestFragment_to_requestTypeFragment"
             app:destination="@id/requestTypeFragment" />
-        <action
-            android:id="@+id/action_requestFragment_to_requestListFragment"
-            app:destination="@id/requestListFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/requestTypeFragment"
@@ -173,8 +175,8 @@
         android:label="RequestListFragment"
         tools:layout="@layout/fragment_request_list">
         <action
-            android:id="@+id/action_requestListFragment_to_requestFragment"
-            app:destination="@id/requestFragment" />
+            android:id="@+id/action_requestListFragment_to_adminFragment"
+            app:destination="@id/adminFragment" />
     </fragment>
     <fragment
         android:id="@+id/news1Fragment"

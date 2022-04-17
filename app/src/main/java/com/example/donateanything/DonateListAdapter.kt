@@ -19,7 +19,7 @@ class DonateListAdapter (private val donate_list: ArrayList<DonateList>, private
     inner class viewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
         private lateinit var db: FirebaseFirestore
 
-        //var Pic: ImageView = view.findViewById(R.id.imgAccept)
+        var ApproveTxt: TextView = view.findViewById(R.id.approveTxt)
         var Name: TextView = view.findViewById(R.id.name)
         var ItemType: TextView = view.findViewById(R.id.itemType)
         var Detail: TextView = view.findViewById(R.id.donateDetail)
@@ -70,11 +70,11 @@ class DonateListAdapter (private val donate_list: ArrayList<DonateList>, private
             holder.Detail.text = ""
         }
 
-//        if(currentRec.Status.equals("approve")) {
-//            holder.Pic.visibility = View.VISIBLE
-//        }else{
-//            holder.Pic.visibility = View.GONE
-//        }
+        if(currentRec.Status.equals("approve")) {
+            holder.ApproveTxt.visibility = View.VISIBLE
+        }else{
+            holder.ApproveTxt.visibility = View.GONE
+        }
 
     }
 

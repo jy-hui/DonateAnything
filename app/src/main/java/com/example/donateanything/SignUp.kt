@@ -59,7 +59,9 @@ class SignUp : AppCompatActivity() {
                 val user= hashMapOf(
                     "Username" to username.text.toString(),
                     "Phone" to phone.text.toString(),
-                    "Email" to email.text.toString()
+                    "Email" to email.text.toString(),
+                    "Point" to "0",
+                    "token" to "users"
                 )
 
 

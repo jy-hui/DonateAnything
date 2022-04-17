@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="375dp"
     android:layout_height="wrap_content"
     android:background="#FFE3E3"
     app:barrierMargin="100dp">
@@ -46,14 +46,29 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
+        android:layout_width="265dp"
+        android:layout_height="25dp"
         android:layout_marginStart="4dp"
         android:text="xxx"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/approveTxt"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/righteous"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="A"
+        android:textColor="#FF0000"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/itemType"
@@ -90,7 +105,7 @@
 
     <View
         android:id="@+id/divider2"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="10dp"
         android:layout_marginTop="8dp"
         android:background="#F8BCBC"
@@ -98,16 +113,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
-
-    <ImageView
-        android:id="@+id/imgAccept"
-        android:layout_width="56dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="17dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@android:drawable/checkbox_on_background" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

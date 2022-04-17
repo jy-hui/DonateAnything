@@ -31,7 +31,7 @@ class AdminFragment : Fragment() {
         val btnRes: ImageView =view.findViewById(R.id.imgRes)
 
         btnRes.setOnClickListener(){
-            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_newsFragment)
+            Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_request_list_Fragment)
         }
         val btnDonate: ImageView =view.findViewById(R.id.imgDonate)
 
