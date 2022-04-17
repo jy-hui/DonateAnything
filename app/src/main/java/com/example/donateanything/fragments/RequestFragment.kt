@@ -113,6 +113,8 @@ class RequestFragment : Fragment() {
         val email=view.findViewById<TextView>(R.id.email)
         val reason=view.findViewById<TextView>(R.id.reason)
 
+        val emailUser = firebaseAuth.currentUser!!.email.toString()
+        email.text = emailUser.toString()
 
         nextBtn.setOnClickListener{
 
