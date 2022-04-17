@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
         val emailAdmin = firebaseAuth.currentUser!!.email.toString()
         var isAdmin: String? = null
         val adminBtn: Button = view.findViewById(R.id.adminBtn)
-
+        adminBtn.visibility = View.GONE
         db.collection("USERS")
             .whereEqualTo("Email",emailAdmin)
             .get()
