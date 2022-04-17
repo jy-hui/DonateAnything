@@ -50,22 +50,22 @@ class ProfileFragment : Fragment() {
         val btnBrowse: Button = view.findViewById(R.id.btnBrowse)
         val btnChange: Button = view.findViewById(R.id.btnChange)
         val btnConfirm: Button = view.findViewById(R.id.btnConfirm)
-        val showName: TextView = view.findViewById(R.id.tvName)
+        val showingName: TextView = view.findViewById(R.id.tvName)
         val showingEmail: TextView = view.findViewById(R.id.showingEmail)
         val showingPhone: TextView = view.findViewById(R.id.showingPhone)
-        val showEmail: EditText = view.findViewById(R.id.showEmail)
+        val showName: EditText = view.findViewById(R.id.showName)
         val showPhone: EditText = view.findViewById(R.id.showPhone)
         val tvPoint: TextView = view.findViewById(R.id.tvCPoints)
 
         val email = firebaseAuth.currentUser!!.email.toString()
 
         db = FirebaseFirestore.getInstance()
-        db.collection("UserInfo")
+        db.collection("USERS").whereEqualTo("Email",email)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.getString("Point")}")
-                    showName.text = document.getString("Name")
+                    showingName.text = document.getString("Username")
                     showingPhone.text = document.getString("Phone")
                     tvPoint.text = document.getString("Point")
                     showingEmail.text = document.getString("Email")
@@ -76,29 +76,40 @@ class ProfileFragment : Fragment() {
             }
 
         btnChange.setOnClickListener{
-            showingEmail.visibility = GONE
+            showingName.visibility = GONE
             showingPhone.visibility = GONE
-            showEmail.visibility = VISIBLE
+            showName.visibility = VISIBLE
             showPhone.visibility = VISIBLE
             btnChange.visibility = GONE
             btnConfirm.visibility = VISIBLE
         }
 
         btnConfirm.setOnClickListener{
-            showingEmail.visibility = VISIBLE
+            showingName.visibility = VISIBLE
             showingPhone.visibility = VISIBLE
-            showEmail.visibility = GONE
+            showName.visibility = GONE
             showPhone.visibility = GONE
             btnChange.visibility = VISIBLE
             btnConfirm.visibility = GONE
 
-            val newEmail = showEmail.text.toString()
-            showingEmail.text = newEmail
+            var newName = ""
 
-            val phone = showPhone.text.toString()
-            showingPhone.text = phone
+            if(showName.text.toString()==""){
+                newName = showingName.text.toString()
+            }else{
+                newName = showName.text.toString()
 
-            updateInfo(email, newEmail, phone)
+                showingName.text = newName
+            }
+            var phone = ""
+            if(showPhone.text.toString()==""){
+                phone = showingPhone.text.toString()
+            }else{
+                phone = showPhone.text.toString()
+                showingPhone.text = phone
+            }
+
+            updateInfo(email, newName, phone)
         }
 
         btnBrowse.setOnClickListener {
@@ -130,9 +141,10 @@ class ProfileFragment : Fragment() {
             imgProfile.setImageURI(uri)
     }
 
-    private fun updateInfo (email:String, newEmail:String, phone:String){
-        val refresh = db.collection("UserInfo").document(email)
-        refresh.update("Email",newEmail)
+    private fun updateInfo (email:String, newName:String, phone:String){
+
+        val refresh = db.collection("USERS").document(email)
+        refresh.update("Username",newName)
         refresh.update("Phone",phone)
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
