@@ -58,7 +58,10 @@ class DonateForm2Fragment : Fragment() {
         pacNo = view.findViewById(R.id.pacNo)
         val requestBtn : Button = view.findViewById(R.id.requestBtn)
         btnBack.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_donateForm2Fragment_to_newsFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_donateForm2Fragment_to_newsFragment)
+            val fragment = NewsFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
 
         val bank = arrayListOf("Bank", "May Bank", "HSBC Bank","Public Bank")

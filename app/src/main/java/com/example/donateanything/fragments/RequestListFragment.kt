@@ -51,7 +51,10 @@ class RequestListFragment : Fragment(), Adapter.OnItemClickListener {
         EventChangeListener()
 
         backBtn.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_requestListFragment_to_adminFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_requestListFragment_to_adminFragment)
+            val fragment = AdminFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
 
         return view

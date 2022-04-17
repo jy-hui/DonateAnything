@@ -20,19 +20,26 @@ class NewsFragment : Fragment() {
         val btnBack: ImageView =view.findViewById(R.id.back)
 
         btnBack.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_homeFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_homeFragment)
+            val fragment = HomeFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
 
         }
         val news1: ImageView =view.findViewById(R.id.news1)
 
         news1.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_news1Fragment)
+            //Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_news1Fragment)
+            val fragment = News1Fragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
 
         }
 
         val news2: ImageView =view.findViewById(R.id.news2)
         news2.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_news2Fragment)
+            //Navigation.findNavController(it).navigate(R.id.action_newsFragment_to_news2Fragment)
+            val fragment = News2Fragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
         return view
     }

@@ -21,13 +21,15 @@ class News2Fragment : Fragment() {
         val btnBack: ImageView =view.findViewById(R.id.back)
 
         btnBack.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_news2Fragment_to_newsFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_news2Fragment_to_newsFragment)
+            val fragment = NewsFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
 
         }
         val donate2: Button =view.findViewById(R.id.donate2)
 
         donate2.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_news2Fragment_to_donateFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_news2Fragment_to_donateFragment)
             val bundle = Bundle()
             bundle.putString("newTitle",getString(R.string.newsTitle2))
             bundle.putBoolean("isFoodItem",true)

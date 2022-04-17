@@ -21,7 +21,10 @@ class EventFragment : Fragment() {
         val btnBack: ImageView =view.findViewById(R.id.back)
 
         btnBack.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_eventFragment_to_homeFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_eventFragment_to_homeFragment)
+            val fragment = HomeFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
         return view
     }

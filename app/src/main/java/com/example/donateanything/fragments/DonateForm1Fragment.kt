@@ -65,7 +65,9 @@ class DonateForm1Fragment : Fragment() {
         db= FirebaseFirestore.getInstance()
 
         btnBack.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_newsFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_newsFragment)
+            val fragmentHome = NewsFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentHome)?.commit()
         }
 
         val unit = arrayListOf("unit","bottle","bag", "kg","g", "ml","l")

@@ -43,7 +43,10 @@ class DonateFragment : Fragment(){
         date = view.findViewById(R.id.date_Tran)
 
         btnBack.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_donateFragment_to_newsFragment)
+            val fragment = NewsFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
         val titleNewsText= view.findViewById<TextView>(R.id.newsTitle);
         val itemDonate:Spinner = view.findViewById(R.id.itemDonate_spinner);

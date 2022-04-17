@@ -25,18 +25,27 @@ class AdminFragment : Fragment() {
 
         val homeBtn: Button = view.findViewById(R.id.homeBtn)
         homeBtn.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_homeFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_homeFragment)
+            val fragmentHome = HomeFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragmentHome)?.commit()
+
         }
 
         val btnRes: ImageView =view.findViewById(R.id.imgRes)
 
         btnRes.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_request_list_Fragment)
+            //Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_request_list_Fragment)
+            val fragment = RequestListFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
         val btnDonate: ImageView =view.findViewById(R.id.imgDonate)
 
         btnDonate.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_admin_donate_list_Fragment)
+            //Navigation.findNavController(it).navigate(R.id.action_adminFragment_to_admin_donate_list_Fragment)
+            val fragment = DonateListFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
 
         return view

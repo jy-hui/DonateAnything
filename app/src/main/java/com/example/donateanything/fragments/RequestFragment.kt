@@ -140,7 +140,10 @@ class RequestFragment : Fragment() {
         }
 
         backBtn.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_requestFragment_to_homeFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_requestFragment_to_homeFragment)
+            val fragment = HomeFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
 
         return view

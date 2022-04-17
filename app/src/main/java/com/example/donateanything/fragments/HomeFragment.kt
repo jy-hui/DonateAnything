@@ -54,17 +54,26 @@ class HomeFragment : Fragment() {
             }
 
         adminBtn.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_adminFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_adminFragment)
+            val fragment = AdminFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
         val btnNews: ImageView =view.findViewById(R.id.imgNews)
 
         btnNews.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_newsFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_newsFragment)
+            val fragment = NewsFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
         val btnEvent: ImageView =view.findViewById(R.id.imgEvent)
 
         btnEvent.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_eventFragment)
+            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_eventFragment)
+            val fragment = EventFragment()
+            fragmentManager?.beginTransaction()?.replace(R.id.container_fragment,fragment)?.commit()
+
         }
         return view
     }
