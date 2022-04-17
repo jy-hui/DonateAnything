@@ -83,7 +83,7 @@ class RequestListDetailFragment : Fragment() {
             builder.setMessage("Confirm approve ?")
             builder.setPositiveButton("Confirm",
                 DialogInterface.OnClickListener { dialog, which ->
-                    requestFormDb.document(document.toString()).update("Status", "approve")
+                    requestFormDb.document(document.toString()).update("Status", "Approve")
                         .addOnSuccessListener {
                             Toast.makeText(requireActivity().applicationContext, "This request is Approved", Toast.LENGTH_SHORT).show()
                             val fragmentBack = RequestListFragment()
@@ -106,7 +106,7 @@ class RequestListDetailFragment : Fragment() {
             builder.setMessage("Are you sure want to reject ?")
             builder.setPositiveButton("Confirm",
                 DialogInterface.OnClickListener { dialog, which ->
-                    requestFormDb.document(document.toString()).update("Status", "reject")
+                    requestFormDb.document(document.toString()).update("Status", "Reject")
                         .addOnSuccessListener {
                             Toast.makeText(requireActivity().applicationContext, "This request is Rejected", Toast.LENGTH_SHORT).show()
                             val fragmentBack = RequestListFragment()

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="220dp"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="false"
+    android:layout_centerVertical="false"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginBottom="20dp"
+    android:background="#A7F8C7"
+    android:clipToPadding="false">
+
+    <TextView
+        android:id="@+id/donateDS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/righteous"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="ds" />
+
+    <TextView
+        android:id="@+id/reasontv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Reason"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/donateDS" />
+
+    <TextView
+        android:id="@+id/reason_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reasontv"
+        tools:text="xxx" />
+
+    <TextView
+        android:id="@+id/request_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="[Status]" />
+
+    <TextView
+        android:id="@+id/donateMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/righteous"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/donateDS"
+        app:layout_constraintStart_toEndOf="@+id/donateDS"
+        app:layout_constraintTop_toTopOf="@+id/donateDS"
+        app:layout_constraintVertical_bias="0.421"
+        tools:text="m" />
+
+    <TextView
+        android:id="@+id/donateFD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/righteous"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/donateMoney"
+        app:layout_constraintStart_toEndOf="@+id/donateMoney"
+        app:layout_constraintTop_toTopOf="@+id/donateMoney"
+        tools:text="fd" />
+
+    <TextView
+        android:id="@+id/donateO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/righteous"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        android:text="o"
+        app:layout_constraintBottom_toBottomOf="@+id/donateFD"
+        app:layout_constraintStart_toEndOf="@+id/donateFD"
+        app:layout_constraintTop_toTopOf="@+id/donateFD" />
+</androidx.constraintlayout.widget.ConstraintLayout>

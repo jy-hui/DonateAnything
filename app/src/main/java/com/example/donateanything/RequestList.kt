@@ -15,6 +15,6 @@ data class RequestList(
     var HouseAddress:String?=null,
     var Email:String?=null,
     var Phone:String?=null,
-    var ID:String?=null
-
+    var ID:String?=null,
+    var Status:String?=null
 )
