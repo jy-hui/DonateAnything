@@ -49,11 +49,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/donateListRecycler"
-            android:layout_width="342dp"
+            android:layout_width="wrap_content"
             android:layout_height="502dp"
-            android:layout_marginStart="34dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="35dp"
             android:layout_marginBottom="51dp"
             app:layout_constraintBottom_toTopOf="@+id/imgBg"
             app:layout_constraintEnd_toEndOf="parent"

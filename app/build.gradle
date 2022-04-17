@@ -60,6 +60,6 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
 
     //Generate QRCode
-    //implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    //implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     //implementation 'com.google.zxing:core:3.2.1'
 }

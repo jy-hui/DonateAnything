@@ -48,26 +48,29 @@
             app:srcCompat="@drawable/bg_admin" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="300dp"
-            android:layout_height="553dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/admin">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="106dp"
+                android:layout_height="112dp"
+                app:srcCompat="@drawable/ic_outline_account_circle_24" />
 
             <TextView
                 android:id="@+id/tvRName3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                android:text="TextView" />
 
             <TextView
                 android:id="@+id/tvRIC3"
@@ -143,14 +146,24 @@
             <TextView
                 android:id="@+id/detailReceipt3"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/titleDonate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
                 tools:ignore="SpeakableTextPresentCheck" />
+
         </LinearLayout>
+
+        <Button
+            android:id="@+id/approveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Approve Now"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

@@ -56,7 +56,8 @@ class ReceiptFragment : Fragment(){
                             result.getString("Value")+ " "+
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
-                            result.getString("Address")
+                            result.getString("Address")+"\nStatus : "+
+                            result.getString("Status")
                     )
                 }else if(result.getString("ItemType")=="Daily Supply"){
                     tvDetails.setText("Item : "+
@@ -64,13 +65,15 @@ class ReceiptFragment : Fragment(){
                             result.getString("Value")+ " "+
                             result.getString("Unit")+ "\nTransportation : "+
                             result.getString("Transportation")+ "\nAddress : "+
-                            result.getString("Address")
+                            result.getString("Address")+"\nStatus : "+
+                            result.getString("Status")
                     )
                 }else if(result.getString("ItemType")=="Money"){
                     tvDetails.setText("Bank : "+
                             result.getString("Bank")+"\nAccount No : "+
                             result.getString("AccountNo")+"\nPayment : RM"+
-                            result.getString("Payment"))
+                            result.getString("Payment")+"\nStatus : "+
+                            result.getString("Status"))
                 }
 
                 //}
