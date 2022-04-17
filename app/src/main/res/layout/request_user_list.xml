@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
-    android:layout_height="220dp"
+    android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     android:layout_centerHorizontal="false"
     android:layout_centerVertical="false"
@@ -43,7 +43,7 @@
     <TextView
         android:id="@+id/reason_detail"
         android:layout_width="293dp"
-        android:layout_height="83dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:textColor="#000000"
@@ -87,10 +87,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/righteous"
+        android:text="TextView"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="normal"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/donateMoney"
         app:layout_constraintStart_toEndOf="@+id/donateMoney"
         app:layout_constraintTop_toTopOf="@+id/donateMoney"
@@ -101,10 +101,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/righteous"
+        android:text="o"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="normal"
-        android:text="o"
         app:layout_constraintBottom_toBottomOf="@+id/donateFD"
         app:layout_constraintStart_toEndOf="@+id/donateFD"
         app:layout_constraintTop_toTopOf="@+id/donateFD" />
@@ -122,13 +122,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reason_detail" />
+
     <!--    <ImageView-->
-<!--        android:id="@+id/deleteButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="4dp"-->
-<!--        android:layout_marginEnd="4dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@android:drawable/btn_dialog" />-->
+    <!--        android:id="@+id/deleteButton"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="4dp"-->
+    <!--        android:layout_marginEnd="4dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:srcCompat="@android:drawable/btn_dialog" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
