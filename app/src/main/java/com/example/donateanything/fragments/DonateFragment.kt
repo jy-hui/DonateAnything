@@ -16,7 +16,7 @@ class DonateFragment : Fragment(){
     private lateinit var date: EditText
 
     private val IC_NUMBER_REGEX = "^[0-9]{2}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{7}\$"
-    private val DATE_REGEX = "^[0-1]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[0-9]{4}\$"
+    private val DATE_REGEX = "^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[0-9]{4}\$"
 
     var i = 0;
 

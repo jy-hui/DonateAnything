@@ -15,6 +15,8 @@ import androidx.navigation.Navigation
 import com.example.donateanything.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DonateForm2Fragment : Fragment() {
@@ -25,10 +27,10 @@ class DonateForm2Fragment : Fragment() {
     private lateinit var accountNo : EditText
     private lateinit var payment : EditText
     private lateinit var pacNo : EditText
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
+    lateinit var calendar:Calendar
+    lateinit var simpleDateFormat: SimpleDateFormat
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,32 +86,15 @@ class DonateForm2Fragment : Fragment() {
 
         val btnSubmit: Button =view.findViewById(R.id.submitBtn)
         db= FirebaseFirestore.getInstance()
-//        db.collection("DONATION").get().addOnSuccessListener {
-//            if(it.isEmpty){
-//                donateID = "0"
-//            }
-//        }
-//            .addOnFailureListener { exception ->
-//                Log.d(ContentValues.TAG, "get failed with ", exception)
-//            }
-//        db.collection("DONATION").get().addOnSuccessListener { result ->
-//            for (document in result) {
-//                donateID = document.id
-//
-//            }
-//        }
-//            .addOnFailureListener { exception ->
-//                Log.d(ContentValues.TAG, "get failed with ", exception)
-//            }
+
         btnSubmit.setOnClickListener(){
 
             if(isCheck()){
-                //Log.w(ContentValues.TAG, "Donation :"+ donateID )
-                //d_ID = donateID.toInt()
-                //d_ID++
-                //d_ID_F = d_ID.toString()
+                calendar = Calendar.getInstance()
+                simpleDateFormat = SimpleDateFormat("yyyyMMddHHmmssSSS")
+                val id = simpleDateFormat.format(calendar.time)
                 val donation = hashMapOf(
-                    //"ID" to d_ID,
+                    "ID" to id,
                     "Email" to email,
                     "NoIC" to icNo,
                     "Date" to date,
@@ -123,23 +108,20 @@ class DonateForm2Fragment : Fragment() {
                 )
 
                 val Donation = db.collection("DONATION")
-                val query = Donation.add(donation)
-                    .addOnSuccessListener { documentReference ->
-                        //Donation.document(d_ID_F).set(donation)
-                        val id = documentReference.id
-                        Donation.document(id).update("ID", id).addOnSuccessListener {
-                            //Navigation.findNavController(it).navigate(R.id.action_donateForm2Fragment_to_receiptFragment)
-                            val bundle = Bundle()
-                            bundle.putString("ID", id)
-                            val fragment = ReceiptFragment()
-                            fragment.arguments = bundle
-                            fragmentManager?.beginTransaction() ?.replace(R.id.container_fragment, fragment)?.commit()
-                        }
+                val query = Donation.whereEqualTo("ID",id).get().addOnSuccessListener { result ->
+                    if(result.isEmpty) {
+                        Donation.document(id).set(donation)
+                        val bundle = Bundle()
+                        bundle.putString("ID", id)
+                        val fragment = ReceiptFragment()
+                        fragment.arguments = bundle
+                        fragmentManager?.beginTransaction()
+                            ?.replace(R.id.container_fragment, fragment)?.commit()
                     }
-                    .addOnFailureListener { e ->
-                        //Log.w(TAG, "Error adding document", e)
-                        //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
-                    }
+                }.addOnFailureListener { e ->
+                    //Log.w(TAG, "Error adding document", e)
+                    //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
+                }
 
             }
 

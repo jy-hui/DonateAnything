@@ -101,11 +101,13 @@ class DonateDetailFragment : Fragment() {
                 val emailR =result.getString("Email")
 
                 db.collection("USERS").document(emailR.toString()).get()
-                    .addOnSuccessListener { result ->
+                    .addOnSuccessListener { task ->
                         //for (document in result) {
-                        tvName.setText("ID : "+donateID.toString()+"\n\nName :"+result.getString("Username"))
-                        tvPhone.setText("Phone :"+ result.getString("Phone"))
-                        point = result.getString("Point").toString().toInt()
+                        tvName.setText("ID : "+donateID.toString()+"\n\nName :"+task.getString("Username"))
+                        tvPhone.setText("Phone :"+ task.getString("Phone"))
+
+                        point = task.getString("Point").toString().toInt()
+
                         Log.d(ContentValues.TAG, "Points: "+point)
                         //}
                     }

@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.android.synthetic.main.fragment_request.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DonateForm1Fragment : Fragment() {
@@ -27,8 +29,8 @@ class DonateForm1Fragment : Fragment() {
     private lateinit var valueNo: EditText
     private lateinit var addressText: EditText
 
-    //ProgressDialog
-    private lateinit var progressDialog: ProgressDialog
+    lateinit var calendar:Calendar
+    lateinit var simpleDateFormat: SimpleDateFormat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,12 +102,11 @@ class DonateForm1Fragment : Fragment() {
         btnSubmit.setOnClickListener {
             if(isCheck()) {
 
-                //Log.w(TAG, "Donation :"+ donateID )
-                //d_ID = donateID.toInt()
-                //d_ID++
-                //d_ID_F = d_ID.toString()
+                calendar = Calendar.getInstance()
+                simpleDateFormat = SimpleDateFormat("yyyyMMddHHmmssSSS")
+                val id = simpleDateFormat.format(calendar.time)
                 val donation = hashMapOf(
-                    //"ID" to d_ID,
+                    "ID" to id,
                     "Email" to email,
                     "NoIC" to icNo,
                     "Date" to date,
@@ -120,26 +121,40 @@ class DonateForm1Fragment : Fragment() {
                     "Status" to "pending"
                 )
 
+//                val Donation = db.collection("DONATION")
+//                val query = Donation.add(donation)
+//                    .addOnSuccessListener { documentReference ->
+//                        val id = documentReference.id
+//                        Log.w(TAG, "ID: "+id)
+//                        Donation.document(id).update("ID", id).addOnSuccessListener {
+//                            //Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_receiptFragment)
+//                            val bundle = Bundle()
+//                            bundle.putString("ID", id)
+//                            val fragment = ReceiptFragment()
+//                            fragment.arguments = bundle
+//                            fragmentManager?.beginTransaction()
+//                                ?.replace(R.id.container_fragment, fragment)?.commit()
+//                        }
+//                    }
+//                    .addOnFailureListener { e ->
+//                        //Log.w(TAG, "Error adding document", e)
+//                        //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
+//                    }
                 val Donation = db.collection("DONATION")
-                val query = Donation.add(donation)
-                    .addOnSuccessListener { documentReference ->
-                        //Donation.document(d_ID_F).set(donation)
-                        val id = documentReference.id
-                        Donation.document(id).update("ID", id).addOnSuccessListener {
-                            //Navigation.findNavController(it).navigate(R.id.action_donateForm1Fragment_to_receiptFragment)
-                            val bundle = Bundle()
+                val query = Donation.whereEqualTo("ID",id).get().addOnSuccessListener { result ->
+                    if(result.isEmpty) {
+                        Donation.document(id).set(donation)
+                        val bundle = Bundle()
                             bundle.putString("ID", id)
                             val fragment = ReceiptFragment()
                             fragment.arguments = bundle
                             fragmentManager?.beginTransaction()
                                 ?.replace(R.id.container_fragment, fragment)?.commit()
-                        }
                     }
-                    .addOnFailureListener { e ->
-                        //Log.w(TAG, "Error adding document", e)
-                        //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
-                    }
-
+                }.addOnFailureListener { e ->
+                    //Log.w(TAG, "Error adding document", e)
+                    //Toast.makeText(this,error.toString(), Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -152,7 +167,6 @@ class DonateForm1Fragment : Fragment() {
         if(itemName.text.toString().isEmpty()&&valueNo.text.toString().isEmpty()){
             itemName.error = "Please enter name of item"
             valueNo.error = "Please enter the value of item"
-            //addressText.error = "Please enter your address"
             isFill = false
         }
         if(itemName.text.toString().isEmpty()){

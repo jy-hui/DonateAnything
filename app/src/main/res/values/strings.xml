@@ -39,7 +39,7 @@
     <string name="ic">IC number</string>
     <string name="titleDonate">" "</string>
     <string name="campus_spinner">Choose campus</string>
-    <string name="date">DD/MM/YYYY</string>
+    <string name="date">Date Donate</string>
     <string name="next">NEXT</string>
     <string name="value">number of value</string>
     <string name="unit">unit</string>
@@ -60,14 +60,5 @@
     <string name="admin_donate_list">Donate Form List</string>
     <string name="admin_donate_detail">Donate Form Detail</string>
 
-    <string-array name="unit">
-        <item>unit</item>
-        <item>bottle</item>
-        <item>bag</item>
-        <item>kg</item>
-        <item>g</item>
-        <item>ml</item>
-        <item>l</item>
-    </string-array>
 
 </resources>
