@@ -40,41 +40,70 @@
         android:id="@+id/imgBG"
         android:layout_width="379dp"
         android:layout_height="504dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvThanks"
-        app:layout_constraintEnd_toEndOf="@+id/tvThanks"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvThanks"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titlePage"
         app:srcCompat="@color/purple_200" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/infoRV"
         android:layout_width="320dp"
         android:layout_height="480dp"
-        android:layout_marginTop="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlePage"
-        app:layout_constraintVertical_bias="0.264"
+        app:layout_constraintTop_toBottomOf="@+id/historyBtn"
+        app:layout_constraintVertical_bias="0.176"
         tools:listitem="@layout/item_view">
 
     </androidx.recyclerview.widget.RecyclerView>
+
 
     <TextView
         android:id="@+id/tvThanks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="Scroll down to view more History record ~"
         android:textColor="#000000"
         android:textColorHighlight="#FF0000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/infoRV"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="@+id/infoRV"
-        app:layout_constraintTop_toBottomOf="@+id/infoRV" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBG" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/requestRV"
+        android:layout_width="320dp"
+        android:layout_height="480dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requestListBtn"
+        app:layout_constraintVertical_bias="0.176"
+        tools:listitem="@layout/request_user_list" />
+
+    <Button
+        android:id="@+id/historyBtn"
+        android:layout_width="190dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:text="Donate History"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titlePage" />
+
+    <Button
+        android:id="@+id/requestListBtn"
+        android:layout_width="190dp"
+        android:layout_height="48dp"
+        android:text="Request History"
+        app:layout_constraintBottom_toBottomOf="@+id/historyBtn"
+        app:layout_constraintStart_toEndOf="@+id/historyBtn"
+        app:layout_constraintTop_toTopOf="@+id/historyBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

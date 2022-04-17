@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.donateanything.fragments.RequestListFragment
 
-class Adapter (private val request_list: ArrayList<RequestList>, private val listener: OnItemClickListener):
+class Adapter(private val request_list: ArrayList<RequestList>, private val listener: OnItemClickListener):
     RecyclerView.Adapter<Adapter.viewHolder>() {
 
     inner class viewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
