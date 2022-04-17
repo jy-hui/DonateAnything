@@ -101,7 +101,6 @@ class RequestFragment : Fragment() {
         val view= inflater.inflate(R.layout.fragment_request, container, false)
         val backBtn: ImageView = view.findViewById(R.id.backBtn1)
         val nextBtn: Button =view.findViewById(R.id.nextBtn)
-        val adminBtn: Button =view.findViewById(R.id.adminBtn)
 
         firebaseAuth= FirebaseAuth.getInstance()
         db= FirebaseFirestore.getInstance()
@@ -113,32 +112,6 @@ class RequestFragment : Fragment() {
         val houseAddress=view.findViewById<TextView>(R.id.houseAddress)
         val email=view.findViewById<TextView>(R.id.email)
         val reason=view.findViewById<TextView>(R.id.reason)
-
-        val emailAdmin = firebaseAuth.currentUser!!.email.toString()
-
-        var isAdmin: String? = null
-
-        email.text = emailAdmin.toString()
-
-        adminBtn.visibility = View.GONE
-
-        db.collection("USERS")
-            .whereEqualTo("Email",emailAdmin)
-            .get()
-            .addOnSuccessListener { result ->
-
-                for (document in result){
-                    isAdmin = document.getString("token")
-                }
-                if(isAdmin.equals("Admin")) {
-                    adminBtn.visibility = View.VISIBLE
-                }else{
-                    adminBtn.visibility = View.GONE
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "get failed with ", exception)
-            }
 
 
         nextBtn.setOnClickListener{
@@ -168,9 +141,6 @@ class RequestFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_requestFragment_to_homeFragment)
         }
 
-        adminBtn.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_requestFragment_to_requestListFragment)
-        }
         return view
     }
 

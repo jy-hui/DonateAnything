@@ -113,7 +113,7 @@ class DonateForm1Fragment : Fragment() {
                     "ItemType" to itemType,
                     "Item" to itemName.text.toString(),
                     "Value" to valueNo.text.toString(),
-                    "Point" to valueNo.text.toString(),
+                    "Point" to "pending",
                     "Unit" to unitR,
                     "Transportation" to onTrans.toString(),
                     "Address" to addressText.text.toString(),

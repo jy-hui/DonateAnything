@@ -12,6 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imgBg2"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/bg_admin" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/righteous"
+            android:text="Donate Form List"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/imgDonate"
+            app:layout_constraintTop_toBottomOf="@+id/imgDonate" />
+
         <TextView
             android:id="@+id/admin"
             android:layout_width="wrap_content"
@@ -25,6 +48,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/righteous"
+            android:text="Request Form List"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/imgRes"
+            app:layout_constraintTop_toBottomOf="@+id/imgRes" />
+
         <Button
             android:id="@+id/homeBtn"
             android:layout_width="wrap_content"
@@ -37,23 +73,24 @@
 
         <ImageView
             android:id="@+id/imgRes"
-            android:layout_width="358dp"
-            android:layout_height="159dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="154dp"
+            android:layout_height="154dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner2"
-            app:srcCompat="@drawable/news" />
+            app:srcCompat="@drawable/request_form_list" />
 
         <ImageView
             android:id="@+id/imgDonate"
-            android:layout_width="380dp"
-            android:layout_height="159dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="154dp"
+            android:layout_height="154dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgRes"
-            app:srcCompat="@drawable/event" />
+            app:layout_constraintStart_toEndOf="@+id/imgRes"
+            app:layout_constraintTop_toTopOf="@+id/imgRes"
+            app:srcCompat="@drawable/donate_form_list" />
 
         <ImageView
             android:id="@+id/banner2"
