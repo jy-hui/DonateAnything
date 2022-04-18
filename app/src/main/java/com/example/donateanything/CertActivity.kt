@@ -26,12 +26,12 @@ class CertActivity: AppCompatActivity() {
         val date : TextView = findViewById(R.id.showDate)
 
         db= FirebaseFirestore.getInstance()
-        db.collection("UserInfo")
+        db.collection("USERS")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result){
                     Log.d(ContentValues.TAG, "DocumentSnapshot data: ${document.getString("Name")}")
-                    name.text = document.getString("Name")
+                    name.text = document.getString("Username")
                 }
 
             }

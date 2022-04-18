@@ -64,40 +64,38 @@
             android:id="@+id/donate1"
             android:layout_width="102dp"
             android:layout_height="48dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/button_round"
             android:backgroundTint="#FFFFFF"
             android:fontFamily="@font/righteous"
             android:text="@string/donate"
-            app:layout_constraintBottom_toTopOf="@+id/imgBg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNeed" />
 
         <TextView
             android:id="@+id/newsTitle"
             android:layout_width="311dp"
             android:layout_height="48dp"
+            android:layout_marginTop="40dp"
             android:text="@string/newsTitle1"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/tvNeed"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/news1"
-            app:layout_constraintVertical_bias="0.946" />
+            app:layout_constraintTop_toBottomOf="@+id/news1" />
 
         <TextView
             android:id="@+id/tvNeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/righteous"
             android:text="@string/needs1"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/donate1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.301"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/newsTitle"
+            app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
